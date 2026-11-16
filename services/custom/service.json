@@ -1,0 +1,23 @@
+{
+  "label": "Other OAuth2 service",
+  "authType": "oauth2",
+  "category": "generic",
+  "description": "Any OAuth2 service",
+  "glyph": "M9 15l6-6M11 5l1-1a4 4 0 0 1 5.66 5.66l-1 1M13 19l-1 1a4 4 0 0 1-5.66-5.66l1-1",
+  "color": "#8b8bf5",
+  "advanced": true,
+  "locales": {
+    "fr": {
+      "label": "Autre service OAuth2",
+      "description": "N'importe quel service OAuth2"
+    },
+    "es": {
+      "label": "Otro servicio OAuth2",
+      "description": "Cualquier servicio OAuth2"
+    },
+    "de": {
+      "label": "Anderer OAuth2-Dienst",
+      "description": "Jeder OAuth2-Dienst"
+    }
+  }
+}

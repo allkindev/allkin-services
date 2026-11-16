@@ -1,0 +1,88 @@
+{
+  "label": "DigitalOcean",
+  "authType": "api_key",
+  "category": "cloud",
+  "description": "Droplets, domains, apps, databases",
+  "glyph": "M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18zM12 21v-4M8 21v-3M5 18h3M8 18v-3",
+  "color": "#0080ff",
+  "apiBaseUrl": "https://api.digitalocean.com",
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "Bearer ",
+  "testPath": "/v2/account",
+  "testExpect": "account",
+  "sensitivePaths": [
+    {
+      "method": "POST",
+      "path": "/v2/droplets",
+      "action": "confirm",
+      "label": "Create a droplet",
+      "warning": "It is billed as long as it exists."
+    },
+    {
+      "method": "POST",
+      "path": "/v2/droplets/*/actions",
+      "action": "confirm",
+      "label": "Act on a droplet (power, reboot, snapshot)"
+    },
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete (droplet, domain, volume…)",
+      "warning": "The data goes with it."
+    }
+  ],
+  "agentGuide": "Base path /v2. Account: GET /v2/account; balance: GET /v2/customers/my/balance. Droplets: GET /v2/droplets?per_page=50 (id, name, status, networks.v4[].ip_address, size_slug, region.slug); one: GET /v2/droplets/<id>; actions: POST /v2/droplets/<id>/actions {\"type\": \"power_on\"} (power_off, reboot, shutdown, snapshot). Create: POST /v2/droplets {\"name\": \"...\", \"region\": \"fra1\", \"size\": \"s-1vcpu-1gb\", \"image\": \"debian-12-x64\", \"ssh_keys\": [..]} — it costs money. Catalogue: GET /v2/sizes, /v2/images?type=distribution, /v2/regions, /v2/account/keys. Domains: GET /v2/domains, records: GET /v2/domains/<name>/records, add: POST ... {\"type\": \"A\", \"name\": \"www\", \"data\": \"1.2.3.4\"}. Apps (App Platform): GET /v2/apps; databases: GET /v2/databases; volumes: GET /v2/volumes; firewalls: GET /v2/firewalls. Monitoring: GET /v2/monitoring/metrics/droplet/cpu?host_id=<id>&start=&end=. The token is set by Allkin.",
+  "docUrl": "https://docs.digitalocean.com/reference/api/",
+  "locales": {
+    "fr": {
+      "description": "Droplets, domaines, applications, bases de données",
+      "sensitivePaths": [
+        {
+          "label": "Créer un droplet",
+          "warning": "Il est facturé tant qu'il existe."
+        },
+        {
+          "label": "Agir sur un droplet (alimentation, redémarrage, instantané)"
+        },
+        {
+          "label": "Supprimer (droplet, domaine, volume…)",
+          "warning": "Les données partent avec."
+        }
+      ]
+    },
+    "es": {
+      "description": "Droplets, dominios, aplicaciones, bases de datos",
+      "sensitivePaths": [
+        {
+          "label": "Crear un droplet",
+          "warning": "Se factura mientras exista."
+        },
+        {
+          "label": "Actuar sobre un droplet (alimentación, reinicio, instantánea)"
+        },
+        {
+          "label": "Eliminar (droplet, dominio, volumen…)",
+          "warning": "Los datos se van con ello."
+        }
+      ]
+    },
+    "de": {
+      "description": "Droplets, Domains, Apps, Datenbanken",
+      "sensitivePaths": [
+        {
+          "label": "Ein Droplet erstellen",
+          "warning": "Es wird berechnet, solange es existiert."
+        },
+        {
+          "label": "Auf ein Droplet einwirken (Strom, Neustart, Snapshot)"
+        },
+        {
+          "label": "Löschen (Droplet, Domain, Volume…)",
+          "warning": "Die Daten verschwinden mit."
+        }
+      ]
+    }
+  }
+}

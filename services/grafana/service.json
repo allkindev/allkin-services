@@ -1,0 +1,65 @@
+{
+  "label": "Grafana",
+  "authType": "api_key",
+  "category": "cloud",
+  "description": "Dashboards, data sources, alerts",
+  "glyph": "M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z",
+  "color": "#f46800",
+  "needsBaseUrl": true,
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "Bearer ",
+  "testPath": "/api/org",
+  "testExpect": "name",
+  "sensitivePaths": [
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete (dashboard, data source…)"
+    },
+    {
+      "method": "POST",
+      "path": "/api/dashboards/db",
+      "action": "confirm",
+      "label": "Save a dashboard"
+    }
+  ],
+  "agentGuide": "Dashboards: GET /api/search?query=<words>&type=dash-db (uid, title, url); one: GET /api/dashboards/uid/<uid> (dashboard.panels with their queries). Data sources: GET /api/datasources; query one: POST /api/ds/query {\"queries\": [{\"refId\": \"A\", \"datasource\": {\"uid\": \"...\"}, \"expr\": \"up\"}], \"from\": \"now-1h\", \"to\": \"now\"}. Alerts: GET /api/alertmanager/grafana/api/v2/alerts (firing ones), rules: GET /api/v1/provisioning/alert-rules; annotations: GET /api/annotations?from=&to=, add: POST /api/annotations {\"text\": \"...\", \"tags\": [..]}. Health: GET /api/health; org: GET /api/org; users: GET /api/org/users. Saving a dashboard replaces it: read it first and keep its version.",
+  "docUrl": "https://grafana.com/docs/grafana/latest/developers/http_api/",
+  "locales": {
+    "fr": {
+      "description": "Tableaux de bord, sources de données, alertes",
+      "sensitivePaths": [
+        {
+          "label": "Supprimer (tableau de bord, source de données…)"
+        },
+        {
+          "label": "Enregistrer un tableau de bord"
+        }
+      ]
+    },
+    "es": {
+      "description": "Paneles, fuentes de datos, alertas",
+      "sensitivePaths": [
+        {
+          "label": "Eliminar (panel, fuente de datos…)"
+        },
+        {
+          "label": "Guardar un panel"
+        }
+      ]
+    },
+    "de": {
+      "description": "Dashboards, Datenquellen, Alarme",
+      "sensitivePaths": [
+        {
+          "label": "Löschen (Dashboard, Datenquelle…)"
+        },
+        {
+          "label": "Ein Dashboard speichern"
+        }
+      ]
+    }
+  }
+}

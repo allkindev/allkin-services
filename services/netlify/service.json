@@ -1,0 +1,65 @@
+{
+  "label": "Netlify",
+  "authType": "api_key",
+  "category": "dev",
+  "description": "Sites, deploys, forms, DNS",
+  "glyph": "M12 3l4 4-4 4-4-4zM12 13l4 4-4 4-4-4zM3 12l4-4 4 4-4 4zM13 12l4-4 4 4-4 4z",
+  "color": "#00c7b7",
+  "apiBaseUrl": "https://api.netlify.com",
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "Bearer ",
+  "testPath": "/api/v1/user",
+  "testExpect": "id",
+  "sensitivePaths": [
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete (site, deploy…)"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/sites/*/builds",
+      "action": "confirm",
+      "label": "Trigger a build"
+    }
+  ],
+  "agentGuide": "Base path /api/v1. Me: GET /api/v1/user; sites: GET /api/v1/sites (id, name, url, published_deploy.published_at); one: GET /api/v1/sites/<id>. Deploys: GET /api/v1/sites/<id>/deploys?per_page=10 (id, state, branch, title, deploy_ssl_url); one: GET /api/v1/deploys/<id>; its log: GET /api/v1/deploys/<id>/log. Trigger a build: POST /api/v1/sites/<id>/builds {}. Roll back: POST /api/v1/sites/<id>/deploys/<id>/restore. Environment: GET /api/v1/accounts/<account>/env?site_id=<id>. Forms: GET /api/v1/sites/<id>/forms, submissions: GET /api/v1/forms/<id>/submissions. DNS zones: GET /api/v1/dns_zones. The token is set by Allkin.",
+  "docUrl": "https://docs.netlify.com/api/get-started/",
+  "locales": {
+    "fr": {
+      "description": "Sites, déploiements, formulaires, DNS",
+      "sensitivePaths": [
+        {
+          "label": "Supprimer (site, déploiement…)"
+        },
+        {
+          "label": "Déclencher un build"
+        }
+      ]
+    },
+    "es": {
+      "description": "Sitios, despliegues, formularios, DNS",
+      "sensitivePaths": [
+        {
+          "label": "Eliminar (sitio, despliegue…)"
+        },
+        {
+          "label": "Lanzar un build"
+        }
+      ]
+    },
+    "de": {
+      "description": "Sites, Deploys, Formulare, DNS",
+      "sensitivePaths": [
+        {
+          "label": "Löschen (Site, Deploy…)"
+        },
+        {
+          "label": "Einen Build auslösen"
+        }
+      ]
+    }
+  }
+}

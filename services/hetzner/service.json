@@ -1,0 +1,122 @@
+{
+  "label": "Hetzner Cloud",
+  "authType": "api_key",
+  "category": "cloud",
+  "description": "Servers, volumes, firewalls (Hetzner Cloud)",
+  "glyph": "M4 4h16v16H4zM8 8v8M16 8v8M8 12h8",
+  "color": "#d50c2d",
+  "apiBaseUrl": "https://api.hetzner.cloud/v1",
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "Bearer ",
+  "testPath": "/locations",
+  "testExpect": "locations",
+  "sensitivePaths": [
+    {
+      "method": "POST",
+      "path": "/v1/servers",
+      "action": "confirm",
+      "label": "Create a server",
+      "warning": "It is billed as long as it exists."
+    },
+    {
+      "method": "POST",
+      "path": "/v1/servers/*/actions/poweroff",
+      "action": "confirm",
+      "label": "Cut the power of a server"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/servers/*/actions/reset",
+      "action": "confirm",
+      "label": "Cut the power of a server"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/servers/*/actions/rebuild",
+      "action": "confirm",
+      "label": "Rebuild a server",
+      "warning": "Its disk is wiped."
+    },
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete (server, volume, snapshot…)",
+      "warning": "The data goes with it."
+    }
+  ],
+  "agentGuide": "Base path /v1. Servers: GET /v1/servers (id, name, status, public_net.ipv4.ip, server_type.name, datacenter); one: GET /v1/servers/<id>; metrics: GET /v1/servers/<id>/metrics?type=cpu&start=<ISO>&end=<ISO>. Actions: POST /v1/servers/<id>/actions/poweron (poweroff, reboot, shutdown, reset); an action: GET /v1/actions/<id>. Create: POST /v1/servers {\"name\": \"...\", \"server_type\": \"cx22\", \"image\": \"debian-12\", \"location\": \"fsn1\", \"ssh_keys\": [..]} — it costs money. Catalogue: GET /v1/server_types, /v1/images?type=system, /v1/locations, /v1/ssh_keys. Firewalls: GET /v1/firewalls; volumes: GET /v1/volumes; snapshots: GET /v1/images?type=snapshot. Pricing: GET /v1/pricing. The token is set by Allkin.",
+  "docUrl": "https://docs.hetzner.cloud/",
+  "locales": {
+    "fr": {
+      "description": "Serveurs, volumes, pare-feu (Hetzner Cloud)",
+      "sensitivePaths": [
+        {
+          "label": "Créer un serveur",
+          "warning": "Il est facturé tant qu'il existe."
+        },
+        {
+          "label": "Couper l'alimentation d'un serveur"
+        },
+        {
+          "label": "Couper l'alimentation d'un serveur"
+        },
+        {
+          "label": "Réinstaller un serveur",
+          "warning": "Son disque est effacé."
+        },
+        {
+          "label": "Supprimer (serveur, volume, instantané…)",
+          "warning": "Les données partent avec."
+        }
+      ]
+    },
+    "es": {
+      "description": "Servidores, volúmenes, cortafuegos (Hetzner Cloud)",
+      "sensitivePaths": [
+        {
+          "label": "Crear un servidor",
+          "warning": "Se factura mientras exista."
+        },
+        {
+          "label": "Cortar la alimentación de un servidor"
+        },
+        {
+          "label": "Cortar la alimentación de un servidor"
+        },
+        {
+          "label": "Reinstalar un servidor",
+          "warning": "Su disco se borra."
+        },
+        {
+          "label": "Eliminar (servidor, volumen, instantánea…)",
+          "warning": "Los datos se van con ello."
+        }
+      ]
+    },
+    "de": {
+      "description": "Server, Volumes, Firewalls (Hetzner Cloud)",
+      "sensitivePaths": [
+        {
+          "label": "Einen Server erstellen",
+          "warning": "Er wird berechnet, solange er existiert."
+        },
+        {
+          "label": "Einen Server hart ausschalten"
+        },
+        {
+          "label": "Einen Server hart ausschalten"
+        },
+        {
+          "label": "Einen Server neu aufsetzen",
+          "warning": "Seine Festplatte wird gelöscht."
+        },
+        {
+          "label": "Löschen (Server, Volume, Snapshot…)",
+          "warning": "Die Daten verschwinden mit."
+        }
+      ]
+    }
+  }
+}

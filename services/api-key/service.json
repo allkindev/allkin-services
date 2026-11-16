@@ -1,0 +1,27 @@
+{
+  "label": "Other API-key service",
+  "authType": "api_key",
+  "category": "generic",
+  "description": "Any REST API with a key",
+  "glyph": "M10.1 13.9 20 4M16.4 7.6 19 10.2M13.6 10.4 16.2 13M11 16.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0",
+  "color": "#8b8bf5",
+  "needsBaseUrl": true,
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "Bearer ",
+  "advanced": true,
+  "locales": {
+    "fr": {
+      "label": "Autre service à clé API",
+      "description": "N'importe quelle API REST à clé"
+    },
+    "es": {
+      "label": "Otro servicio con clave de API",
+      "description": "Cualquier API REST con clave"
+    },
+    "de": {
+      "label": "Anderer Dienst mit API-Schlüssel",
+      "description": "Jede REST-API mit Schlüssel"
+    }
+  }
+}

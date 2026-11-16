@@ -1,0 +1,86 @@
+{
+  "label": "Mailchimp",
+  "authType": "basic",
+  "category": "marketing",
+  "description": "Audiences, members, campaigns",
+  "glyph": "M12 4c-4 0-7 3-7 6 0 2 1 3 1 5s-1 3 0 4c2 1 4-1 6-1s4 2 6 1c1-1 0-2 0-4s1-3 1-5c0-3-3-6-7-6zM9.5 11h.01M14.5 11h.01",
+  "color": "#ffe01b",
+  "colorDark": "#ffe01b",
+  "needsBaseUrl": true,
+  "baseUrlTemplate": {
+    "template": "https://{value}.api.mailchimp.com/3.0",
+    "label": "Data centre",
+    "note": "The end of your API key, after the dash: us21, us6…",
+    "placeholder": "us21",
+    "pattern": "[a-z]{2}[0-9]{1,2}"
+  },
+  "testPath": "/ping",
+  "testExpect": "health_status",
+  "sensitivePaths": [
+    {
+      "method": "POST",
+      "path": "/campaigns/*/actions/send",
+      "action": "confirm",
+      "label": "Send a campaign",
+      "warning": "to its whole audience, at once"
+    },
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete (member, campaign, audience…)"
+    }
+  ],
+  "agentGuide": "Base path /3.0. Audiences (lists): GET /lists (lists[].id, name, stats.member_count). Members: GET /lists/<id>/members?count=20&status=subscribed; one: GET /lists/<id>/members/<md5 of the lowercase email>; add or update: PUT /lists/<id>/members/<md5> {\"email_address\": \"...\", \"status_if_new\": \"subscribed\", \"merge_fields\": {\"FNAME\": \"...\"}}; tags: POST /lists/<id>/members/<md5>/tags {\"tags\": [{\"name\": \"vip\", \"status\": \"active\"}]}. Campaigns: GET /campaigns?status=sent&count=10; one: GET /campaigns/<id>; report: GET /reports/<id> (opens, clicks); create: POST /campaigns {\"type\": \"regular\", \"recipients\": {\"list_id\": \"...\"}, \"settings\": {\"subject_line\": \"...\", \"from_name\": \"...\", \"reply_to\": \"...\"}}, content: PUT /campaigns/<id>/content {\"html\": \"...\"}; send: POST /campaigns/<id>/actions/send — asks for confirmation. Search: GET /search-members?query=<email>. The credentials are set by Allkin.",
+  "docUrl": "https://mailchimp.com/developer/marketing/api/",
+  "locales": {
+    "fr": {
+      "description": "Audiences, membres, campagnes",
+      "baseUrlTemplate": {
+        "label": "Centre de données",
+        "note": "La fin de votre clé d'API, après le tiret : us21, us6…"
+      },
+      "sensitivePaths": [
+        {
+          "label": "Envoyer une campagne",
+          "warning": "à toute son audience, d'un coup"
+        },
+        {
+          "label": "Supprimer (membre, campagne, audience…)"
+        }
+      ]
+    },
+    "es": {
+      "description": "Audiencias, miembros, campañas",
+      "baseUrlTemplate": {
+        "label": "Centro de datos",
+        "note": "El final de tu clave de API, tras el guion: us21, us6…"
+      },
+      "sensitivePaths": [
+        {
+          "label": "Enviar una campaña",
+          "warning": "a toda su audiencia, de golpe"
+        },
+        {
+          "label": "Eliminar (miembro, campaña, audiencia…)"
+        }
+      ]
+    },
+    "de": {
+      "description": "Zielgruppen, Mitglieder, Kampagnen",
+      "baseUrlTemplate": {
+        "label": "Rechenzentrum",
+        "note": "Das Ende deines API-Schlüssels nach dem Bindestrich: us21, us6…"
+      },
+      "sensitivePaths": [
+        {
+          "label": "Eine Kampagne senden",
+          "warning": "an das ganze Publikum, auf einmal"
+        },
+        {
+          "label": "Löschen (Mitglied, Kampagne, Zielgruppe…)"
+        }
+      ]
+    }
+  }
+}

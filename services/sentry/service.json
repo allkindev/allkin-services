@@ -1,0 +1,51 @@
+{
+  "label": "Sentry",
+  "authType": "api_key",
+  "category": "dev",
+  "description": "Errors, issues, releases of your applications",
+  "glyph": "M12 3 3 19h4l5-9 5 9h4zM10 19l2-4 2 4",
+  "color": "#362d59",
+  "colorDark": "#a79be0",
+  "needsBaseUrl": true,
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "Bearer ",
+  "testPath": "/api/0/organizations/",
+  "testExpect": "[",
+  "sensitivePaths": [
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete (issue, project…)"
+    }
+  ],
+  "agentGuide": "Base path /api/0; paths end with a slash. Organizations: GET /api/0/organizations/; projects: GET /api/0/organizations/<org>/projects/. Issues: GET /api/0/projects/<org>/<project>/issues/?query=is:unresolved&sort=freq (title, count, userCount, lastSeen, permalink); one: GET /api/0/issues/<id>/; its latest event with the stack trace: GET /api/0/issues/<id>/events/latest/. Resolve or ignore: PUT /api/0/issues/<id>/ {\"status\": \"resolved\"}. Releases: GET /api/0/organizations/<org>/releases/. Stats: GET /api/0/organizations/<org>/stats_v2/?field=sum(quantity)&statsPeriod=24h&groupBy=category. Events are large: read the issue list first, one event only when needed. The token is set by Allkin.",
+  "docUrl": "https://docs.sentry.io/api/",
+  "locales": {
+    "fr": {
+      "description": "Erreurs, issues, versions de vos applications",
+      "sensitivePaths": [
+        {
+          "label": "Supprimer (issue, projet…)"
+        }
+      ]
+    },
+    "es": {
+      "description": "Errores, issues, versiones de tus aplicaciones",
+      "sensitivePaths": [
+        {
+          "label": "Eliminar (issue, proyecto…)"
+        }
+      ]
+    },
+    "de": {
+      "description": "Fehler, Issues, Releases deiner Anwendungen",
+      "sensitivePaths": [
+        {
+          "label": "Löschen (Issue, Projekt…)"
+        }
+      ]
+    }
+  }
+}

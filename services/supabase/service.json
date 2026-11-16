@@ -1,0 +1,99 @@
+{
+  "label": "Supabase",
+  "authType": "api_key",
+  "category": "dev",
+  "description": "Projects, SQL, functions (Management API)",
+  "glyph": "M13 3 4 14h7v7l9-11h-7z",
+  "color": "#3ecf8e",
+  "apiBaseUrl": "https://api.supabase.com",
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "Bearer ",
+  "testPath": "/v1/organizations",
+  "testExpect": "id",
+  "sensitivePaths": [
+    {
+      "method": "POST",
+      "path": "/v1/projects/*/database/query",
+      "action": "confirm",
+      "label": "Run SQL on a project",
+      "warning": "A query can change or drop data."
+    },
+    {
+      "method": "POST",
+      "path": "/v1/projects/*/pause",
+      "action": "confirm",
+      "label": "Pause or restore a project"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/projects",
+      "action": "confirm",
+      "label": "Create a project"
+    },
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete (project, function…)"
+    }
+  ],
+  "agentGuide": "Management API, base path /v1 (the account, not one database). Organizations: GET /v1/organizations; projects: GET /v1/projects (id = ref, name, region, status); one: GET /v1/projects/<ref>. Database: run SQL with POST /v1/projects/<ref>/database/query {\"query\": \"select ...\"} (rows as JSON; writes too, so read before you write); tables: query information_schema. API keys of a project: GET /v1/projects/<ref>/api-keys (anon and service_role: secrets, do not repeat them). Functions: GET /v1/projects/<ref>/functions; secrets names: GET /v1/projects/<ref>/secrets. Pause or restore: POST /v1/projects/<ref>/pause (restore). Usage and health: GET /v1/projects/<ref>/health?services=db,rest. The token is set by Allkin.",
+  "docUrl": "https://supabase.com/docs/reference/api/introduction",
+  "locales": {
+    "fr": {
+      "description": "Projets, SQL, fonctions (API de gestion)",
+      "sensitivePaths": [
+        {
+          "label": "Exécuter du SQL sur un projet",
+          "warning": "Une requête peut modifier ou effacer des données."
+        },
+        {
+          "label": "Mettre en pause ou restaurer un projet"
+        },
+        {
+          "label": "Créer un projet"
+        },
+        {
+          "label": "Supprimer (projet, fonction…)"
+        }
+      ]
+    },
+    "es": {
+      "description": "Proyectos, SQL, funciones (API de gestión)",
+      "sensitivePaths": [
+        {
+          "label": "Ejecutar SQL en un proyecto",
+          "warning": "Una consulta puede modificar o borrar datos."
+        },
+        {
+          "label": "Pausar o restaurar un proyecto"
+        },
+        {
+          "label": "Crear un proyecto"
+        },
+        {
+          "label": "Eliminar (proyecto, función…)"
+        }
+      ]
+    },
+    "de": {
+      "description": "Projekte, SQL, Funktionen (Management-API)",
+      "sensitivePaths": [
+        {
+          "label": "SQL auf einem Projekt ausführen",
+          "warning": "Eine Abfrage kann Daten ändern oder löschen."
+        },
+        {
+          "label": "Ein Projekt pausieren oder wiederherstellen"
+        },
+        {
+          "label": "Ein Projekt erstellen"
+        },
+        {
+          "label": "Löschen (Projekt, Funktion…)"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "label": "Soniox",
+  "authType": "api_key",
+  "category": "ai",
+  "description": "Live and recorded transcription, speakers told apart",
+  "glyph": "M4 10v4M8 6v12M12 3v18M16 7v10M20 10v4",
+  "color": "#2563eb",
+  "apiBaseUrl": "https://api.soniox.com",
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "Bearer ",
+  "testPath": "/v1/models",
+  "testExpect": "\"models\"",
+  "agentGuide": "Listening to a microphone in real time is the job of the Recordr plugin, not of this relay. Transcribe a recording by URL: POST /v1/transcriptions {\"model\": \"stt-async-v5\", \"audio_url\": \"https://.../audio.mp3\", \"language_hints\": [\"fr\"], \"enable_speaker_diarization\": true} returns an id; GET /v1/transcriptions/<id> until status is \"completed\" (or \"error\"), then GET /v1/transcriptions/<id>/transcript (text, and tokens with their speaker and start_ms). A local file cannot be sent through this relay (binary body): give a URL. Delete a transcription once read: DELETE /v1/transcriptions/<id>. Models: GET /v1/models. The key is set by Allkin.",
+  "docUrl": "https://soniox.com/docs",
+  "locales": {
+    "fr": {
+      "description": "Transcription en direct et en différé, interlocuteurs distingués"
+    },
+    "es": {
+      "description": "Transcripción en directo y en diferido, con interlocutores diferenciados"
+    },
+    "de": {
+      "description": "Live- und Datei-Transkription mit Sprechertrennung"
+    }
+  }
+}

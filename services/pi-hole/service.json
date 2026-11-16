@@ -1,0 +1,87 @@
+{
+  "label": "Pi-hole",
+  "authType": "session",
+  "category": "home",
+  "description": "DNS ad blocking: stats, lists, pause",
+  "glyph": "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 3v18M3 12h18",
+  "color": "#96060c",
+  "colorDark": "#f26b70",
+  "needsBaseUrl": true,
+  "sessionLogin": {
+    "path": "/api/auth",
+    "userField": "user",
+    "passField": "password",
+    "bodyFormat": "json",
+    "bodyTemplate": "{\"password\":\"{password}\"}",
+    "tokenField": "session.sid",
+    "tokenHeader": "X-FTL-SID",
+    "ttlSeconds": 1500,
+    "userLabel": "Name (any, not used by Pi-hole)",
+    "passLabel": "Web interface password"
+  },
+  "testPath": "/api/stats/summary",
+  "testExpect": "queries",
+  "sensitivePaths": [
+    {
+      "method": "POST",
+      "path": "/api/dns/blocking",
+      "action": "confirm",
+      "label": "Pause or resume blocking"
+    },
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Remove a domain or a list"
+    }
+  ],
+  "agentGuide": "Pi-hole v6 API, base path /api. Numbers: GET /api/stats/summary (queries, clients, gravity); top lists: GET /api/stats/top_domains?blocked=true, /api/stats/top_clients; recent queries: GET /api/queries?length=50 (&domain=, &client=). Blocking: GET /api/dns/blocking; POST /api/dns/blocking {\"blocking\": false, \"timer\": 300} pauses it for five minutes. Lists: GET /api/domains (allow/deny, exact/regex); add: POST /api/domains/deny/exact {\"domain\": \"ads.example.com\"}; delete: DELETE /api/domains/deny/exact/<domain>. Adlists: GET /api/lists; update gravity: POST /api/action/gravity. Version: GET /api/info/version. The session id is set by Allkin.",
+  "docUrl": "https://docs.pi-hole.net/api/",
+  "locales": {
+    "fr": {
+      "description": "Blocage DNS des pubs : stats, listes, pause",
+      "sessionLogin": {
+        "userLabel": "Nom (libre, Pi-hole ne s'en sert pas)",
+        "passLabel": "Mot de passe de l'interface web"
+      },
+      "sensitivePaths": [
+        {
+          "label": "Suspendre ou reprendre le blocage"
+        },
+        {
+          "label": "Retirer un domaine ou une liste"
+        }
+      ]
+    },
+    "es": {
+      "description": "Bloqueo DNS de anuncios: estadísticas, listas, pausa",
+      "sessionLogin": {
+        "userLabel": "Nombre (libre, Pi-hole no lo usa)",
+        "passLabel": "Contraseña de la interfaz web"
+      },
+      "sensitivePaths": [
+        {
+          "label": "Pausar o reanudar el bloqueo"
+        },
+        {
+          "label": "Quitar un dominio o una lista"
+        }
+      ]
+    },
+    "de": {
+      "description": "DNS-Werbeblocker: Statistiken, Listen, Pause",
+      "sessionLogin": {
+        "userLabel": "Name (beliebig, Pi-hole nutzt ihn nicht)",
+        "passLabel": "Passwort der Weboberfläche"
+      },
+      "sensitivePaths": [
+        {
+          "label": "Blockierung anhalten oder fortsetzen"
+        },
+        {
+          "label": "Eine Domain oder Liste entfernen"
+        }
+      ]
+    }
+  }
+}

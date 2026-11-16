@@ -1,0 +1,54 @@
+{
+  "label": "Todoist",
+  "authType": "api_key",
+  "category": "office",
+  "description": "Tasks, projects, labels",
+  "glyph": "M4 7l3 3 5-5M4 13l3 3 5-5M4 19l3 3 5-5M14 6h6M14 12h6M14 18h6",
+  "color": "#e44332",
+  "apiBaseUrl": "https://api.todoist.com",
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "Bearer ",
+  "testPath": "/api/v1/projects",
+  "testExpect": "results",
+  "sensitivePaths": [
+    {
+      "method": "DELETE",
+      "path": "/api/v1/projects/*",
+      "action": "confirm",
+      "label": "Delete a project",
+      "warning": "Every task in it goes with it."
+    }
+  ],
+  "agentGuide": "Base path /api/v1; lists come as {results: [], next_cursor}. Projects: GET /api/v1/projects (id, name); sections: GET /api/v1/sections?project_id=<id>. Tasks: GET /api/v1/tasks?project_id=<id> (content, due.date, priority 1-4 where 4 is highest, labels, is_completed); by filter: GET /api/v1/tasks/filter?query=today | overdue (Todoist filter syntax: \"today | overdue\", \"#Work & p1\", \"7 days\"). Add: POST /api/v1/tasks {\"content\": \"...\", \"due_string\": \"tomorrow at 9\", \"project_id\": \"...\", \"priority\": 3, \"description\": \"...\"}; edit: POST /api/v1/tasks/<id> {\"content\": \"...\"}; done: POST /api/v1/tasks/<id>/close; reopen: POST /api/v1/tasks/<id>/reopen. Comments: GET /api/v1/comments?task_id=<id>, add: POST /api/v1/comments {\"task_id\": \"...\", \"content\": \"...\"}. Labels: GET /api/v1/labels. Completed: GET /api/v1/tasks/completed/by_completion_date?since=<ISO>&until=<ISO>. The token is set by Allkin.",
+  "docUrl": "https://developer.todoist.com/api/v1/",
+  "locales": {
+    "fr": {
+      "description": "Tâches, projets, étiquettes",
+      "sensitivePaths": [
+        {
+          "label": "Supprimer un projet",
+          "warning": "Toutes ses tâches partent avec."
+        }
+      ]
+    },
+    "es": {
+      "description": "Tareas, proyectos, etiquetas",
+      "sensitivePaths": [
+        {
+          "label": "Eliminar un proyecto",
+          "warning": "Todas sus tareas se van con él."
+        }
+      ]
+    },
+    "de": {
+      "description": "Aufgaben, Projekte, Labels",
+      "sensitivePaths": [
+        {
+          "label": "Ein Projekt löschen",
+          "warning": "Alle seine Aufgaben verschwinden mit."
+        }
+      ]
+    }
+  }
+}

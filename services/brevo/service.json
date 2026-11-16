@@ -1,0 +1,102 @@
+{
+  "label": "Brevo",
+  "authType": "api_key",
+  "category": "marketing",
+  "description": "Contacts, transactional mail, campaigns",
+  "glyph": "M4 20V4h8a4 4 0 0 1 2 7.5A4.5 4.5 0 0 1 12.5 20zM8 8v8M8 12h4",
+  "color": "#0b996e",
+  "apiBaseUrl": "https://api.brevo.com/v3",
+  "secretPlacement": "header",
+  "apiKeyHeader": "api-key",
+  "testPath": "/account",
+  "testExpect": "email",
+  "sensitivePaths": [
+    {
+      "method": "POST",
+      "path": "/smtp/email",
+      "action": "confirm",
+      "label": "Send an email",
+      "warning": "it leaves at once"
+    },
+    {
+      "method": "POST",
+      "path": "/emailCampaigns/*/sendNow",
+      "action": "confirm",
+      "label": "Send a campaign",
+      "warning": "to its whole audience, at once"
+    },
+    {
+      "method": "POST",
+      "path": "/transactionalSMS/*",
+      "action": "confirm",
+      "label": "Send an SMS"
+    },
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete (contact, list, campaign…)"
+    }
+  ],
+  "agentGuide": "Base path /v3. Account: GET /account. Contacts: GET /contacts?limit=20; one: GET /contacts/<email or id>; create or update: POST /contacts {\"email\": \"...\", \"attributes\": {\"PRENOM\": \"...\"}, \"listIds\": [2], \"updateEnabled\": true}; lists: GET /contacts/lists. Transactional mail: POST /smtp/email {\"sender\": {\"email\": \"...\", \"name\": \"...\"}, \"to\": [{\"email\": \"...\"}], \"subject\": \"...\", \"htmlContent\": \"<p>...</p>\"} (or templateId and params); its events: GET /smtp/statistics/events?email=<email>. Campaigns: GET /emailCampaigns?status=sent, one: GET /emailCampaigns/<id>, report inside statistics; create: POST /emailCampaigns; send now: POST /emailCampaigns/<id>/sendNow — asks for confirmation. SMS: POST /transactionalSMS/sms. Senders: GET /senders. The key is set by Allkin.",
+  "docUrl": "https://developers.brevo.com/reference",
+  "locales": {
+    "fr": {
+      "description": "Contacts, mails transactionnels, campagnes",
+      "sensitivePaths": [
+        {
+          "label": "Envoyer un mail",
+          "warning": "il part tout de suite"
+        },
+        {
+          "label": "Envoyer une campagne",
+          "warning": "à toute son audience, d'un coup"
+        },
+        {
+          "label": "Envoyer un SMS"
+        },
+        {
+          "label": "Supprimer (contact, liste, campagne…)"
+        }
+      ]
+    },
+    "es": {
+      "description": "Contactos, correos transaccionales, campañas",
+      "sensitivePaths": [
+        {
+          "label": "Enviar un correo",
+          "warning": "sale de inmediato"
+        },
+        {
+          "label": "Enviar una campaña",
+          "warning": "a toda su audiencia, de golpe"
+        },
+        {
+          "label": "Enviar un SMS"
+        },
+        {
+          "label": "Eliminar (contacto, lista, campaña…)"
+        }
+      ]
+    },
+    "de": {
+      "description": "Kontakte, Transaktionsmails, Kampagnen",
+      "sensitivePaths": [
+        {
+          "label": "Eine E-Mail senden",
+          "warning": "sie geht sofort raus"
+        },
+        {
+          "label": "Eine Kampagne senden",
+          "warning": "an das ganze Publikum, auf einmal"
+        },
+        {
+          "label": "Eine SMS senden"
+        },
+        {
+          "label": "Löschen (Kontakt, Liste, Kampagne…)"
+        }
+      ]
+    }
+  }
+}

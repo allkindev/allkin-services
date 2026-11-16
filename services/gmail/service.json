@@ -1,0 +1,119 @@
+{
+  "label": "Gmail",
+  "authType": "oauth2",
+  "category": "messaging",
+  "description": "Mail, labels, threads, sending",
+  "logo": "M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z",
+  "color": "#ea4335",
+  "apiBaseUrl": "https://gmail.googleapis.com",
+  "authorizeUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+  "tokenUrl": "https://oauth2.googleapis.com/token",
+  "commonScopes": [
+    {
+      "value": "https://www.googleapis.com/auth/gmail.readonly",
+      "label": "Read mail"
+    },
+    {
+      "value": "https://www.googleapis.com/auth/gmail.modify",
+      "label": "Read, label, archive"
+    },
+    {
+      "value": "https://www.googleapis.com/auth/gmail.send",
+      "label": "Send mail"
+    }
+  ],
+  "testPath": "/gmail/v1/users/me/profile",
+  "testExpect": "emailAddress",
+  "sensitivePaths": [
+    {
+      "method": "POST",
+      "path": "/gmail/v1/users/me/messages/send",
+      "action": "confirm",
+      "label": "Send an email",
+      "warning": "it leaves at once and cannot be recalled"
+    },
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete a message permanently",
+      "warning": "without going through the trash"
+    }
+  ],
+  "agentGuide": "Base path /gmail/v1/users/me. List: GET /gmail/v1/users/me/messages?q=is:unread newer_than:2d&maxResults=10 (ids only; q uses Gmail search syntax: from:, subject:, has:attachment, label:); one: GET /gmail/v1/users/me/messages/<id>?format=full (payload.headers for From/Subject/Date, body in payload.parts[].body.data, base64url) or ?format=metadata&metadataHeaders=From&metadataHeaders=Subject for a cheap read. Labels: GET /gmail/v1/users/me/labels; mark read or move: POST /gmail/v1/users/me/messages/<id>/modify {\"removeLabelIds\": [\"UNREAD\"], \"addLabelIds\": [\"Label_1\"]}; trash: POST .../messages/<id>/trash. Threads: GET /gmail/v1/users/me/threads/<id>. Send: POST /gmail/v1/users/me/messages/send {\"raw\": \"<base64url of an RFC 2822 message: To:, Subject:, blank line, body>\"} (add \"threadId\" and In-Reply-To/References headers to reply). An attachment: GET .../messages/<id>/attachments/<attachmentId> (data base64url, use save_as). A 403 means the scope was not granted at connection. Sending asks for confirmation.",
+  "docUrl": "https://developers.google.com/gmail/api/reference/rest",
+  "locales": {
+    "fr": {
+      "description": "Mails, libellés, fils, envoi",
+      "commonScopes": [
+        {
+          "label": "Lire les mails"
+        },
+        {
+          "label": "Lire, étiqueter, archiver"
+        },
+        {
+          "label": "Envoyer des mails"
+        }
+      ],
+      "sensitivePaths": [
+        {
+          "label": "Envoyer un mail",
+          "warning": "il part tout de suite et ne se rattrape pas"
+        },
+        {
+          "label": "Supprimer un message définitivement",
+          "warning": "sans passer par la corbeille"
+        }
+      ]
+    },
+    "es": {
+      "description": "Correos, etiquetas, hilos, envío",
+      "commonScopes": [
+        {
+          "label": "Leer los correos"
+        },
+        {
+          "label": "Leer, etiquetar, archivar"
+        },
+        {
+          "label": "Enviar correos"
+        }
+      ],
+      "sensitivePaths": [
+        {
+          "label": "Enviar un correo",
+          "warning": "sale de inmediato y no se puede recuperar"
+        },
+        {
+          "label": "Eliminar un mensaje definitivamente",
+          "warning": "sin pasar por la papelera"
+        }
+      ]
+    },
+    "de": {
+      "description": "Mails, Labels, Threads, Versand",
+      "commonScopes": [
+        {
+          "label": "Mails lesen"
+        },
+        {
+          "label": "Lesen, labeln, archivieren"
+        },
+        {
+          "label": "Mails senden"
+        }
+      ],
+      "sensitivePaths": [
+        {
+          "label": "Eine E-Mail senden",
+          "warning": "sie geht sofort raus und lässt sich nicht zurückholen"
+        },
+        {
+          "label": "Eine Nachricht endgültig löschen",
+          "warning": "ohne Umweg über den Papierkorb"
+        }
+      ]
+    }
+  }
+}

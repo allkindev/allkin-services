@@ -1,0 +1,51 @@
+{
+  "label": "Attio",
+  "authType": "api_key",
+  "category": "marketing",
+  "description": "People, companies, deals, notes (CRM)",
+  "glyph": "M12 4l8 16h-4l-4-8-4 8H4z",
+  "color": "#000000",
+  "colorDark": "#e6e6e6",
+  "apiBaseUrl": "https://api.attio.com/v2",
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "Bearer ",
+  "testPath": "/self",
+  "testExpect": "workspace_id",
+  "sensitivePaths": [
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete (record, list, note…)"
+    }
+  ],
+  "agentGuide": "Base path /v2. Workspace: GET /self. Objects: GET /objects (people, companies, deals…); attributes of one: GET /objects/<slug>/attributes. Records: POST /objects/<slug>/records/query {\"limit\": 20, \"filter\": {\"name\": {\"$contains\": \"...\"}}} (data[].values: each attribute is a list of values, read [0].value or [0].email_address / .full_name); one: GET /objects/<slug>/records/<id>. Create: POST /objects/people/records {\"data\": {\"values\": {\"email_addresses\": [\"...\"], \"name\": [{\"first_name\": \"...\", \"last_name\": \"...\"}]}}}; update: PATCH /objects/<slug>/records/<id> {\"data\": {\"values\": {...}}}; assert by email: PUT /objects/people/records?matching_attribute=email_addresses. Lists: GET /lists, entries: POST /lists/<id>/entries/query; notes: GET /notes?parent_object=people&parent_record_id=<id>, add: POST /notes {\"data\": {\"parent_object\": \"people\", \"parent_record_id\": \"...\", \"title\": \"...\", \"format\": \"plaintext\", \"content\": \"...\"}}; tasks: POST /tasks. The token is set by Allkin.",
+  "docUrl": "https://docs.attio.com/rest-api/overview",
+  "locales": {
+    "fr": {
+      "description": "Personnes, entreprises, affaires, notes (CRM)",
+      "sensitivePaths": [
+        {
+          "label": "Supprimer (fiche, liste, note…)"
+        }
+      ]
+    },
+    "es": {
+      "description": "Personas, empresas, negocios, notas (CRM)",
+      "sensitivePaths": [
+        {
+          "label": "Eliminar (ficha, lista, nota…)"
+        }
+      ]
+    },
+    "de": {
+      "description": "Personen, Unternehmen, Deals, Notizen (CRM)",
+      "sensitivePaths": [
+        {
+          "label": "Löschen (Datensatz, Liste, Notiz…)"
+        }
+      ]
+    }
+  }
+}

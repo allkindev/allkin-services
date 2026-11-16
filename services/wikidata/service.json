@@ -1,0 +1,34 @@
+{
+  "label": "Wikidata",
+  "authType": "none",
+  "category": "data",
+  "description": "Structured facts and SPARQL",
+  "glyph": "M4 4v16M8 4v16M11 4v16M14 4v16M17 4v16M20 4v16",
+  "color": "#990000",
+  "colorDark": "#e06060",
+  "apiBaseUrl": "https://www.wikidata.org",
+  "extraHosts": [
+    "query.wikidata.org"
+  ],
+  "testPath": "/w/api.php",
+  "testQuery": {
+    "action": "wbsearchentities",
+    "search": "Earth",
+    "language": "en",
+    "format": "json"
+  },
+  "testExpect": "search",
+  "agentGuide": "No key. Find an entity: GET /w/api.php?action=wbsearchentities&search=<name>&language=fr&format=json gives ids (Q90 = Paris). Read it: GET /wiki/Special:EntityData/Q90.json (labels, descriptions, claims; property ids like P1082 = population, P625 = coordinates). Several at once: GET /w/api.php?action=wbgetentities&ids=Q90|Q142&props=labels|claims&languages=fr&format=json. Questions over many items go to SPARQL: GET https://query.wikidata.org/sparql?format=json&query=<URL-encoded SPARQL>; keep queries small and add LIMIT. Read-only.",
+  "docUrl": "https://www.wikidata.org/wiki/Wikidata:Data_access",
+  "locales": {
+    "fr": {
+      "description": "Faits structurés et SPARQL"
+    },
+    "es": {
+      "description": "Datos estructurados y SPARQL"
+    },
+    "de": {
+      "description": "Strukturierte Fakten und SPARQL"
+    }
+  }
+}

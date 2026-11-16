@@ -1,0 +1,87 @@
+{
+  "label": "Google Tasks",
+  "authType": "oauth2",
+  "category": "office",
+  "description": "Task lists and tasks",
+  "logo": "M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z",
+  "color": "#4285f4",
+  "apiBaseUrl": "https://tasks.googleapis.com/tasks/v1",
+  "authorizeUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+  "tokenUrl": "https://oauth2.googleapis.com/token",
+  "commonScopes": [
+    {
+      "value": "https://www.googleapis.com/auth/tasks",
+      "label": "Read and edit tasks"
+    },
+    {
+      "value": "https://www.googleapis.com/auth/tasks.readonly",
+      "label": "Read tasks"
+    }
+  ],
+  "testPath": "/users/@me/lists",
+  "testExpect": "kind",
+  "sensitivePaths": [
+    {
+      "method": "DELETE",
+      "path": "/users/@me/lists/*",
+      "action": "confirm",
+      "label": "Delete a task list",
+      "warning": "Every task in it goes with it."
+    }
+  ],
+  "agentGuide": "Base path /tasks/v1. Lists: GET /users/@me/lists (items[].id, title; \"@default\" is the main one). Tasks: GET /lists/<list id>/tasks?showCompleted=false&maxResults=50 (items[].title, notes, due (RFC 3339, date part only counts), status needsAction|completed, parent for subtasks). Add: POST /lists/<list id>/tasks {\"title\": \"...\", \"notes\": \"...\", \"due\": \"2026-10-02T00:00:00.000Z\"}; done: PATCH /lists/<list id>/tasks/<id> {\"status\": \"completed\"}; edit: PATCH ... {\"title\": \"...\"}; remove: DELETE ...; move under a parent or after another: POST /lists/<list id>/tasks/<id>/move?parent=<id>. New list: POST /users/@me/lists {\"title\": \"...\"}. Clear completed: POST /lists/<list id>/clear.",
+  "docUrl": "https://developers.google.com/tasks/reference/rest",
+  "locales": {
+    "fr": {
+      "description": "Listes de tâches et tâches",
+      "commonScopes": [
+        {
+          "label": "Lire et modifier les tâches"
+        },
+        {
+          "label": "Lire les tâches"
+        }
+      ],
+      "sensitivePaths": [
+        {
+          "label": "Supprimer une liste de tâches",
+          "warning": "Toutes ses tâches partent avec."
+        }
+      ]
+    },
+    "es": {
+      "description": "Listas de tareas y tareas",
+      "commonScopes": [
+        {
+          "label": "Leer y editar tareas"
+        },
+        {
+          "label": "Leer tareas"
+        }
+      ],
+      "sensitivePaths": [
+        {
+          "label": "Eliminar una lista de tareas",
+          "warning": "Todas sus tareas se van con ella."
+        }
+      ]
+    },
+    "de": {
+      "description": "Aufgabenlisten und Aufgaben",
+      "commonScopes": [
+        {
+          "label": "Aufgaben lesen und ändern"
+        },
+        {
+          "label": "Aufgaben lesen"
+        }
+      ],
+      "sensitivePaths": [
+        {
+          "label": "Eine Aufgabenliste löschen",
+          "warning": "Alle ihre Aufgaben verschwinden mit."
+        }
+      ]
+    }
+  }
+}

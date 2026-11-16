@@ -1,0 +1,53 @@
+{
+  "label": "Firefly III",
+  "authType": "api_key",
+  "category": "finance",
+  "description": "Accounts, transactions, budgets",
+  "glyph": "M12 3c3 3 5 6 5 9a5 5 0 0 1-10 0c0-3 2-6 5-9zM12 11c1 1 2 2 2 3a2 2 0 0 1-4 0c0-1 1-2 2-3z",
+  "color": "#cd5029",
+  "needsBaseUrl": true,
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "Bearer ",
+  "extraHeaders": {
+    "Accept": "application/json"
+  },
+  "testPath": "/api/v1/about",
+  "testExpect": "version",
+  "sensitivePaths": [
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete (transaction, account…)"
+    }
+  ],
+  "agentGuide": "Base path /api/v1; answers are JSON:API: data[].attributes. Accounts: GET /api/v1/accounts?type=asset (name, current_balance, currency_code); transactions: GET /api/v1/transactions?start=2026-01-01&end=2026-01-31&type=withdrawal&limit=50 (attributes.transactions[] with description, amount, date, source_name, destination_name, category_name, budget_name); search: GET /api/v1/search/transactions?query=<words>. Budgets: GET /api/v1/budgets, spent: GET /api/v1/budgets/<id>/limits; categories: GET /api/v1/categories; bills: GET /api/v1/bills. Add: POST /api/v1/transactions {\"transactions\": [{\"type\": \"withdrawal\", \"date\": \"2026-10-01\", \"amount\": \"12.50\", \"description\": \"...\", \"source_id\": 1, \"destination_name\": \"Shop\"}]}. Summary: GET /api/v1/summary/basic?start=&end=. Dates are YYYY-MM-DD, amounts strings.",
+  "docUrl": "https://api-docs.firefly-iii.org/",
+  "locales": {
+    "fr": {
+      "description": "Comptes, transactions, budgets",
+      "sensitivePaths": [
+        {
+          "label": "Supprimer (transaction, compte…)"
+        }
+      ]
+    },
+    "es": {
+      "description": "Cuentas, transacciones, presupuestos",
+      "sensitivePaths": [
+        {
+          "label": "Eliminar (transacción, cuenta…)"
+        }
+      ]
+    },
+    "de": {
+      "description": "Konten, Transaktionen, Budgets",
+      "sensitivePaths": [
+        {
+          "label": "Löschen (Transaktion, Konto…)"
+        }
+      ]
+    }
+  }
+}

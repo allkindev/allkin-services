@@ -1,0 +1,63 @@
+{
+  "label": "Ollama",
+  "authType": "none",
+  "category": "ai",
+  "description": "Local models on your machine, no key",
+  "glyph": "M12 4c-2 0-3 2-3 4H7a3 3 0 0 0-3 3v2a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4v-2a3 3 0 0 0-3-3h-2c0-2-1-4-3-4zM9.5 13h.01M14.5 13h.01",
+  "color": "#1f1f1f",
+  "colorDark": "#dddddd",
+  "needsBaseUrl": true,
+  "testPath": "/api/tags",
+  "testExpect": "models",
+  "sensitivePaths": [
+    {
+      "method": "POST",
+      "path": "/api/pull",
+      "action": "confirm",
+      "label": "Download a model (gigabytes)"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/delete",
+      "action": "confirm",
+      "label": "Delete a model"
+    }
+  ],
+  "agentGuide": "Local models, no key. Installed models: GET /api/tags (models[].name, size); one: POST /api/show {\"model\": \"llama3.2\"}. Chat: POST /api/chat {\"model\": \"llama3.2\", \"messages\": [{\"role\": \"user\", \"content\": \"...\"}], \"stream\": false} (message.content) — always \"stream\": false, the relay reads one answer. Completion: POST /api/generate {\"model\": \"...\", \"prompt\": \"...\", \"stream\": false}; JSON output: add \"format\": \"json\". Embeddings: POST /api/embed {\"model\": \"nomic-embed-text\", \"input\": \"...\"}. Pull a model: POST /api/pull {\"model\": \"...\", \"stream\": false} (long; asks for confirmation). Running models: GET /api/ps. Also OpenAI-shaped at /v1/chat/completions. A big model takes seconds to tens of seconds to answer.",
+  "docUrl": "https://github.com/ollama/ollama/blob/main/docs/api.md",
+  "locales": {
+    "fr": {
+      "description": "Modèles locaux sur votre machine, sans clé",
+      "sensitivePaths": [
+        {
+          "label": "Télécharger un modèle (des gigaoctets)"
+        },
+        {
+          "label": "Supprimer un modèle"
+        }
+      ]
+    },
+    "es": {
+      "description": "Modelos locales en tu máquina, sin clave",
+      "sensitivePaths": [
+        {
+          "label": "Descargar un modelo (gigabytes)"
+        },
+        {
+          "label": "Eliminar un modelo"
+        }
+      ]
+    },
+    "de": {
+      "description": "Lokale Modelle auf deiner Maschine, ohne Schlüssel",
+      "sensitivePaths": [
+        {
+          "label": "Ein Modell herunterladen (Gigabytes)"
+        },
+        {
+          "label": "Ein Modell löschen"
+        }
+      ]
+    }
+  }
+}

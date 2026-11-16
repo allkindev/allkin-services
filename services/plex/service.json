@@ -1,0 +1,52 @@
+{
+  "label": "Plex",
+  "authType": "api_key",
+  "category": "media",
+  "description": "Your media server: libraries, playing now",
+  "glyph": "M6 4h5l7 8-7 8H6l7-8z",
+  "color": "#e5a00d",
+  "needsBaseUrl": true,
+  "secretPlacement": "header",
+  "apiKeyHeader": "X-Plex-Token",
+  "extraHeaders": {
+    "Accept": "application/json"
+  },
+  "testPath": "/identity",
+  "testExpect": "machineIdentifier",
+  "sensitivePaths": [
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete a media item"
+    }
+  ],
+  "agentGuide": "Libraries: GET /library/sections (key, title, type); its items: GET /library/sections/<key>/all (add ?type=1 films, 2 shows; ?sort=addedAt:desc; ?title=<words>). Recently added: GET /library/recentlyAdded; on deck: GET /library/onDeck; search: GET /search?query=<words>; one item: GET /library/metadata/<ratingKey> (children: /library/metadata/<ratingKey>/children). What is playing: GET /status/sessions; history: GET /status/sessions/history/all. Refresh a library: GET /library/sections/<key>/refresh. Answers come as MediaContainer.Metadata[]. The token is set by Allkin.",
+  "docUrl": "https://developer.plex.tv/pms/",
+  "locales": {
+    "fr": {
+      "description": "Votre serveur multimédia : bibliothèques, lectures en cours",
+      "sensitivePaths": [
+        {
+          "label": "Supprimer un média"
+        }
+      ]
+    },
+    "es": {
+      "description": "Tu servidor multimedia: bibliotecas, reproducciones",
+      "sensitivePaths": [
+        {
+          "label": "Eliminar un medio"
+        }
+      ]
+    },
+    "de": {
+      "description": "Dein Medienserver: Bibliotheken, laufende Wiedergaben",
+      "sensitivePaths": [
+        {
+          "label": "Ein Medium löschen"
+        }
+      ]
+    }
+  }
+}

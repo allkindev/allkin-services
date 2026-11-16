@@ -1,0 +1,115 @@
+{
+  "label": "YouTube",
+  "authType": "oauth2",
+  "category": "media",
+  "description": "Channel, videos, playlists, comments",
+  "logo": "M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z",
+  "color": "#ff0000",
+  "apiBaseUrl": "https://www.googleapis.com/youtube/v3",
+  "authorizeUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+  "tokenUrl": "https://oauth2.googleapis.com/token",
+  "commonScopes": [
+    {
+      "value": "https://www.googleapis.com/auth/youtube.readonly",
+      "label": "Read the channel"
+    },
+    {
+      "value": "https://www.googleapis.com/auth/youtube",
+      "label": "Manage videos and playlists"
+    },
+    {
+      "value": "https://www.googleapis.com/auth/youtube.force-ssl",
+      "label": "Comments and ratings"
+    }
+  ],
+  "testPath": "/channels",
+  "testQuery": {
+    "mine": "true",
+    "part": "id"
+  },
+  "testExpect": "kind",
+  "sensitivePaths": [
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete (video, playlist, comment…)"
+    },
+    {
+      "method": "PUT",
+      "path": "/videos*",
+      "action": "confirm",
+      "label": "Edit a video's title or description"
+    }
+  ],
+  "agentGuide": "Base path /youtube/v3; every call needs part=. My channel: GET /channels?mine=true&part=snippet,statistics,contentDetails (contentDetails.relatedPlaylists.uploads is the playlist of my videos). Videos of a playlist: GET /playlistItems?playlistId=<id>&part=snippet,contentDetails&maxResults=25; my playlists: GET /playlists?mine=true&part=snippet. Search: GET /search?q=<words>&part=snippet&type=video&maxResults=10 (costs 100 quota units: search sparingly); a video: GET /videos?id=<id>&part=snippet,statistics,contentDetails (viewCount, likeCount, duration ISO 8601); comments: GET /commentThreads?videoId=<id>&part=snippet&maxResults=20. Subscriptions: GET /subscriptions?mine=true&part=snippet. Edit a video's title or description: PUT /videos?part=snippet {\"id\": \"...\", \"snippet\": {\"title\": \"...\", \"description\": \"...\", \"categoryId\": \"22\"}}; add to a playlist: POST /playlistItems?part=snippet {\"snippet\": {\"playlistId\": \"...\", \"resourceId\": {\"kind\": \"youtube#video\", \"videoId\": \"...\"}}}. Uploads go through another endpoint not offered here. The daily quota is 10 000 units: a list costs 1, a search 100.",
+  "docUrl": "https://developers.google.com/youtube/v3/docs",
+  "locales": {
+    "fr": {
+      "description": "Chaîne, vidéos, playlists, commentaires",
+      "commonScopes": [
+        {
+          "label": "Lire la chaîne"
+        },
+        {
+          "label": "Gérer vidéos et playlists"
+        },
+        {
+          "label": "Commentaires et notes"
+        }
+      ],
+      "sensitivePaths": [
+        {
+          "label": "Supprimer (vidéo, playlist, commentaire…)"
+        },
+        {
+          "label": "Modifier le titre ou la description d'une vidéo"
+        }
+      ]
+    },
+    "es": {
+      "description": "Canal, vídeos, listas, comentarios",
+      "commonScopes": [
+        {
+          "label": "Leer el canal"
+        },
+        {
+          "label": "Gestionar vídeos y listas"
+        },
+        {
+          "label": "Comentarios y valoraciones"
+        }
+      ],
+      "sensitivePaths": [
+        {
+          "label": "Eliminar (vídeo, lista, comentario…)"
+        },
+        {
+          "label": "Editar el título o la descripción de un vídeo"
+        }
+      ]
+    },
+    "de": {
+      "description": "Kanal, Videos, Playlists, Kommentare",
+      "commonScopes": [
+        {
+          "label": "Den Kanal lesen"
+        },
+        {
+          "label": "Videos und Playlists verwalten"
+        },
+        {
+          "label": "Kommentare und Bewertungen"
+        }
+      ],
+      "sensitivePaths": [
+        {
+          "label": "Löschen (Video, Playlist, Kommentar…)"
+        },
+        {
+          "label": "Titel oder Beschreibung eines Videos ändern"
+        }
+      ]
+    }
+  }
+}

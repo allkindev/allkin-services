@@ -1,0 +1,51 @@
+{
+  "label": "Mattermost",
+  "authType": "api_key",
+  "category": "messaging",
+  "description": "Teams, channels, messages",
+  "glyph": "M12 3a9 9 0 1 0 9 9M12 3l3 7-3 4-3-4zM21 12l-4 1",
+  "color": "#1e325c",
+  "colorDark": "#7a9bea",
+  "needsBaseUrl": true,
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "Bearer ",
+  "testPath": "/api/v4/users/me",
+  "testExpect": "username",
+  "sensitivePaths": [
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete a message or a channel"
+    }
+  ],
+  "agentGuide": "Base path /api/v4. Me: GET /api/v4/users/me; my teams: GET /api/v4/users/me/teams; channels of a team: GET /api/v4/users/me/teams/<team_id>/channels; by name: GET /api/v4/teams/name/<team>/channels/name/<channel>. Read: GET /api/v4/channels/<channel_id>/posts?per_page=30 (order[] then posts{} by id; message, user_id, create_at); search: POST /api/v4/teams/<team_id>/posts/search {\"terms\": \"...\"}. Write: POST /api/v4/posts {\"channel_id\": \"...\", \"message\": \"...\"} (root_id to reply in a thread). Direct message: POST /api/v4/channels/direct [\"my_id\", \"their_id\"] then post to the returned channel. Users: GET /api/v4/users/username/<name>, GET /api/v4/users?per_page=50. Markdown works in messages. The token is set by Allkin.",
+  "docUrl": "https://api.mattermost.com/",
+  "locales": {
+    "fr": {
+      "description": "Équipes, canaux, messages",
+      "sensitivePaths": [
+        {
+          "label": "Supprimer un message ou un canal"
+        }
+      ]
+    },
+    "es": {
+      "description": "Equipos, canales, mensajes",
+      "sensitivePaths": [
+        {
+          "label": "Eliminar un mensaje o un canal"
+        }
+      ]
+    },
+    "de": {
+      "description": "Teams, Kanäle, Nachrichten",
+      "sensitivePaths": [
+        {
+          "label": "Eine Nachricht oder einen Kanal löschen"
+        }
+      ]
+    }
+  }
+}

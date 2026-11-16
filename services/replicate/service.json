@@ -1,0 +1,66 @@
+{
+  "label": "Replicate",
+  "authType": "api_key",
+  "category": "ai",
+  "description": "Run any public model",
+  "glyph": "M4 20V4h4v16zM10 20V8h4v12zM16 20v-8h4v8z",
+  "color": "#000000",
+  "colorDark": "#e6e6e6",
+  "apiBaseUrl": "https://api.replicate.com/v1",
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "Bearer ",
+  "testPath": "/account",
+  "testExpect": "username",
+  "sensitivePaths": [
+    {
+      "method": "POST",
+      "path": "/predictions",
+      "action": "confirm",
+      "label": "Run a model (billed by the second)"
+    },
+    {
+      "method": "POST",
+      "path": "/models/*/*/predictions",
+      "action": "confirm",
+      "label": "Run a model (billed by the second)"
+    }
+  ],
+  "agentGuide": "Base path /v1. Run a model: POST /predictions {\"version\": \"<version hash>\", \"input\": {...}} or by name POST /models/<owner>/<name>/predictions {\"input\": {\"prompt\": \"...\"}} (add header Prefer: wait to get the output in one call when it finishes under a minute). The answer has id and status; poll GET /predictions/<id> until status is succeeded (output: a string, or URLs of files — fetch an image URL with save_as only if the host is allowed; otherwise give the URL). Cancel: POST /predictions/<id>/cancel. Find models: GET /models?... is not searchable here; GET /models/<owner>/<name> gives latest_version.id and the input schema (openapi_schema). Collections: GET /collections/<slug>. Account: GET /account. Every run is billed by the second. The token is set by Allkin.",
+  "docUrl": "https://replicate.com/docs/reference/http",
+  "locales": {
+    "fr": {
+      "description": "Exécuter n'importe quel modèle public",
+      "sensitivePaths": [
+        {
+          "label": "Exécuter un modèle (facturé à la seconde)"
+        },
+        {
+          "label": "Exécuter un modèle (facturé à la seconde)"
+        }
+      ]
+    },
+    "es": {
+      "description": "Ejecutar cualquier modelo público",
+      "sensitivePaths": [
+        {
+          "label": "Ejecutar un modelo (facturado por segundo)"
+        },
+        {
+          "label": "Ejecutar un modelo (facturado por segundo)"
+        }
+      ]
+    },
+    "de": {
+      "description": "Jedes öffentliche Modell ausführen",
+      "sensitivePaths": [
+        {
+          "label": "Ein Modell ausführen (sekundengenau berechnet)"
+        },
+        {
+          "label": "Ein Modell ausführen (sekundengenau berechnet)"
+        }
+      ]
+    }
+  }
+}

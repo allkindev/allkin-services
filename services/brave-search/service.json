@@ -1,0 +1,33 @@
+{
+  "label": "Brave Search",
+  "authType": "api_key",
+  "category": "data",
+  "description": "Web search by API key",
+  "glyph": "M10.5 3a7.5 7.5 0 1 0 0 15 7.5 7.5 0 0 0 0-15zM16 16l5 5",
+  "color": "#fb542b",
+  "apiBaseUrl": "https://api.search.brave.com/res/v1",
+  "secretPlacement": "header",
+  "apiKeyHeader": "X-Subscription-Token",
+  "extraHeaders": {
+    "Accept": "application/json"
+  },
+  "testPath": "/web/search",
+  "testQuery": {
+    "q": "allkin",
+    "count": "1"
+  },
+  "testExpect": "web",
+  "agentGuide": "GET /web/search?q=<words>&count=10&country=fr&search_lang=fr (also &freshness=pw for the past week, &safesearch=moderate). Results in web.results[] with title, url, description, age; news in news.results[]. News only: GET /news/search?q=...; images: GET /images/search?q=...; suggestions: GET /suggest/search?q=... Each call costs a query on the plan: ask once with a good query rather than many narrow ones, and cite the url of what you use.",
+  "docUrl": "https://api-dashboard.search.brave.com/app/documentation",
+  "locales": {
+    "fr": {
+      "description": "Recherche web par clé API"
+    },
+    "es": {
+      "description": "Búsqueda web por clave API"
+    },
+    "de": {
+      "description": "Websuche per API-Schlüssel"
+    }
+  }
+}

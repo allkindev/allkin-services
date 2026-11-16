@@ -1,0 +1,35 @@
+{
+  "label": "Open-Meteo",
+  "authType": "none",
+  "category": "data",
+  "description": "Weather and forecasts, no key needed",
+  "glyph": "M12 3v2M5.6 5.6l1.4 1.4M3 12h2M18.4 5.6 17 7M19 12h2M8 12a4 4 0 1 1 8 0M6 20h11a3 3 0 0 0 .5-5.96A5 5 0 0 0 8 14.1 3 3 0 0 0 6 20z",
+  "color": "#f97316",
+  "apiBaseUrl": "https://api.open-meteo.com",
+  "extraHosts": [
+    "geocoding-api.open-meteo.com",
+    "archive-api.open-meteo.com",
+    "air-quality-api.open-meteo.com",
+    "marine-api.open-meteo.com"
+  ],
+  "testPath": "/v1/forecast",
+  "testQuery": {
+    "latitude": "48.85",
+    "longitude": "2.35",
+    "current": "temperature_2m"
+  },
+  "testExpect": "temperature_2m",
+  "agentGuide": "No key. Coordinates first: GET https://geocoding-api.open-meteo.com/v1/search?name=Lyon&count=1&language=fr gives latitude/longitude. Then GET /v1/forecast?latitude=45.76&longitude=4.83&current=temperature_2m,weather_code,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=auto (add &forecast_days=7, &hourly=... as needed). History: https://archive-api.open-meteo.com/v1/archive?...&start_date=&end_date=. Air quality: https://air-quality-api.open-meteo.com/v1/air-quality?...&current=european_aqi. weather_code follows WMO codes (0 clear, 61 rain, 95 storm). Values are metric by default; be fair with the free service (no bursts of calls).",
+  "docUrl": "https://open-meteo.com/en/docs",
+  "locales": {
+    "fr": {
+      "description": "Météo et prévisions, sans clé"
+    },
+    "es": {
+      "description": "Tiempo y previsiones, sin clave"
+    },
+    "de": {
+      "description": "Wetter und Vorhersagen, ohne Schlüssel"
+    }
+  }
+}

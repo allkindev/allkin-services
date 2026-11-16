@@ -1,0 +1,84 @@
+{
+  "label": "Confluence",
+  "authType": "basic",
+  "category": "office",
+  "description": "Pages and spaces (Confluence Cloud)",
+  "glyph": "M4 17c3-5 7-6 11-4l5 3M20 7c-3 5-7 6-11 4L4 8",
+  "color": "#1868db",
+  "needsBaseUrl": true,
+  "baseUrlTemplate": {
+    "template": "https://{value}.atlassian.net/wiki",
+    "label": "Site name",
+    "note": "The part before .atlassian.net in your address.",
+    "placeholder": "my-company",
+    "pattern": "[a-z0-9][a-z0-9-]*"
+  },
+  "extraHeaders": {
+    "Accept": "application/json"
+  },
+  "testPath": "/rest/api/user/current",
+  "testExpect": "accountId",
+  "sensitivePaths": [
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete a page or a space"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/pages/*",
+      "action": "confirm",
+      "label": "Replace the content of a page"
+    }
+  ],
+  "agentGuide": "Confluence Cloud, base path /wiki (already in the address): v2 API under /api/v2, classic under /rest/api. Me: GET /rest/api/user/current. Spaces: GET /api/v2/spaces (id, key, name). Search: GET /rest/api/content/search?cql=<CQL>&limit=10 (CQL: text ~ \"words\" AND space = DOCS; type = page AND lastmodified > now(\"-7d\")). Pages of a space: GET /api/v2/spaces/<id>/pages?limit=25. One page with its content: GET /api/v2/pages/<id>?body-format=storage (body.storage.value is XHTML; body-format=view for rendered HTML). Create: POST /api/v2/pages {\"spaceId\": \"...\", \"status\": \"current\", \"title\": \"...\", \"parentId\": \"...\", \"body\": {\"representation\": \"storage\", \"value\": \"<p>...</p>\"}}. Update: PUT /api/v2/pages/<id> with id, status, title, body and version {\"number\": <current + 1>} — read the page first for its version. Comments: GET /api/v2/pages/<id>/footer-comments. The credentials are set by Allkin.",
+  "docUrl": "https://developer.atlassian.com/cloud/confluence/rest/v2/",
+  "locales": {
+    "fr": {
+      "description": "Pages et espaces (Confluence Cloud)",
+      "baseUrlTemplate": {
+        "label": "Nom du site",
+        "note": "La partie avant .atlassian.net dans votre adresse."
+      },
+      "sensitivePaths": [
+        {
+          "label": "Supprimer une page ou un espace"
+        },
+        {
+          "label": "Remplacer le contenu d'une page"
+        }
+      ]
+    },
+    "es": {
+      "description": "Páginas y espacios (Confluence Cloud)",
+      "baseUrlTemplate": {
+        "label": "Nombre del sitio",
+        "note": "La parte antes de .atlassian.net en tu dirección."
+      },
+      "sensitivePaths": [
+        {
+          "label": "Eliminar una página o un espacio"
+        },
+        {
+          "label": "Reemplazar el contenido de una página"
+        }
+      ]
+    },
+    "de": {
+      "description": "Seiten und Bereiche (Confluence Cloud)",
+      "baseUrlTemplate": {
+        "label": "Name der Site",
+        "note": "Der Teil vor .atlassian.net in deiner Adresse."
+      },
+      "sensitivePaths": [
+        {
+          "label": "Eine Seite oder einen Bereich löschen"
+        },
+        {
+          "label": "Den Inhalt einer Seite ersetzen"
+        }
+      ]
+    }
+  }
+}

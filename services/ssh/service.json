@@ -1,0 +1,28 @@
+{
+  "label": "Machine over SSH",
+  "authType": "session",
+  "category": "cloud",
+  "description": "A server, a NAS, a Raspberry Pi: commands and files, approved like those of this machine",
+  "glyph": "M4 5h16v14H4zM7.5 9.5l3 2.5-3 2.5M12.5 15h4",
+  "color": "#334155",
+  "colorDark": "#94a3b8",
+  "ssh": {
+    "port": 22
+  },
+  "needsBaseUrl": true,
+  "agentGuide": "A machine reached over SSH. Use the tools ssh_run (a shell command), ssh_read_file and ssh_write_file with this service_id — never call_external_service, never `ssh` or `sshpass` through run_command: the credentials are Allkin's, you never see nor need them. Each call is approved by the user like a command of the machine. The commands run in the account's login shell on that machine, not on Allkin's: read the system first when it matters (`uname -a; cat /etc/os-release`). Nothing interactive (no editor, no pager, no password prompt): use `sudo -n` and say so if it asks for a password.",
+  "locales": {
+    "fr": {
+      "label": "Machine en SSH",
+      "description": "Un serveur, un NAS, un Raspberry Pi : commandes et fichiers, approuvés comme ceux de cette machine"
+    },
+    "es": {
+      "label": "Máquina por SSH",
+      "description": "Un servidor, un NAS, una Raspberry Pi: comandos y archivos, aprobados como los de esta máquina"
+    },
+    "de": {
+      "label": "Rechner über SSH",
+      "description": "Ein Server, ein NAS, ein Raspberry Pi: Befehle und Dateien, freigegeben wie die dieses Rechners"
+    }
+  }
+}

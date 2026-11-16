@@ -1,0 +1,24 @@
+{
+  "label": "Prometheus",
+  "authType": "none",
+  "category": "cloud",
+  "description": "Metrics and PromQL queries",
+  "glyph": "M12 3c2 3 2 5 1 7 2-1 3-3 3-5 2 2 4 5 4 8a8 8 0 0 1-16 0c0-2 1-4 2-5 0 2 1 3 2 3-1-3 0-6 4-8zM9 20h6",
+  "color": "#e6522c",
+  "needsBaseUrl": true,
+  "testPath": "/api/v1/status/buildinfo",
+  "testExpect": "version",
+  "agentGuide": "Instant query: GET /api/v1/query?query=<PromQL> (up, rate(http_requests_total[5m]), node_memory_MemAvailable_bytes); over time: GET /api/v1/query_range?query=...&start=<unix or RFC3339>&end=...&step=60s. What exists: GET /api/v1/label/__name__/values (metric names, long: filter with match[]), GET /api/v1/series?match[]=up, GET /api/v1/targets (scrape targets and their health), GET /api/v1/alerts (firing), GET /api/v1/rules. Answers are in data.result[] with metric labels and value [timestamp, \"value\"]. Keep ranges short and steps coarse: a range query can be huge.",
+  "docUrl": "https://prometheus.io/docs/prometheus/latest/querying/api/",
+  "locales": {
+    "fr": {
+      "description": "Métriques et requêtes PromQL"
+    },
+    "es": {
+      "description": "Métricas y consultas PromQL"
+    },
+    "de": {
+      "description": "Metriken und PromQL-Abfragen"
+    }
+  }
+}

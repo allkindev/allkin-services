@@ -1,0 +1,27 @@
+{
+  "label": "OpenRouter",
+  "authType": "api_key",
+  "category": "ai",
+  "description": "One key for hundreds of models",
+  "glyph": "M3 12h5l3-6 3 12 3-6h4M18 8l3 4-3 4",
+  "color": "#6467f2",
+  "apiBaseUrl": "https://openrouter.ai/api/v1",
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "Bearer ",
+  "testPath": "/auth/key",
+  "testExpect": "label",
+  "agentGuide": "Base path /api/v1, OpenAI-shaped, one key for hundreds of models. Chat: POST /chat/completions {\"model\": \"openai/gpt-4o-mini\", \"messages\": [...]} (model ids are provider/name: anthropic/claude-sonnet-4, google/gemini-2.5-flash, meta-llama/llama-3.3-70b-instruct, deepseek/deepseek-chat; \"openrouter/auto\" picks one). Models and prices: GET /models (data[].id, pricing.prompt per token, context_length). The key's balance and limits: GET /auth/key. Credits: GET /credits. A generation's cost: GET /generation?id=<id>. Free models end with :free. Every call is billed to the key. The key is set by Allkin.",
+  "docUrl": "https://openrouter.ai/docs/api-reference/overview",
+  "locales": {
+    "fr": {
+      "description": "Une clé pour des centaines de modèles"
+    },
+    "es": {
+      "description": "Una clave para cientos de modelos"
+    },
+    "de": {
+      "description": "Ein Schlüssel für Hunderte Modelle"
+    }
+  }
+}

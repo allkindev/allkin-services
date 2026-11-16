@@ -1,0 +1,108 @@
+{
+  "label": "Resend",
+  "authType": "api_key",
+  "category": "marketing",
+  "description": "Transactional mail, audiences, broadcasts",
+  "glyph": "M5 4h9a5 5 0 0 1 0 10h-3l5 6M5 4v16M5 14h6",
+  "color": "#000000",
+  "colorDark": "#e6e6e6",
+  "apiBaseUrl": "https://api.resend.com",
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "Bearer ",
+  "testPath": "/domains",
+  "testExpect": "data",
+  "sensitivePaths": [
+    {
+      "method": "POST",
+      "path": "/emails",
+      "action": "confirm",
+      "label": "Send an email",
+      "warning": "it leaves at once"
+    },
+    {
+      "method": "POST",
+      "path": "/emails/batch",
+      "action": "confirm",
+      "label": "Send an email",
+      "warning": "it leaves at once"
+    },
+    {
+      "method": "POST",
+      "path": "/broadcasts/*/send",
+      "action": "confirm",
+      "label": "Send a broadcast",
+      "warning": "to its whole audience, at once"
+    },
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete (contact, domain…)"
+    }
+  ],
+  "agentGuide": "Send: POST /emails {\"from\": \"Name <me@verified-domain.com>\", \"to\": [\"...\"], \"subject\": \"...\", \"html\": \"<p>...</p>\"} (or text; reply_to, cc, bcc, attachments as [{\"filename\", \"content\": base64}]); batch: POST /emails/batch [ {...}, {...} ]. One sent mail: GET /emails/<id> (last_event: delivered, bounced…). Domains: GET /domains (status verified or not); contacts and audiences: GET /audiences, GET /audiences/<id>/contacts, add: POST /audiences/<id>/contacts {\"email\": \"...\"}. Broadcasts: GET /broadcasts, POST /broadcasts, send: POST /broadcasts/<id>/send — asks for confirmation. API keys: GET /api-keys. The from address must be on a verified domain. The key is set by Allkin.",
+  "docUrl": "https://resend.com/docs/api-reference/introduction",
+  "locales": {
+    "fr": {
+      "description": "Mails transactionnels, audiences, diffusions",
+      "sensitivePaths": [
+        {
+          "label": "Envoyer un mail",
+          "warning": "il part tout de suite"
+        },
+        {
+          "label": "Envoyer un mail",
+          "warning": "il part tout de suite"
+        },
+        {
+          "label": "Envoyer une diffusion",
+          "warning": "à toute son audience, d'un coup"
+        },
+        {
+          "label": "Supprimer (contact, domaine…)"
+        }
+      ]
+    },
+    "es": {
+      "description": "Correos transaccionales, audiencias, difusiones",
+      "sensitivePaths": [
+        {
+          "label": "Enviar un correo",
+          "warning": "sale de inmediato"
+        },
+        {
+          "label": "Enviar un correo",
+          "warning": "sale de inmediato"
+        },
+        {
+          "label": "Enviar una difusión",
+          "warning": "a toda su audiencia, de golpe"
+        },
+        {
+          "label": "Eliminar (contacto, dominio…)"
+        }
+      ]
+    },
+    "de": {
+      "description": "Transaktionsmails, Zielgruppen, Aussendungen",
+      "sensitivePaths": [
+        {
+          "label": "Eine E-Mail senden",
+          "warning": "sie geht sofort raus"
+        },
+        {
+          "label": "Eine E-Mail senden",
+          "warning": "sie geht sofort raus"
+        },
+        {
+          "label": "Eine Aussendung senden",
+          "warning": "an das ganze Publikum, auf einmal"
+        },
+        {
+          "label": "Löschen (Kontakt, Domain…)"
+        }
+      ]
+    }
+  }
+}

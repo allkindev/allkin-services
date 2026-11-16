@@ -1,0 +1,87 @@
+{
+  "label": "Fly.io",
+  "authType": "api_key",
+  "category": "dev",
+  "description": "Apps and machines (Machines API)",
+  "glyph": "M12 3c4 4 5 8 5 11a5 5 0 0 1-10 0c0-3 1-7 5-11zM12 14v7M9 18l3 3 3-3",
+  "color": "#7b3fe4",
+  "apiBaseUrl": "https://api.machines.dev",
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "Bearer ",
+  "testQuery": {
+    "org_slug": "personal"
+  },
+  "testPath": "/v1/apps",
+  "testExpect": "apps",
+  "sensitivePaths": [
+    {
+      "method": "POST",
+      "path": "/v1/apps/*/machines",
+      "action": "confirm",
+      "label": "Create a machine",
+      "warning": "It is billed as long as it exists."
+    },
+    {
+      "method": "POST",
+      "path": "/v1/apps",
+      "action": "confirm",
+      "label": "Create an app"
+    },
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete (machine, app, volume…)"
+    }
+  ],
+  "agentGuide": "Machines API, base path /v1; most calls need ?org_slug=personal (or your org) on the apps list. Apps: GET /v1/apps?org_slug=personal; one: GET /v1/apps/<app>. Machines: GET /v1/apps/<app>/machines (id, name, state, region, config.image); one: GET /v1/apps/<app>/machines/<id>; start, stop, restart: POST /v1/apps/<app>/machines/<id>/start (stop, restart); signal: POST .../signal {\"signal\": \"SIGTERM\"}. Create: POST /v1/apps/<app>/machines {\"name\": \"...\", \"region\": \"cdg\", \"config\": {\"image\": \"...\", \"guest\": {\"cpu_kind\": \"shared\", \"cpus\": 1, \"memory_mb\": 256}}}. Volumes: GET /v1/apps/<app>/volumes. Secrets names: GET /v1/apps/<app>/secrets. Logs are not in this API (use `fly logs` or the dashboard). The token is set by Allkin.",
+  "docUrl": "https://fly.io/docs/machines/api/",
+  "locales": {
+    "fr": {
+      "description": "Applications et machines (API Machines)",
+      "sensitivePaths": [
+        {
+          "label": "Créer une machine",
+          "warning": "Elle est facturée tant qu'elle existe."
+        },
+        {
+          "label": "Créer une application"
+        },
+        {
+          "label": "Supprimer (machine, application, volume…)"
+        }
+      ]
+    },
+    "es": {
+      "description": "Aplicaciones y máquinas (API Machines)",
+      "sensitivePaths": [
+        {
+          "label": "Crear una máquina",
+          "warning": "Se factura mientras exista."
+        },
+        {
+          "label": "Crear una aplicación"
+        },
+        {
+          "label": "Eliminar (máquina, aplicación, volumen…)"
+        }
+      ]
+    },
+    "de": {
+      "description": "Apps und Maschinen (Machines API)",
+      "sensitivePaths": [
+        {
+          "label": "Eine Maschine erstellen",
+          "warning": "Sie wird berechnet, solange sie existiert."
+        },
+        {
+          "label": "Eine App erstellen"
+        },
+        {
+          "label": "Löschen (Maschine, App, Volume…)"
+        }
+      ]
+    }
+  }
+}

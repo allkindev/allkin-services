@@ -1,0 +1,28 @@
+{
+  "label": "OpenAI",
+  "authType": "api_key",
+  "category": "ai",
+  "description": "Chat, embeddings, images, speech (API key)",
+  "glyph": "M12 3a4 4 0 0 1 4 4v1a4 4 0 0 1 4 4 4 4 0 0 1-4 4v1a4 4 0 0 1-4 4 4 4 0 0 1-4-4v-1a4 4 0 0 1-4-4 4 4 0 0 1 4-4V7a4 4 0 0 1 4-4z",
+  "color": "#000000",
+  "colorDark": "#e6e6e6",
+  "apiBaseUrl": "https://api.openai.com/v1",
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "Bearer ",
+  "testPath": "/models",
+  "testExpect": "data",
+  "agentGuide": "Base path /v1. Chat: POST /chat/completions {\"model\": \"gpt-4o-mini\", \"messages\": [{\"role\": \"user\", \"content\": \"...\"}]} (choices[0].message.content); structured: add \"response_format\": {\"type\": \"json_object\"}. Models: GET /models. Embeddings: POST /embeddings {\"model\": \"text-embedding-3-small\", \"input\": \"...\"}. Images: POST /images/generations {\"model\": \"gpt-image-1\", \"prompt\": \"...\", \"size\": \"1024x1024\"} (b64_json; use save_as on the data). Speech: POST /audio/speech {\"model\": \"gpt-4o-mini-tts\", \"voice\": \"alloy\", \"input\": \"...\"} (binary mp3, save_as). Transcription needs a multipart upload, which this relay does not send. Every call is billed to the key: keep prompts tight. The key is set by Allkin.",
+  "docUrl": "https://platform.openai.com/docs/api-reference",
+  "locales": {
+    "fr": {
+      "description": "Chat, embeddings, images, voix (clé API)"
+    },
+    "es": {
+      "description": "Chat, embeddings, imágenes, voz (clave API)"
+    },
+    "de": {
+      "description": "Chat, Embeddings, Bilder, Sprache (API-Schlüssel)"
+    }
+  }
+}

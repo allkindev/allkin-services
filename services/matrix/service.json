@@ -1,0 +1,65 @@
+{
+  "label": "Matrix",
+  "authType": "api_key",
+  "category": "messaging",
+  "description": "Rooms and messages of a homeserver",
+  "glyph": "M4 3h2v18H4zM18 3h2v18h-2zM8 9v6M8 10c1-1 3-1 3 1v4M11 10c1-1 3-1 3 1v4",
+  "color": "#0dbd8b",
+  "needsBaseUrl": true,
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "Bearer ",
+  "testPath": "/_matrix/client/v3/account/whoami",
+  "testExpect": "user_id",
+  "sensitivePaths": [
+    {
+      "method": "POST",
+      "path": "/_matrix/client/v3/rooms/*/leave",
+      "action": "confirm",
+      "label": "Leave a room"
+    },
+    {
+      "method": "PUT",
+      "path": "/_matrix/client/v3/rooms/*/redact/*",
+      "action": "confirm",
+      "label": "Remove a message"
+    }
+  ],
+  "agentGuide": "Base path /_matrix/client/v3. Me: GET .../account/whoami. Rooms I am in: GET .../joined_rooms; a room's name: GET .../rooms/<room_id>/state/m.room.name; resolve #alias:server: GET .../directory/room/<encoded alias>. Read: GET .../rooms/<room_id>/messages?dir=b&limit=30 (chunk[] with sender, content.body, origin_server_ts). Send: PUT .../rooms/<room_id>/send/m.room.message/<unique txn id> {\"msgtype\": \"m.text\", \"body\": \"...\"} (add format: \"org.matrix.custom.html\" and formatted_body for HTML). Join: POST .../join/<room id or alias>; create: POST .../createRoom {\"name\": \"...\", \"invite\": [\"@user:server\"]}. Encrypted rooms cannot be read through this API. The token is set by Allkin.",
+  "docUrl": "https://spec.matrix.org/latest/client-server-api/",
+  "locales": {
+    "fr": {
+      "description": "Salons et messages d'un serveur Matrix",
+      "sensitivePaths": [
+        {
+          "label": "Quitter un salon"
+        },
+        {
+          "label": "Retirer un message"
+        }
+      ]
+    },
+    "es": {
+      "description": "Salas y mensajes de un servidor Matrix",
+      "sensitivePaths": [
+        {
+          "label": "Salir de una sala"
+        },
+        {
+          "label": "Retirar un mensaje"
+        }
+      ]
+    },
+    "de": {
+      "description": "Räume und Nachrichten eines Homeservers",
+      "sensitivePaths": [
+        {
+          "label": "Einen Raum verlassen"
+        },
+        {
+          "label": "Eine Nachricht entfernen"
+        }
+      ]
+    }
+  }
+}

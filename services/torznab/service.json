@@ -1,0 +1,31 @@
+{
+  "label": "Torznab (Prowlarr, Jackett…)",
+  "authType": "api_key",
+  "category": "media",
+  "description": "Prowlarr, Jackett indexers — Torznab standard",
+  "glyph": "M4 5v8a8 8 0 0 0 16 0V5M9 5v8a3 3 0 0 0 6 0V5M4 5h5M15 5h5M4 9.5h5M15 9.5h5",
+  "color": "#3b9c5a",
+  "needsBaseUrl": true,
+  "secretPlacement": "query",
+  "apiKeyHeader": "apikey",
+  "pathStyle": "query",
+  "responseFormat": "xml",
+  "testPath": "",
+  "testQuery": {
+    "t": "caps"
+  },
+  "testExpect": "<caps",
+  "agentGuide": "NO PATH: the base URL is already the endpoint, everything happens in the parameters. Give a path that starts with \"?\" — for instance ?t=caps. Never write /?t=… nor /api?t=…: that would be another address.\n\nALWAYS start with ?t=caps. The indexer declares there the searches and the categories it accepts, and that varies from one to another. Then: ?t=search&q=… (general), ?t=tvsearch (with season and ep), ?t=movie (with imdbid). Add &limit=… to bound.\n\nTHE ANSWERS ARE JSON. The indexer answers in XML, Allkin converts it for you. The shape is the one of the original RSS feed:\n  channel.item[]                 the results\n  channel.item[].title           the name\n  channel.item[].enclosure.@url  the download link\n  channel.item[].\"torznab:attr\"  the metadata, as {@name, @value}\n\nUSE \"extract\" ON EVERY SEARCH. A search of twenty-five results is more than 20,000 characters: without extraction it goes to a file instead of coming back to you, and you will have paid for it all for nothing. Ask for what you want, and nothing else:\n  extract=\"channel.item[].title\"                    the list of names\n  extract=\"channel.item[0]\"                         the first result, whole\n  extract=\"channel.item[].enclosure\"                the links\n\nTo DOWNLOAD a result, take the address of its enclosure: it is ?t=get&id=<infohash> on the same service. Pass \"save_as\" with a name ending in .torrent — the file is binary, it cannot be returned in the conversation.\n\nTHE KEY APPEARS MASKED in the links the indexer sends back — you will read \"apikey=«clé masquée»\" (the key, masked) in each enclosure. That is normal, and it is not an obstacle: never copy those addresses, call this same service again with ?t=get&id=<infohash>, Allkin will set the key. The infohash is in channel.item[].\"torznab:attr\" (@name=infohash) and in the guid.",
+  "docUrl": "https://torznab.github.io/spec-1.3-draft/",
+  "locales": {
+    "fr": {
+      "description": "Indexeurs Prowlarr, Jackett — norme Torznab"
+    },
+    "es": {
+      "description": "Indexadores Prowlarr, Jackett: estándar Torznab"
+    },
+    "de": {
+      "description": "Indexer Prowlarr, Jackett – Torznab-Standard"
+    }
+  }
+}

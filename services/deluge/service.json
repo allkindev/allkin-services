@@ -1,0 +1,50 @@
+{
+  "label": "Deluge",
+  "authType": "session",
+  "category": "media",
+  "description": "Torrents through the web UI's JSON-RPC",
+  "glyph": "M12 3C8 8 6 11 6 14a6 6 0 0 0 12 0c0-3-2-6-6-11z",
+  "color": "#2a6fb0",
+  "needsBaseUrl": true,
+  "sessionLogin": {
+    "path": "/json",
+    "userField": "user",
+    "passField": "password",
+    "bodyTemplate": "{\"method\":\"auth.login\",\"params\":[\"{password}\"],\"id\":1}",
+    "cookieName": "_session_id",
+    "ttlSeconds": 1800,
+    "failureBody": "\"result\": false",
+    "userLabel": "Name (any, not used by Deluge)",
+    "passLabel": "Web interface password"
+  },
+  "testPath": "/json",
+  "testMethod": "POST",
+  "testBody": "{\"method\":\"web.connected\",\"params\":[],\"id\":1}",
+  "testExpect": "\"result\"",
+  "bodyFormat": "json",
+  "agentGuide": "Everything is POST /json with {\"method\": \"...\", \"params\": [...], \"id\": 1}; the answer has result and error. First make sure the web UI is connected to its daemon: web.connected → if false, web.get_hosts gives [[id, host, port, user]], then web.connect [id]. Torrents: core.get_torrents_status [{}, [\"name\",\"state\",\"progress\",\"download_payload_rate\",\"upload_payload_rate\",\"eta\",\"total_size\",\"save_path\"]] (a dict by hash). Add: core.add_torrent_magnet [\"magnet:?...\", {}] or core.add_torrent_url [url, {}]. Control: core.pause_torrent [[hash]], core.resume_torrent [[hash]], core.remove_torrent [hash, false] (true deletes data — ask first). Settings: core.get_config_values [[\"download_location\",\"max_download_speed\"]].",
+  "docUrl": "https://deluge.readthedocs.io/en/latest/reference/api.html",
+  "locales": {
+    "fr": {
+      "description": "Torrents par le JSON-RPC de l'interface web",
+      "sessionLogin": {
+        "userLabel": "Nom (libre, Deluge ne s'en sert pas)",
+        "passLabel": "Mot de passe de l'interface web"
+      }
+    },
+    "es": {
+      "description": "Torrents a través del JSON-RPC de la interfaz web",
+      "sessionLogin": {
+        "userLabel": "Nombre (libre, Deluge no lo usa)",
+        "passLabel": "Contraseña de la interfaz web"
+      }
+    },
+    "de": {
+      "description": "Torrents über das JSON-RPC der Weboberfläche",
+      "sessionLogin": {
+        "userLabel": "Name (beliebig, Deluge nutzt ihn nicht)",
+        "passLabel": "Passwort der Weboberfläche"
+      }
+    }
+  }
+}

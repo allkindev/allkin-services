@@ -1,0 +1,54 @@
+{
+  "label": "Nextcloud",
+  "authType": "basic",
+  "category": "office",
+  "description": "Files, shares, calendars — with an app password",
+  "glyph": "M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM5 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM19 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4z",
+  "color": "#0082c9",
+  "needsBaseUrl": true,
+  "extraHeaders": {
+    "OCS-APIRequest": "true",
+    "Accept": "application/json"
+  },
+  "testPath": "/ocs/v2.php/cloud/user",
+  "testQuery": {
+    "format": "json"
+  },
+  "testExpect": "storageLocation",
+  "sensitivePaths": [
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete a file or a share"
+    }
+  ],
+  "agentGuide": "Who am I: GET /ocs/v2.php/cloud/user?format=json. Files live under WebDAV: PROPFIND /remote.php/dav/files/<user>/<folder> lists a folder (XML; add header Depth: 1), GET /remote.php/dav/files/<user>/<path> downloads (use save_as), PUT /remote.php/dav/files/<user>/<path> with the raw body uploads, DELETE removes. Search: POST /remote.php/dav/ with a SEARCH body is not available; use GET /ocs/v2.php/search/providers/files/search?term=<words>&format=json. Shares: GET /ocs/v2.php/apps/files_sharing/api/v1/shares?format=json, create: POST ... {\"path\": \"/doc.pdf\", \"shareType\": 3} (3 = public link). Calendar and contacts are CalDAV/CardDAV under /remote.php/dav/calendars/<user>/ and /addressbooks/users/<user>/. Always add format=json on OCS calls.",
+  "docUrl": "https://docs.nextcloud.com/server/latest/developer_manual/client_apis/",
+  "locales": {
+    "fr": {
+      "description": "Fichiers, partages, agendas — avec un mot de passe d'application",
+      "sensitivePaths": [
+        {
+          "label": "Supprimer un fichier ou un partage"
+        }
+      ]
+    },
+    "es": {
+      "description": "Archivos, compartidos, calendarios: con una contraseña de aplicación",
+      "sensitivePaths": [
+        {
+          "label": "Eliminar un archivo o un compartido"
+        }
+      ]
+    },
+    "de": {
+      "description": "Dateien, Freigaben, Kalender – mit einem App-Passwort",
+      "sensitivePaths": [
+        {
+          "label": "Eine Datei oder Freigabe löschen"
+        }
+      ]
+    }
+  }
+}

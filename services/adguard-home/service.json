@@ -1,0 +1,62 @@
+{
+  "label": "AdGuard Home",
+  "authType": "basic",
+  "category": "home",
+  "description": "DNS ad blocking: stats, filters, clients",
+  "glyph": "M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM9 12l2 2 4-4",
+  "color": "#68bc71",
+  "needsBaseUrl": true,
+  "testPath": "/control/status",
+  "testExpect": "dns_addresses",
+  "sensitivePaths": [
+    {
+      "method": "POST",
+      "path": "/control/protection",
+      "action": "confirm",
+      "label": "Pause or resume protection"
+    },
+    {
+      "method": "POST",
+      "path": "/control/filtering/*",
+      "action": "confirm",
+      "label": "Change the filtering rules"
+    }
+  ],
+  "agentGuide": "Base path /control. Status: GET /control/status; numbers: GET /control/stats (num_dns_queries, num_blocked_filtering, top_queried_domains, top_blocked_domains, top_clients); query log: GET /control/querylog?limit=50&search=<domain>. Protection: POST /control/protection {\"enabled\": false, \"duration\": 300000} pauses it (ms). Filters: GET /control/filtering/status; custom rules: POST /control/filtering/set_rules {\"rules\": [\"||ads.example.com^\"]} replaces them all — read first; refresh: POST /control/filtering/refresh {\"whitelist\": false}. Clients: GET /control/clients; DNS rewrites: GET /control/rewrite/list, POST /control/rewrite/add {\"domain\": \"...\", \"answer\": \"...\"}.",
+  "docUrl": "https://github.com/AdguardTeam/AdGuardHome/tree/master/openapi",
+  "locales": {
+    "fr": {
+      "description": "Blocage DNS des pubs : stats, filtres, clients",
+      "sensitivePaths": [
+        {
+          "label": "Suspendre ou reprendre la protection"
+        },
+        {
+          "label": "Modifier les règles de filtrage"
+        }
+      ]
+    },
+    "es": {
+      "description": "Bloqueo DNS de anuncios: estadísticas, filtros, clientes",
+      "sensitivePaths": [
+        {
+          "label": "Pausar o reanudar la protección"
+        },
+        {
+          "label": "Cambiar las reglas de filtrado"
+        }
+      ]
+    },
+    "de": {
+      "description": "DNS-Werbeblocker: Statistiken, Filter, Clients",
+      "sensitivePaths": [
+        {
+          "label": "Schutz anhalten oder fortsetzen"
+        },
+        {
+          "label": "Die Filterregeln ändern"
+        }
+      ]
+    }
+  }
+}

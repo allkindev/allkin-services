@@ -1,0 +1,103 @@
+{
+  "label": "Proxmox VE",
+  "authType": "api_key",
+  "category": "cloud",
+  "description": "Virtual machines, containers, nodes, storage",
+  "glyph": "M4 6h16v5H4zM4 13h16v5H4zM7 8.5h.01M7 15.5h.01",
+  "color": "#e57000",
+  "needsBaseUrl": true,
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "PVEAPIToken=",
+  "testPath": "/api2/json/version",
+  "testExpect": "release",
+  "sensitivePaths": [
+    {
+      "method": "POST",
+      "path": "/api2/json/nodes/*/qemu/*/status/stop",
+      "action": "confirm",
+      "label": "Stop a VM or a container"
+    },
+    {
+      "method": "POST",
+      "path": "/api2/json/nodes/*/lxc/*/status/stop",
+      "action": "confirm",
+      "label": "Stop a VM or a container"
+    },
+    {
+      "method": "POST",
+      "path": "/api2/json/nodes/*/status",
+      "action": "confirm",
+      "label": "Act on a node (reboot, shutdown)",
+      "warning": "Every VM and container on it goes down with it."
+    },
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete (VM, container, snapshot, storage…)",
+      "warning": "Disks and data go with it."
+    }
+  ],
+  "agentGuide": "Base path /api2/json. Cluster: GET /api2/json/cluster/resources (every VM, container, node, storage with status, cpu, mem); nodes: GET /api2/json/nodes; one node: GET /api2/json/nodes/<node>/status. VMs: GET /api2/json/nodes/<node>/qemu (and /qemu/<vmid>/status/current, /qemu/<vmid>/config); containers: same under /lxc. Start, stop, shutdown, reboot: POST /api2/json/nodes/<node>/qemu/<vmid>/status/start (stop, shutdown, reboot; same for lxc). Snapshots: GET and POST /api2/json/nodes/<node>/qemu/<vmid>/snapshot. Tasks: GET /api2/json/nodes/<node>/tasks?limit=20, one: /tasks/<upid>/status. Storage: GET /api2/json/nodes/<node>/storage. Answers are in data. The token's privileges are set in Proxmox (Permissions → API Tokens); a 403 means the token lacks one. The token is set by Allkin.",
+  "docUrl": "https://pve.proxmox.com/pve-docs/api-viewer/",
+  "locales": {
+    "fr": {
+      "description": "Machines virtuelles, conteneurs, nœuds, stockage",
+      "sensitivePaths": [
+        {
+          "label": "Arrêter une VM ou un conteneur"
+        },
+        {
+          "label": "Arrêter une VM ou un conteneur"
+        },
+        {
+          "label": "Agir sur un nœud (redémarrage, extinction)",
+          "warning": "Toutes les VM et conteneurs qu'il porte tombent avec lui."
+        },
+        {
+          "label": "Supprimer (VM, conteneur, instantané, stockage…)",
+          "warning": "Les disques et les données partent avec."
+        }
+      ]
+    },
+    "es": {
+      "description": "Máquinas virtuales, contenedores, nodos, almacenamiento",
+      "sensitivePaths": [
+        {
+          "label": "Detener una VM o un contenedor"
+        },
+        {
+          "label": "Detener una VM o un contenedor"
+        },
+        {
+          "label": "Actuar sobre un nodo (reinicio, apagado)",
+          "warning": "Todas las VM y contenedores que aloja caen con él."
+        },
+        {
+          "label": "Eliminar (VM, contenedor, instantánea, almacenamiento…)",
+          "warning": "Los discos y los datos se van con ello."
+        }
+      ]
+    },
+    "de": {
+      "description": "Virtuelle Maschinen, Container, Knoten, Speicher",
+      "sensitivePaths": [
+        {
+          "label": "Eine VM oder einen Container stoppen"
+        },
+        {
+          "label": "Eine VM oder einen Container stoppen"
+        },
+        {
+          "label": "Auf einen Knoten einwirken (Neustart, Herunterfahren)",
+          "warning": "Alle VMs und Container darauf gehen mit ihm aus."
+        },
+        {
+          "label": "Löschen (VM, Container, Snapshot, Speicher…)",
+          "warning": "Festplatten und Daten verschwinden mit."
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "label": "Jira",
+  "authType": "basic",
+  "category": "office",
+  "description": "Issues, projects, boards (Jira Cloud)",
+  "glyph": "M12 3 3 12l9 9 9-9zM12 8l-4 4 4 4 4-4z",
+  "color": "#0052cc",
+  "needsBaseUrl": true,
+  "baseUrlTemplate": {
+    "template": "https://{value}.atlassian.net",
+    "label": "Site name",
+    "note": "The part before .atlassian.net in your address.",
+    "placeholder": "my-company",
+    "pattern": "[a-z0-9][a-z0-9-]*"
+  },
+  "extraHeaders": {
+    "Accept": "application/json"
+  },
+  "testPath": "/rest/api/3/myself",
+  "testExpect": "accountId",
+  "sensitivePaths": [
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete an issue or a project"
+    }
+  ],
+  "agentGuide": "Jira Cloud, base path /rest/api/3. Me: GET /rest/api/3/myself. Search: GET /rest/api/3/search/jql?jql=<JQL>&maxResults=20&fields=summary,status,assignee,priority,updated (JQL: project = ABC AND status != Done ORDER BY updated DESC; assignee = currentUser()). One issue: GET /rest/api/3/issue/<KEY>?fields=summary,description,status,comment; create: POST /rest/api/3/issue {\"fields\": {\"project\": {\"key\": \"ABC\"}, \"summary\": \"...\", \"issuetype\": {\"name\": \"Task\"}, \"description\": {\"type\": \"doc\", \"version\": 1, \"content\": [{\"type\": \"paragraph\", \"content\": [{\"type\": \"text\", \"text\": \"...\"}]}]}}} (descriptions and comments are Atlassian Document Format). Comment: POST /rest/api/3/issue/<KEY>/comment {\"body\": <ADF>}; transition: GET /rest/api/3/issue/<KEY>/transitions then POST ... {\"transition\": {\"id\": \"31\"}}; assign: PUT /rest/api/3/issue/<KEY>/assignee {\"accountId\": \"...\"}. Projects: GET /rest/api/3/project/search; boards and sprints: GET /rest/agile/1.0/board, GET /rest/agile/1.0/board/<id>/sprint?state=active. The credentials are set by Allkin.",
+  "docUrl": "https://developer.atlassian.com/cloud/jira/platform/rest/v3/",
+  "locales": {
+    "fr": {
+      "description": "Tickets, projets, tableaux (Jira Cloud)",
+      "baseUrlTemplate": {
+        "label": "Nom du site",
+        "note": "La partie avant .atlassian.net dans votre adresse."
+      },
+      "sensitivePaths": [
+        {
+          "label": "Supprimer un ticket ou un projet"
+        }
+      ]
+    },
+    "es": {
+      "description": "Incidencias, proyectos, tableros (Jira Cloud)",
+      "baseUrlTemplate": {
+        "label": "Nombre del sitio",
+        "note": "La parte antes de .atlassian.net en tu dirección."
+      },
+      "sensitivePaths": [
+        {
+          "label": "Eliminar una incidencia o un proyecto"
+        }
+      ]
+    },
+    "de": {
+      "description": "Vorgänge, Projekte, Boards (Jira Cloud)",
+      "baseUrlTemplate": {
+        "label": "Name der Site",
+        "note": "Der Teil vor .atlassian.net in deiner Adresse."
+      },
+      "sensitivePaths": [
+        {
+          "label": "Einen Vorgang oder ein Projekt löschen"
+        }
+      ]
+    }
+  }
+}

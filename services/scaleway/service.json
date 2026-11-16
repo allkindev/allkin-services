@@ -1,0 +1,73 @@
+{
+  "label": "Scaleway",
+  "authType": "api_key",
+  "category": "cloud",
+  "description": "Instances, storage, serverless, databases",
+  "glyph": "M6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM8 12h8M12 8v8",
+  "color": "#4f0599",
+  "colorDark": "#b48aef",
+  "apiBaseUrl": "https://api.scaleway.com",
+  "secretPlacement": "header",
+  "apiKeyHeader": "X-Auth-Token",
+  "testPath": "/account/v3/projects",
+  "testExpect": "projects",
+  "sensitivePaths": [
+    {
+      "method": "POST",
+      "path": "/instance/v1/zones/*/servers",
+      "action": "confirm",
+      "label": "Create an instance",
+      "warning": "It is billed as long as it exists."
+    },
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete (instance, volume, bucket…)",
+      "warning": "The data goes with it."
+    }
+  ],
+  "agentGuide": "Projects first: GET /account/v3/projects (id, name); most calls take a zone or region in the path (fr-par-1, nl-ams-1; regions fr-par, nl-ams, pl-waw). Instances: GET /instance/v1/zones/fr-par-1/servers?project=<id> (id, name, state, public_ip, commercial_type); one: GET .../servers/<id>; action: POST .../servers/<id>/action {\"action\": \"poweron\"} (poweroff, reboot, stop_in_place); create: POST .../servers {...} then POST .../action poweron — it costs money. Object storage buckets: GET /object/v1/regions/fr-par/buckets?project_id=<id>... (S3 itself needs its own keys). Serverless: GET /functions/v1beta1/regions/fr-par/functions?project_id=<id>, containers: /containers/v1beta1/.... Managed databases: GET /rdb/v1/regions/fr-par/instances. Billing: GET /billing/v2beta1/consumptions?organization_id=<id>. IAM: GET /iam/v1alpha1/api-keys?organization_id=<id>. The key is set by Allkin.",
+  "docUrl": "https://www.scaleway.com/en/developers/api/",
+  "locales": {
+    "fr": {
+      "description": "Instances, stockage, serverless, bases de données",
+      "sensitivePaths": [
+        {
+          "label": "Créer une instance",
+          "warning": "Elle est facturée tant qu'elle existe."
+        },
+        {
+          "label": "Supprimer (instance, volume, bucket…)",
+          "warning": "Les données partent avec."
+        }
+      ]
+    },
+    "es": {
+      "description": "Instancias, almacenamiento, serverless, bases de datos",
+      "sensitivePaths": [
+        {
+          "label": "Crear una instancia",
+          "warning": "Se factura mientras exista."
+        },
+        {
+          "label": "Eliminar (instancia, volumen, bucket…)",
+          "warning": "Los datos se van con ello."
+        }
+      ]
+    },
+    "de": {
+      "description": "Instanzen, Speicher, Serverless, Datenbanken",
+      "sensitivePaths": [
+        {
+          "label": "Eine Instanz erstellen",
+          "warning": "Sie wird berechnet, solange sie existiert."
+        },
+        {
+          "label": "Löschen (Instanz, Volume, Bucket…)",
+          "warning": "Die Daten verschwinden mit."
+        }
+      ]
+    }
+  }
+}

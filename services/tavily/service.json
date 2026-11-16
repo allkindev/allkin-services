@@ -1,0 +1,26 @@
+{
+  "label": "Tavily",
+  "authType": "api_key",
+  "category": "data",
+  "description": "Web search and page extraction for agents",
+  "glyph": "M10.5 3a7.5 7.5 0 1 0 0 15 7.5 7.5 0 0 0 0-15zM16 16l5 5M10.5 7v3M9 8.5h3",
+  "color": "#0ea5e9",
+  "apiBaseUrl": "https://api.tavily.com",
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "Bearer ",
+  "testPath": "/usage",
+  "agentGuide": "POST /search with a JSON body {\"query\": \"...\", \"max_results\": 5, \"search_depth\": \"basic\", \"include_answer\": true} (also topic: \"news\", days: 7, include_domains: [...]). The answer field is a short synthesis, results[] carry url, title, content, score. Read whole pages: POST /extract {\"urls\": [\"https://...\"]} gives results[].raw_content. Crawl a site: POST /crawl {\"url\": \"https://...\", \"max_depth\": 1}. Each call spends credits: one good query beats many. Cite the urls you use.",
+  "docUrl": "https://docs.tavily.com",
+  "locales": {
+    "fr": {
+      "description": "Recherche web et extraction de pages pour les agents"
+    },
+    "es": {
+      "description": "Búsqueda web y extracción de páginas para agentes"
+    },
+    "de": {
+      "description": "Websuche und Seitenextraktion für Agenten"
+    }
+  }
+}

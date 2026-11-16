@@ -1,0 +1,199 @@
+{
+  "label": "Microsoft 365",
+  "authType": "oauth2",
+  "category": "office",
+  "description": "Outlook mail and calendar, OneDrive, To Do — by OAuth2",
+  "logo": "M11.4 24H0V12.6h11.4V24zM24 24H12.6V12.6H24V24zM11.4 11.4H0V0h11.4v11.4zM24 11.4H12.6V0H24v11.4z",
+  "color": "#0078d4",
+  "apiBaseUrl": "https://graph.microsoft.com/v1.0",
+  "authorizeUrl": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
+  "tokenUrl": "https://login.microsoftonline.com/common/oauth2/v2.0/token",
+  "commonScopes": [
+    {
+      "value": "offline_access",
+      "label": "Stay connected (refresh token)"
+    },
+    {
+      "value": "User.Read",
+      "label": "Profile"
+    },
+    {
+      "value": "Mail.Read",
+      "label": "Mail (read)"
+    },
+    {
+      "value": "Mail.Send",
+      "label": "Mail (send)"
+    },
+    {
+      "value": "Calendars.ReadWrite",
+      "label": "Calendar"
+    },
+    {
+      "value": "Files.ReadWrite",
+      "label": "OneDrive files"
+    },
+    {
+      "value": "Tasks.ReadWrite",
+      "label": "To Do tasks"
+    },
+    {
+      "value": "Contacts.Read",
+      "label": "Contacts (read)"
+    }
+  ],
+  "testPath": "/me",
+  "testExpect": "userPrincipalName",
+  "sensitivePaths": [
+    {
+      "method": "POST",
+      "path": "/me/sendMail",
+      "action": "confirm",
+      "label": "Send an email",
+      "warning": "it leaves at once and cannot be recalled"
+    },
+    {
+      "method": "POST",
+      "path": "/me/messages/*/send",
+      "action": "confirm",
+      "label": "Send an email",
+      "warning": "it leaves at once and cannot be recalled"
+    },
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete (message, event, file…)"
+    }
+  ],
+  "agentGuide": "Microsoft Graph, base /v1.0, paths under /me. Mail: GET /me/mailFolders/inbox/messages?$top=10&$orderby=receivedDateTime desc&$select=subject,from,receivedDateTime,isRead,bodyPreview; search: GET /me/messages?$search=\"words\"; one: GET /me/messages/<id> (body.content, HTML); send: POST /me/sendMail {\"message\": {\"subject\": \"...\", \"body\": {\"contentType\": \"Text\", \"content\": \"...\"}, \"toRecipients\": [{\"emailAddress\": {\"address\": \"...\"}}]}}; reply: POST /me/messages/<id>/reply {\"comment\": \"...\"}. Calendar: GET /me/calendarView?startDateTime=<ISO>&endDateTime=<ISO>&$orderby=start/dateTime; create: POST /me/events {\"subject\": \"...\", \"start\": {\"dateTime\": \"2026-10-02T10:00:00\", \"timeZone\": \"Europe/Paris\"}, \"end\": {...}, \"attendees\": [...]}. OneDrive: GET /me/drive/root/children, search: GET /me/drive/root/search(q='words'), a file: GET /me/drive/items/<id>/content (save_as). To Do: GET /me/todo/lists, tasks: GET /me/todo/lists/<id>/tasks, add: POST ... {\"title\": \"...\"}. Contacts: GET /me/contacts?$search=\"name\". Answers come in value[]; @odata.nextLink pages. A 403 means the scope was not granted at connection. Sending mail asks for confirmation.",
+  "docUrl": "https://learn.microsoft.com/graph/api/overview",
+  "locales": {
+    "fr": {
+      "description": "Mail et agenda Outlook, OneDrive, To Do — par OAuth2",
+      "commonScopes": [
+        {
+          "label": "Rester connecté (jeton de renouvellement)"
+        },
+        {
+          "label": "Profil"
+        },
+        {
+          "label": "Mail (lecture)"
+        },
+        {
+          "label": "Mail (envoi)"
+        },
+        {
+          "label": "Agenda"
+        },
+        {
+          "label": "Fichiers OneDrive"
+        },
+        {
+          "label": "Tâches To Do"
+        },
+        {
+          "label": "Contacts (lecture)"
+        }
+      ],
+      "sensitivePaths": [
+        {
+          "label": "Envoyer un mail",
+          "warning": "il part tout de suite et ne se rattrape pas"
+        },
+        {
+          "label": "Envoyer un mail",
+          "warning": "il part tout de suite et ne se rattrape pas"
+        },
+        {
+          "label": "Supprimer (message, événement, fichier…)"
+        }
+      ]
+    },
+    "es": {
+      "description": "Correo y calendario Outlook, OneDrive, To Do: por OAuth2",
+      "commonScopes": [
+        {
+          "label": "Seguir conectado (token de renovación)"
+        },
+        {
+          "label": "Perfil"
+        },
+        {
+          "label": "Correo (lectura)"
+        },
+        {
+          "label": "Correo (envío)"
+        },
+        {
+          "label": "Calendario"
+        },
+        {
+          "label": "Archivos de OneDrive"
+        },
+        {
+          "label": "Tareas de To Do"
+        },
+        {
+          "label": "Contactos (lectura)"
+        }
+      ],
+      "sensitivePaths": [
+        {
+          "label": "Enviar un correo",
+          "warning": "sale de inmediato y no se puede recuperar"
+        },
+        {
+          "label": "Enviar un correo",
+          "warning": "sale de inmediato y no se puede recuperar"
+        },
+        {
+          "label": "Eliminar (mensaje, evento, archivo…)"
+        }
+      ]
+    },
+    "de": {
+      "description": "Outlook-Mail und -Kalender, OneDrive, To Do – per OAuth2",
+      "commonScopes": [
+        {
+          "label": "Verbunden bleiben (Erneuerungstoken)"
+        },
+        {
+          "label": "Profil"
+        },
+        {
+          "label": "Mail (lesen)"
+        },
+        {
+          "label": "Mail (senden)"
+        },
+        {
+          "label": "Kalender"
+        },
+        {
+          "label": "OneDrive-Dateien"
+        },
+        {
+          "label": "To-Do-Aufgaben"
+        },
+        {
+          "label": "Kontakte (lesen)"
+        }
+      ],
+      "sensitivePaths": [
+        {
+          "label": "Eine E-Mail senden",
+          "warning": "sie geht sofort raus und lässt sich nicht zurückholen"
+        },
+        {
+          "label": "Eine E-Mail senden",
+          "warning": "sie geht sofort raus und lässt sich nicht zurückholen"
+        },
+        {
+          "label": "Löschen (Nachricht, Termin, Datei…)"
+        }
+      ]
+    }
+  }
+}

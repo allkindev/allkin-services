@@ -1,0 +1,82 @@
+{
+  "label": "Trello",
+  "authType": "api_key",
+  "category": "office",
+  "description": "Boards, lists, cards",
+  "glyph": "M4 4h16v16H4zM8 7v10M12 7v10M16 7v6",
+  "color": "#0052cc",
+  "apiBaseUrl": "https://api.trello.com",
+  "secretPlacement": "query",
+  "apiKeyHeader": "token",
+  "pinnedParam": {
+    "name": "key",
+    "label": "API key",
+    "hint": "The key names the application; the token (above) is the secret. Both from https://trello.com/power-ups/admin.",
+    "required": true
+  },
+  "testPath": "/1/members/me",
+  "testExpect": "username",
+  "sensitivePaths": [
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete (card, list, board…)"
+    },
+    {
+      "method": "PUT",
+      "path": "/1/boards/*/closed",
+      "action": "confirm",
+      "label": "Close a board"
+    }
+  ],
+  "agentGuide": "Base path /1. Me and my boards: GET /1/members/me?fields=username,fullName, GET /1/members/me/boards?fields=name,url,closed. A board: GET /1/boards/<id>?lists=open&cards=open (or GET /1/boards/<id>/lists, GET /1/boards/<id>/cards). A list's cards: GET /1/lists/<id>/cards?fields=name,desc,due,labels,idMembers,shortUrl. Add a card: POST /1/cards {\"idList\": \"...\", \"name\": \"...\", \"desc\": \"...\", \"due\": \"2026-10-02T10:00:00Z\"}; move: PUT /1/cards/<id> {\"idList\": \"...\"}; done: PUT /1/cards/<id> {\"dueComplete\": true}; comment: POST /1/cards/<id>/actions/comments {\"text\": \"...\"}. Checklists: GET /1/cards/<id>/checklists; labels: GET /1/boards/<id>/labels. Search: GET /1/search?query=<words>&modelTypes=cards&cards_limit=10. Archive a card: PUT /1/cards/<id> {\"closed\": true}. The key and the token are set by Allkin.",
+  "docUrl": "https://developer.atlassian.com/cloud/trello/rest/",
+  "locales": {
+    "fr": {
+      "description": "Tableaux, listes, cartes",
+      "pinnedParam": {
+        "label": "Clé d'API",
+        "hint": "La clé désigne l'application ; le jeton (au-dessus) est le secret. Les deux sur https://trello.com/power-ups/admin."
+      },
+      "sensitivePaths": [
+        {
+          "label": "Supprimer (carte, liste, tableau…)"
+        },
+        {
+          "label": "Fermer un tableau"
+        }
+      ]
+    },
+    "es": {
+      "description": "Tableros, listas, tarjetas",
+      "pinnedParam": {
+        "label": "Clave de API",
+        "hint": "La clave identifica la aplicación; el token (arriba) es el secreto. Ambos en https://trello.com/power-ups/admin."
+      },
+      "sensitivePaths": [
+        {
+          "label": "Eliminar (tarjeta, lista, tablero…)"
+        },
+        {
+          "label": "Cerrar un tablero"
+        }
+      ]
+    },
+    "de": {
+      "description": "Boards, Listen, Karten",
+      "pinnedParam": {
+        "label": "API-Schlüssel",
+        "hint": "Der Schlüssel bezeichnet die Anwendung; das Token (oben) ist das Geheimnis. Beide unter https://trello.com/power-ups/admin."
+      },
+      "sensitivePaths": [
+        {
+          "label": "Löschen (Karte, Liste, Board…)"
+        },
+        {
+          "label": "Ein Board schließen"
+        }
+      ]
+    }
+  }
+}

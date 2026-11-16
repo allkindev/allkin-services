@@ -1,0 +1,66 @@
+{
+  "label": "Vercel",
+  "authType": "api_key",
+  "category": "dev",
+  "description": "Projects, deployments, domains",
+  "glyph": "M12 4l9 16H3z",
+  "color": "#000000",
+  "colorDark": "#e6e6e6",
+  "apiBaseUrl": "https://api.vercel.com",
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "Bearer ",
+  "testPath": "/v2/user",
+  "testExpect": "user",
+  "sensitivePaths": [
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete (project, deployment, domain…)"
+    },
+    {
+      "method": "POST",
+      "path": "/v13/deployments",
+      "action": "confirm",
+      "label": "Trigger a deployment"
+    }
+  ],
+  "agentGuide": "Me: GET /v2/user; teams: GET /v2/teams (add ?teamId=<id> to every call made for a team). Projects: GET /v9/projects (projects[] with id, name, framework, link); one: GET /v9/projects/<id or name>. Deployments: GET /v6/deployments?projectId=<id>&limit=10 (uid, state, url, createdAt, meta.githubCommitMessage); one: GET /v13/deployments/<id>; its build logs: GET /v2/deployments/<id>/events?builds=1. Environment variables: GET /v9/projects/<id>/env (values hidden), add: POST /v10/projects/<id>/env {\"key\": \"...\", \"value\": \"...\", \"target\": [\"production\"], \"type\": \"encrypted\"}. Domains: GET /v9/projects/<id>/domains. Redeploy: POST /v13/deployments {\"name\": \"<project>\", \"deploymentId\": \"<previous id>\", \"target\": \"production\"}. The token is set by Allkin.",
+  "docUrl": "https://vercel.com/docs/rest-api",
+  "locales": {
+    "fr": {
+      "description": "Projets, déploiements, domaines",
+      "sensitivePaths": [
+        {
+          "label": "Supprimer (projet, déploiement, domaine…)"
+        },
+        {
+          "label": "Déclencher un déploiement"
+        }
+      ]
+    },
+    "es": {
+      "description": "Proyectos, despliegues, dominios",
+      "sensitivePaths": [
+        {
+          "label": "Eliminar (proyecto, despliegue, dominio…)"
+        },
+        {
+          "label": "Lanzar un despliegue"
+        }
+      ]
+    },
+    "de": {
+      "description": "Projekte, Deployments, Domains",
+      "sensitivePaths": [
+        {
+          "label": "Löschen (Projekt, Deployment, Domain…)"
+        },
+        {
+          "label": "Ein Deployment auslösen"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "label": "Uptime Kuma",
+  "authType": "basic",
+  "category": "cloud",
+  "description": "Monitors and their status, status pages",
+  "glyph": "M3 12h4l3-7 4 14 3-7h4",
+  "color": "#5cdd8b",
+  "needsBaseUrl": true,
+  "testPath": "/metrics",
+  "testExpect": "monitor_status",
+  "agentGuide": "Two doors. GET /metrics (Prometheus text) lists every monitor: monitor_status{monitor_name=...,monitor_url=...} is 1 up, 0 down, 2 pending, 3 maintenance; monitor_response_time in ms; monitor_cert_days_remaining. Read the lines, do not ask for them twice in a minute. Status pages, public: GET /api/status-page/<slug> (publicGroupList with monitors) and GET /api/status-page/heartbeat/<slug> (heartbeatList by monitor id, uptimeList). A badge: GET /api/badge/<monitor id>/status. Nothing can be changed through this API: monitors are edited in Uptime Kuma's interface.",
+  "docUrl": "https://github.com/louislam/uptime-kuma/wiki/API-Keys",
+  "locales": {
+    "fr": {
+      "description": "Sondes et leur état, pages de statut"
+    },
+    "es": {
+      "description": "Monitores y su estado, páginas de estado"
+    },
+    "de": {
+      "description": "Monitore und ihr Status, Statusseiten"
+    }
+  }
+}

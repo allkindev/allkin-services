@@ -1,0 +1,122 @@
+{
+  "label": "Google Drive",
+  "authType": "oauth2",
+  "category": "office",
+  "description": "Files, folders, search, sharing",
+  "logo": "M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z",
+  "color": "#1fa463",
+  "apiBaseUrl": "https://www.googleapis.com/drive/v3",
+  "authorizeUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+  "tokenUrl": "https://oauth2.googleapis.com/token",
+  "commonScopes": [
+    {
+      "value": "https://www.googleapis.com/auth/drive.readonly",
+      "label": "Read files"
+    },
+    {
+      "value": "https://www.googleapis.com/auth/drive.file",
+      "label": "Files the agent creates"
+    },
+    {
+      "value": "https://www.googleapis.com/auth/drive",
+      "label": "All files"
+    }
+  ],
+  "testPath": "/about",
+  "testQuery": {
+    "fields": "user"
+  },
+  "testExpect": "user",
+  "sensitivePaths": [
+    {
+      "method": "POST",
+      "path": "/files/*/permissions",
+      "action": "confirm",
+      "label": "Share a file",
+      "warning": "Someone else gets access to it."
+    },
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete a file",
+      "warning": "without going through the trash"
+    }
+  ],
+  "agentGuide": "Base path /drive/v3. Search: GET /files?q=name contains 'report' and trashed = false&fields=files(id,name,mimeType,modifiedTime,size,webViewLink)&pageSize=20 (q also: '<folder id>' in parents, mimeType = 'application/vnd.google-apps.folder', fullText contains 'words', modifiedTime > '2026-01-01T00:00:00'). One file: GET /files/<id>?fields=*; download a binary: GET /files/<id>?alt=media (use save_as); a Google Doc/Sheet as text or PDF: GET /files/<id>/export?mimeType=text/plain (application/pdf, text/csv for a sheet). Create a folder: POST /files {\"name\": \"...\", \"mimeType\": \"application/vnd.google-apps.folder\", \"parents\": [\"<id>\"]}; move: PATCH /files/<id>?addParents=<new>&removeParents=<old>; rename: PATCH /files/<id> {\"name\": \"...\"}; trash: PATCH /files/<id> {\"trashed\": true}. Share: POST /files/<id>/permissions {\"role\": \"reader\", \"type\": \"user\", \"emailAddress\": \"...\"} (anyone: type \"anyone\"). Shared drives: GET /drives. Uploads of new content go through the upload endpoint, which this relay does not offer: prefer a Doc created through Google Docs.",
+  "docUrl": "https://developers.google.com/drive/api/reference/rest/v3",
+  "locales": {
+    "fr": {
+      "description": "Fichiers, dossiers, recherche, partage",
+      "commonScopes": [
+        {
+          "label": "Lire les fichiers"
+        },
+        {
+          "label": "Les fichiers que l'agent crée"
+        },
+        {
+          "label": "Tous les fichiers"
+        }
+      ],
+      "sensitivePaths": [
+        {
+          "label": "Partager un fichier",
+          "warning": "Quelqu'un d'autre y accède."
+        },
+        {
+          "label": "Supprimer un fichier",
+          "warning": "sans passer par la corbeille"
+        }
+      ]
+    },
+    "es": {
+      "description": "Archivos, carpetas, búsqueda, compartir",
+      "commonScopes": [
+        {
+          "label": "Leer los archivos"
+        },
+        {
+          "label": "Los archivos que crea el agente"
+        },
+        {
+          "label": "Todos los archivos"
+        }
+      ],
+      "sensitivePaths": [
+        {
+          "label": "Compartir un archivo",
+          "warning": "Otra persona accede a él."
+        },
+        {
+          "label": "Eliminar un archivo",
+          "warning": "sin pasar por la papelera"
+        }
+      ]
+    },
+    "de": {
+      "description": "Dateien, Ordner, Suche, Freigabe",
+      "commonScopes": [
+        {
+          "label": "Dateien lesen"
+        },
+        {
+          "label": "Die Dateien, die der Agent anlegt"
+        },
+        {
+          "label": "Alle Dateien"
+        }
+      ],
+      "sensitivePaths": [
+        {
+          "label": "Eine Datei freigeben",
+          "warning": "Jemand anderes bekommt Zugriff."
+        },
+        {
+          "label": "Eine Datei löschen",
+          "warning": "ohne Umweg über den Papierkorb"
+        }
+      ]
+    }
+  }
+}

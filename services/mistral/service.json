@@ -1,0 +1,27 @@
+{
+  "label": "Mistral AI",
+  "authType": "api_key",
+  "category": "ai",
+  "description": "Chat, embeddings, OCR (API key)",
+  "glyph": "M4 4h4v16H4zM10 4h4v16h-4zM16 4h4v16h-4zM8 8h2M14 8h2M8 14h2M14 14h2",
+  "color": "#ff7000",
+  "apiBaseUrl": "https://api.mistral.ai/v1",
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "Bearer ",
+  "testPath": "/models",
+  "testExpect": "data",
+  "agentGuide": "Base path /v1, OpenAI-shaped. Chat: POST /chat/completions {\"model\": \"mistral-small-latest\", \"messages\": [{\"role\": \"user\", \"content\": \"...\"}]} (choices[0].message.content; \"response_format\": {\"type\": \"json_object\"} for JSON). Models: GET /models. Embeddings: POST /embeddings {\"model\": \"mistral-embed\", \"input\": [\"...\"]}. OCR of a document by URL: POST /ocr {\"model\": \"mistral-ocr-latest\", \"document\": {\"type\": \"document_url\", \"document_url\": \"https://...\"}} (pages[].markdown). Agents and conversations: POST /conversations. Every call is billed to the key. The key is set by Allkin.",
+  "docUrl": "https://docs.mistral.ai/api/",
+  "locales": {
+    "fr": {
+      "description": "Chat, embeddings, OCR (clé API)"
+    },
+    "es": {
+      "description": "Chat, embeddings, OCR (clave API)"
+    },
+    "de": {
+      "description": "Chat, Embeddings, OCR (API-Schlüssel)"
+    }
+  }
+}

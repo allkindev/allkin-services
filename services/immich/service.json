@@ -1,0 +1,50 @@
+{
+  "label": "Immich",
+  "authType": "api_key",
+  "category": "media",
+  "description": "Photos and videos: albums, search, people",
+  "glyph": "M4 6h16v12H4zM8 15l3-3 2 2 3-4 2 5M8 9h.01",
+  "color": "#4250af",
+  "colorDark": "#8f9bf0",
+  "needsBaseUrl": true,
+  "secretPlacement": "header",
+  "apiKeyHeader": "x-api-key",
+  "testPath": "/api/server/about",
+  "testExpect": "version",
+  "sensitivePaths": [
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete photos or albums"
+    }
+  ],
+  "agentGuide": "Base path /api. Albums: GET /api/albums; one with its assets: GET /api/albums/<id>; create: POST /api/albums {\"albumName\": \"...\", \"assetIds\": [...]}. Search: POST /api/search/metadata {\"takenAfter\": \"2026-01-01\", \"city\": \"Lyon\", \"size\": 50} or POST /api/search/smart {\"query\": \"beach sunset\"} (CLIP). An asset: GET /api/assets/<id>; its picture: GET /api/assets/<id>/thumbnail?size=preview (binary). People: GET /api/people; stats: GET /api/server/statistics. Timeline buckets: GET /api/timeline/buckets?size=MONTH. The key is set by Allkin.",
+  "docUrl": "https://immich.app/docs/api/",
+  "locales": {
+    "fr": {
+      "description": "Photos et vidéos : albums, recherche, personnes",
+      "sensitivePaths": [
+        {
+          "label": "Supprimer des photos ou des albums"
+        }
+      ]
+    },
+    "es": {
+      "description": "Fotos y vídeos: álbumes, búsqueda, personas",
+      "sensitivePaths": [
+        {
+          "label": "Eliminar fotos o álbumes"
+        }
+      ]
+    },
+    "de": {
+      "description": "Fotos und Videos: Alben, Suche, Personen",
+      "sensitivePaths": [
+        {
+          "label": "Fotos oder Alben löschen"
+        }
+      ]
+    }
+  }
+}

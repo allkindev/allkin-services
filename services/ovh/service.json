@@ -1,0 +1,524 @@
+{
+  "label": "OVHcloud",
+  "authType": "oauth2",
+  "category": "cloud",
+  "description": "Domains, hosting, servers, Public Cloud — through a service account",
+  "oauthGrant": "client_credentials",
+  "logo": "M19.881 10.095l2.563-4.45C23.434 7.389 24 9.404 24 11.555c0 2.88-1.017 5.523-2.71 7.594h-6.62l2.04-3.541h-2.696l3.176-5.513h2.691zm-2.32-5.243L9.333 19.14l.003.009H2.709C1.014 17.077 0 14.435 0 11.555c0-2.152.57-4.17 1.561-5.918L5.855 13.1 10.6 4.852h6.961z",
+  "color": "#123f6d",
+  "colorDark": "#5fa2ed",
+  "apiBaseUrl": "https://eu.api.ovh.com/1.0",
+  "extraHosts": [
+    "www.ovh.com"
+  ],
+  "tokenUrl": "https://www.ovh.com/auth/oauth2/token",
+  "commonScopes": [
+    {
+      "value": "all",
+      "label": "API access (required)"
+    }
+  ],
+  "sensitivePaths": [
+    {
+      "method": "DELETE",
+      "path": "/order/cart/*",
+      "action": "allow",
+      "label": "Drop a cart"
+    },
+    {
+      "method": "POST",
+      "path": "*/currentQueries/cancel",
+      "action": "allow",
+      "label": "Interrupt an SQL query"
+    },
+    {
+      "method": "POST",
+      "path": "*/task/*/cancel",
+      "action": "allow",
+      "label": "Cancel a running task"
+    },
+    {
+      "method": "POST",
+      "path": "/me/order/*/pay*",
+      "action": "confirm",
+      "label": "Pay an OVH order",
+      "warning": "real charge on the registered payment method, immediate and impossible to cancel"
+    },
+    {
+      "method": "POST",
+      "path": "/order/cart/*/checkout",
+      "action": "confirm",
+      "label": "Validate an OVH cart",
+      "warning": "creates a firm purchase order; the payment may follow automatically"
+    },
+    {
+      "method": "*",
+      "path": "/me/payment*",
+      "action": "confirm",
+      "label": "Alter the payment methods"
+    },
+    {
+      "method": "*",
+      "path": "/me/accessRestriction*",
+      "action": "confirm",
+      "label": "Change the access restrictions of the OVH account",
+      "warning": "affects two-factor authentication or the allowed IPs"
+    },
+    {
+      "method": "*",
+      "path": "/me/api/credential*",
+      "action": "confirm",
+      "label": "Alter the API keys of the account"
+    },
+    {
+      "method": "*",
+      "path": "/me/api/oauth2*",
+      "action": "confirm",
+      "label": "Alter the service accounts"
+    },
+    {
+      "method": "*",
+      "path": "/me/identity*",
+      "action": "confirm",
+      "label": "Alter the users and the tokens"
+    },
+    {
+      "method": "*",
+      "path": "/me/sshKey*",
+      "action": "confirm",
+      "label": "Change the SSH keys of the account"
+    },
+    {
+      "method": "*",
+      "path": "*/sshkey*",
+      "action": "confirm",
+      "label": "Change an SSH key"
+    },
+    {
+      "method": "*",
+      "path": "*/sshKey*",
+      "action": "confirm",
+      "label": "Change an SSH key"
+    },
+    {
+      "method": "POST",
+      "path": "*/reinstall",
+      "action": "confirm",
+      "label": "Reinstall a server",
+      "warning": "ERASES the whole content of the machine — irreversible"
+    },
+    {
+      "method": "POST",
+      "path": "*/rebuild",
+      "action": "confirm",
+      "label": "Rebuild an instance",
+      "warning": "erases its content"
+    },
+    {
+      "method": "POST",
+      "path": "*restore*",
+      "action": "confirm",
+      "label": "Restore a backup",
+      "warning": "overwrites the current state"
+    },
+    {
+      "method": "POST",
+      "path": "*Restore*",
+      "action": "confirm",
+      "label": "Restore a backup",
+      "warning": "overwrites the current state"
+    },
+    {
+      "method": "POST",
+      "path": "*/reset*",
+      "action": "confirm",
+      "label": "Reset (credentials, interface, session)"
+    },
+    {
+      "method": "POST",
+      "path": "*/bulkDelete*",
+      "action": "confirm",
+      "label": "Bulk deletion",
+      "warning": "irreversible"
+    },
+    {
+      "method": "POST",
+      "path": "*/terminate",
+      "action": "confirm",
+      "label": "Terminate an OVH service",
+      "warning": "irreversible"
+    },
+    {
+      "method": "POST",
+      "path": "*/cancel",
+      "action": "confirm",
+      "label": "Terminate or cancel a service"
+    },
+    {
+      "method": "POST",
+      "path": "*/revoke",
+      "action": "confirm",
+      "label": "Revoke an access or a licence"
+    },
+    {
+      "method": "POST",
+      "path": "*/reboot",
+      "action": "confirm",
+      "label": "Restart a server",
+      "warning": "cuts the service while it restarts"
+    },
+    {
+      "method": "*",
+      "path": "*/stop",
+      "action": "confirm",
+      "label": "Stop a service"
+    },
+    {
+      "method": "POST",
+      "path": "*/shutdown",
+      "action": "confirm",
+      "label": "Shut down a server"
+    },
+    {
+      "method": "POST",
+      "path": "*/rescue*",
+      "action": "confirm",
+      "label": "Switch to rescue mode",
+      "warning": "restarts the machine on a temporary system"
+    },
+    {
+      "method": "POST",
+      "path": "*/netboot",
+      "action": "confirm",
+      "label": "Change the boot mode"
+    },
+    {
+      "method": "DELETE",
+      "path": "/*",
+      "action": "confirm",
+      "label": "Delete an OVH resource",
+      "warning": "irreversible — a deleted domain, record or server cannot be recovered"
+    }
+  ],
+  "testPath": "/auth/details",
+  "agentGuide": "Paths relative to https://eu.api.ovh.com/1.0. The API is huge (70 branches, thousands of calls): NEVER guess a path or a value, ask the API for them. It describes itself, and that is the normal way to use it. GET / returns the 70 branches; GET /<branch>.json returns the complete schema of a branch — large, ask for it only for the one that concerns you.\nStart with GET /auth/details: it tells you under which identity you act and what you are allowed to call. Useful day to day: GET /me the account, GET /me/bill the invoices, GET /domain the domains, GET /domain/zone/<zone>/record the DNS, GET /vps and GET /dedicated/server the hardware, GET /cloud/project the Public Cloud. After any DNS write, POST /domain/zone/<zone>/refresh: without it the change is recorded but never published.\nORDERING follows a strict sequence, and skipping a step fails: (1) POST /order/cart {ovhSubsidiary:\"FR\"}; (2) POST /order/cart/<id>/assign — ties the cart to the account, the step people forget and without which nothing validates; (3) GET /order/cart/<id>/<product> to READ the catalogue, then POST on the same path copying planCode, duration and pricingMode EXACTLY AS the catalogue gives them — an invented combination is refused by a 403 \"You are not allowed\" that wrongly looks like a problem of rights; (4) GET /order/cart/<id>/item/<itemId>/requiredConfiguration then POST .../configuration for each required entry; (5) GET /order/cart/<id>/checkout gives the price and the contracts — show them to the user BEFORE proposing anything. Creating, filling and assigning a cart commits nothing: a cart expires on its own in 24 h.\nThree errors not to confuse: an EMPTY list does not mean the account lacks that product — IAM filters the resources, and a service account without a policy sees everything empty; if everything is empty everywhere, say it as a problem of rights, never as an account without services. A 403 with \"unauthorizedActionsByIAM\" names exactly the missing action: quote it to the user, it is to be added to their policy. A 403 \"You are not allowed\" without detail on a cart almost always comes from a badly composed offer, not from a right: read the catalogue again.\nOrdering, paying, cancelling and deleting go through a validation by the user in the conversation: prepare the call normally, the question will be put to them. A refusal is a decision, not an obstacle to work around.",
+  "docUrl": "https://api.ovh.com/console/",
+  "locales": {
+    "fr": {
+      "description": "Domaines, hébergement, serveurs, Public Cloud — par compte de service",
+      "commonScopes": [
+        {
+          "label": "Accès à l'API (obligatoire)"
+        }
+      ],
+      "sensitivePaths": [
+        {
+          "label": "Abandonner un panier"
+        },
+        {
+          "label": "Interrompre une requête SQL"
+        },
+        {
+          "label": "Annuler une tâche en cours"
+        },
+        {
+          "label": "Payer une commande OVH",
+          "warning": "débit réel sur le moyen de paiement enregistré, immédiat et non annulable"
+        },
+        {
+          "label": "Valider un panier OVH",
+          "warning": "crée un bon de commande ferme ; le paiement peut suivre automatiquement"
+        },
+        {
+          "label": "Toucher aux moyens de paiement"
+        },
+        {
+          "label": "Modifier les restrictions d'accès au compte OVH",
+          "warning": "touche à l'authentification à deux facteurs ou aux IP autorisées"
+        },
+        {
+          "label": "Toucher aux clés d'API du compte"
+        },
+        {
+          "label": "Toucher aux comptes de service"
+        },
+        {
+          "label": "Toucher aux utilisateurs et aux jetons"
+        },
+        {
+          "label": "Modifier les clés SSH du compte"
+        },
+        {
+          "label": "Modifier une clé SSH"
+        },
+        {
+          "label": "Modifier une clé SSH"
+        },
+        {
+          "label": "Réinstaller un serveur",
+          "warning": "EFFACE tout le contenu de la machine — irréversible"
+        },
+        {
+          "label": "Reconstruire une instance",
+          "warning": "efface son contenu"
+        },
+        {
+          "label": "Restaurer une sauvegarde",
+          "warning": "écrase l'état actuel"
+        },
+        {
+          "label": "Restaurer une sauvegarde",
+          "warning": "écrase l'état actuel"
+        },
+        {
+          "label": "Réinitialiser (identifiants, interface, session)"
+        },
+        {
+          "label": "Suppression en masse",
+          "warning": "irréversible"
+        },
+        {
+          "label": "Résilier un service OVH",
+          "warning": "irréversible"
+        },
+        {
+          "label": "Résilier ou annuler un service"
+        },
+        {
+          "label": "Révoquer un accès ou une licence"
+        },
+        {
+          "label": "Redémarrer un serveur",
+          "warning": "coupe le service le temps du redémarrage"
+        },
+        {
+          "label": "Arrêter un service"
+        },
+        {
+          "label": "Éteindre un serveur"
+        },
+        {
+          "label": "Passer en mode secours",
+          "warning": "redémarre la machine sur un système temporaire"
+        },
+        {
+          "label": "Changer le mode de démarrage"
+        },
+        {
+          "label": "Supprimer une ressource OVH",
+          "warning": "irréversible — un domaine, un enregistrement ou un serveur supprimé ne se récupère pas"
+        }
+      ]
+    },
+    "es": {
+      "description": "Dominios, alojamiento, servidores, Public Cloud: mediante cuenta de servicio",
+      "commonScopes": [
+        {
+          "label": "Acceso a la API (obligatorio)"
+        }
+      ],
+      "sensitivePaths": [
+        {
+          "label": "Abandonar un carrito"
+        },
+        {
+          "label": "Interrumpir una consulta SQL"
+        },
+        {
+          "label": "Cancelar una tarea en curso"
+        },
+        {
+          "label": "Pagar un pedido de OVH",
+          "warning": "cargo real en el medio de pago registrado, inmediato y no anulable"
+        },
+        {
+          "label": "Validar un carrito de OVH",
+          "warning": "crea una orden de pedido en firme; el pago puede seguir automáticamente"
+        },
+        {
+          "label": "Tocar los medios de pago"
+        },
+        {
+          "label": "Modificar las restricciones de acceso a la cuenta de OVH",
+          "warning": "afecta a la autenticación de dos factores o a las IP autorizadas"
+        },
+        {
+          "label": "Tocar las claves de API de la cuenta"
+        },
+        {
+          "label": "Tocar las cuentas de servicio"
+        },
+        {
+          "label": "Tocar los usuarios y los tokens"
+        },
+        {
+          "label": "Modificar las claves SSH de la cuenta"
+        },
+        {
+          "label": "Modificar una clave SSH"
+        },
+        {
+          "label": "Modificar una clave SSH"
+        },
+        {
+          "label": "Reinstalar un servidor",
+          "warning": "BORRA todo el contenido de la máquina; irreversible"
+        },
+        {
+          "label": "Reconstruir una instancia",
+          "warning": "borra su contenido"
+        },
+        {
+          "label": "Restaurar una copia de seguridad",
+          "warning": "sobrescribe el estado actual"
+        },
+        {
+          "label": "Restaurar una copia de seguridad",
+          "warning": "sobrescribe el estado actual"
+        },
+        {
+          "label": "Restablecer (credenciales, interfaz, sesión)"
+        },
+        {
+          "label": "Eliminación masiva"
+        },
+        {
+          "label": "Dar de baja un servicio de OVH"
+        },
+        {
+          "label": "Dar de baja o cancelar un servicio"
+        },
+        {
+          "label": "Revocar un acceso o una licencia"
+        },
+        {
+          "label": "Reiniciar un servidor",
+          "warning": "interrumpe el servicio mientras dura el reinicio"
+        },
+        {
+          "label": "Detener un servicio"
+        },
+        {
+          "label": "Apagar un servidor"
+        },
+        {
+          "label": "Pasar a modo de rescate",
+          "warning": "reinicia la máquina en un sistema temporal"
+        },
+        {
+          "label": "Cambiar el modo de arranque"
+        },
+        {
+          "label": "Eliminar un recurso de OVH",
+          "warning": "irreversible: un dominio, un registro o un servidor eliminado no se recupera"
+        }
+      ]
+    },
+    "de": {
+      "description": "Domains, Hosting, Server, Public Cloud – über ein Dienstkonto",
+      "commonScopes": [
+        {
+          "label": "API-Zugriff (erforderlich)"
+        }
+      ],
+      "sensitivePaths": [
+        {
+          "label": "Warenkorb verwerfen"
+        },
+        {
+          "label": "SQL-Abfrage abbrechen"
+        },
+        {
+          "label": "Laufende Aufgabe abbrechen"
+        },
+        {
+          "label": "OVH-Bestellung bezahlen",
+          "warning": "echte Abbuchung vom hinterlegten Zahlungsmittel, sofort und nicht stornierbar"
+        },
+        {
+          "label": "OVH-Warenkorb bestätigen",
+          "warning": "erzeugt eine verbindliche Bestellung; die Zahlung kann automatisch folgen"
+        },
+        {
+          "label": "Zahlungsmittel verändern"
+        },
+        {
+          "label": "Zugriffsbeschränkungen des OVH-Kontos ändern",
+          "warning": "betrifft die Zwei-Faktor-Authentifizierung oder die erlaubten IP-Adressen"
+        },
+        {
+          "label": "API-Schlüssel des Kontos verändern"
+        },
+        {
+          "label": "Dienstkonten verändern"
+        },
+        {
+          "label": "Benutzer und Tokens verändern"
+        },
+        {
+          "label": "SSH-Schlüssel des Kontos ändern"
+        },
+        {
+          "label": "SSH-Schlüssel ändern"
+        },
+        {
+          "label": "SSH-Schlüssel ändern"
+        },
+        {
+          "label": "Server neu installieren",
+          "warning": "LÖSCHT den gesamten Inhalt der Maschine – unumkehrbar"
+        },
+        {
+          "label": "Instanz neu aufbauen",
+          "warning": "löscht ihren Inhalt"
+        },
+        {
+          "label": "Sicherung wiederherstellen",
+          "warning": "überschreibt den aktuellen Zustand"
+        },
+        {
+          "label": "Sicherung wiederherstellen",
+          "warning": "überschreibt den aktuellen Zustand"
+        },
+        {
+          "label": "Zurücksetzen (Zugangsdaten, Oberfläche, Sitzung)"
+        },
+        {
+          "label": "Massenlöschung",
+          "warning": "unumkehrbar"
+        },
+        {
+          "label": "OVH-Dienst kündigen",
+          "warning": "unumkehrbar"
+        },
+        {
+          "label": "Dienst kündigen oder stornieren"
+        },
+        {
+          "label": "Zugriff oder Lizenz widerrufen"
+        },
+        {
+          "label": "Server neu starten",
+          "warning": "unterbricht den Dienst während des Neustarts"
+        },
+        {
+          "label": "Dienst anhalten"
+        },
+        {
+          "label": "Server herunterfahren"
+        },
+        {
+          "label": "In den Rettungsmodus wechseln",
+          "warning": "startet die Maschine in einem temporären System neu"
+        },
+        {
+          "label": "Startmodus ändern"
+        },
+        {
+          "label": "OVH-Ressource löschen",
+          "warning": "unumkehrbar – eine gelöschte Domain, ein gelöschter Eintrag oder Server lässt sich nicht wiederherstellen"
+        }
+      ]
+    }
+  }
+}

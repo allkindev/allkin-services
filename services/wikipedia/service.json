@@ -1,0 +1,49 @@
+{
+  "label": "Wikipedia",
+  "authType": "none",
+  "category": "data",
+  "description": "Articles of one language edition",
+  "glyph": "M4 5h4M16 5h4M6 5l4 12 2-5M18 5l-4 12-2-5M8 19h8",
+  "color": "#2b2b2b",
+  "colorDark": "#dcdcdc",
+  "needsBaseUrl": true,
+  "baseUrlTemplate": {
+    "template": "https://{value}.wikipedia.org",
+    "label": "Language",
+    "note": "The code of the edition: fr, en, de, es…",
+    "placeholder": "fr",
+    "pattern": "[a-z][a-z\\-]{1,11}"
+  },
+  "testPath": "/w/api.php",
+  "testQuery": {
+    "action": "query",
+    "meta": "siteinfo",
+    "format": "json"
+  },
+  "testExpect": "sitename",
+  "agentGuide": "No key; the language is the one of the connection's address. Summary of an article: GET /api/rest_v1/page/summary/<Title> (title with underscores, URL-encoded). Full text as wikitext or HTML: GET /w/api.php?action=parse&page=<Title>&prop=wikitext&format=json. Search: GET /w/api.php?action=query&list=search&srsearch=<words>&format=json&srlimit=5. Plain-text extract: GET /w/api.php?action=query&prop=extracts&explaintext=1&titles=<Title>&format=json. Always add format=json on /w/api.php. Quote the article URL when you answer from it.",
+  "docUrl": "https://www.mediawiki.org/wiki/API:Main_page",
+  "locales": {
+    "fr": {
+      "description": "Les articles d'une édition linguistique",
+      "baseUrlTemplate": {
+        "label": "Langue",
+        "note": "Le code de l'édition : fr, en, de, es…"
+      }
+    },
+    "es": {
+      "description": "Los artículos de una edición lingüística",
+      "baseUrlTemplate": {
+        "label": "Idioma",
+        "note": "El código de la edición: es, en, fr, de…"
+      }
+    },
+    "de": {
+      "description": "Die Artikel einer Sprachausgabe",
+      "baseUrlTemplate": {
+        "label": "Sprache",
+        "note": "Der Code der Ausgabe: de, en, fr, es…"
+      }
+    }
+  }
+}

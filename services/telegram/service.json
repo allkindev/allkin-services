@@ -1,0 +1,68 @@
+{
+  "label": "Telegram (bot)",
+  "authType": "api_key",
+  "category": "messaging",
+  "description": "Sending messages through a bot",
+  "logo": "M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z",
+  "color": "#26a5e4",
+  "apiBaseUrl": "https://api.telegram.org/bot{secret}",
+  "secretPlacement": "path",
+  "testPath": "/getMe",
+  "liveTest": {
+    "path": "/sendMessage",
+    "method": "POST",
+    "params": {
+      "text": "Allkin is properly connected to this conversation."
+    },
+    "label": "Send a test message"
+  },
+  "pinnedParam": {
+    "name": "chat_id",
+    "label": "Identifier of the conversation (chat_id)",
+    "hint": "The bot will only be able to write to this conversation, whatever an agent asks. To get it: write a message to the bot, then open https://api.telegram.org/bot<YOUR_TOKEN>/getUpdates and note chat.id (negative for a group).",
+    "required": true
+  },
+  "agentGuide": "One thing to know: POST /sendMessage with a JSON body {\"text\": \"…\"}. Do not add chat_id — the destination is set by the user and rewritten before sending, whatever you put would be ignored. The text accepts HTML with parse_mode: \"HTML\" (<b>, <i>, <code>, <a href>) — not the full markdown. GET /getMe checks the connection. You only send: Allkin receives no message.",
+  "docUrl": "https://core.telegram.org/bots/api",
+  "locales": {
+    "fr": {
+      "description": "Envoi de messages par un bot",
+      "liveTest": {
+        "params": {
+          "text": "Allkin est bien connecté à cette conversation."
+        },
+        "label": "Envoyer un message d'essai"
+      },
+      "pinnedParam": {
+        "label": "Identifiant de la conversation (chat_id)",
+        "hint": "Le bot ne pourra écrire qu'à cette conversation, quoi qu'un agent demande. Pour l'obtenir : écrivez un message au bot, puis ouvrez https://api.telegram.org/bot<VOTRE_JETON>/getUpdates et relevez chat.id (négatif pour un groupe)."
+      }
+    },
+    "es": {
+      "description": "Envío de mensajes mediante un bot",
+      "liveTest": {
+        "params": {
+          "text": "Allkin está bien conectado a esta conversación."
+        },
+        "label": "Enviar un mensaje de prueba"
+      },
+      "pinnedParam": {
+        "label": "Identificador de la conversación (chat_id)",
+        "hint": "El bot solo podrá escribir en esta conversación, pida lo que pida un agente. Para obtenerlo: escribe un mensaje al bot, luego abre https://api.telegram.org/bot<TU_TOKEN>/getUpdates y anota chat.id (negativo para un grupo)."
+      }
+    },
+    "de": {
+      "description": "Nachrichten über einen Bot senden",
+      "liveTest": {
+        "params": {
+          "text": "Allkin ist mit dieser Unterhaltung verbunden."
+        },
+        "label": "Testnachricht senden"
+      },
+      "pinnedParam": {
+        "label": "Kennung der Unterhaltung (chat_id)",
+        "hint": "Der Bot kann nur in diese Unterhaltung schreiben, egal was ein Agent verlangt. So bekommst du sie: Schreib dem Bot eine Nachricht, öffne dann https://api.telegram.org/bot<DEIN_TOKEN>/getUpdates und notiere chat.id (negativ bei einer Gruppe)."
+      }
+    }
+  }
+}

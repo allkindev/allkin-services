@@ -1,0 +1,65 @@
+{
+  "label": "Discord",
+  "authType": "api_key",
+  "category": "messaging",
+  "description": "Servers, channels, messages — through a bot",
+  "glyph": "M8 7c3-1 5-1 8 0l2 7-2 3-3-1-1 1h-2l-1-1-3 1-2-3zM9.5 13h.01M14.5 13h.01",
+  "color": "#5865f2",
+  "apiBaseUrl": "https://discord.com/api/v10",
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "Bot ",
+  "testPath": "/users/@me",
+  "testExpect": "username",
+  "sensitivePaths": [
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete a message or a channel"
+    },
+    {
+      "method": "PUT",
+      "path": "/guilds/*/bans/*",
+      "action": "confirm",
+      "label": "Ban a member"
+    }
+  ],
+  "agentGuide": "The bot: GET /users/@me; its servers: GET /users/@me/guilds (id, name); channels of one: GET /guilds/<guild id>/channels (type 0 = text, 2 = voice, 4 = category). Read: GET /channels/<id>/messages?limit=20 (newest first; author.username, content, timestamp, attachments[].url); one: GET /channels/<id>/messages/<id>. Reading content needs the Message Content intent on the bot. Write: POST /channels/<id>/messages {\"content\": \"...\"} (reply: add \"message_reference\": {\"message_id\": \"...\"}; embeds: [{\"title\": \"...\", \"description\": \"...\"}]); react: PUT /channels/<id>/messages/<id>/reactions/<emoji url-encoded>/@me. Direct message: POST /users/@me/channels {\"recipient_id\": \"<user id>\"} then post to the returned channel. Members: GET /guilds/<id>/members?limit=100; roles: GET /guilds/<id>/roles. Markdown works in content; 2000 characters max per message. Respect the rate limits (429 with retry_after). The token is set by Allkin.",
+  "docUrl": "https://discord.com/developers/docs/reference",
+  "locales": {
+    "fr": {
+      "description": "Serveurs, salons, messages — par un bot",
+      "sensitivePaths": [
+        {
+          "label": "Supprimer un message ou un salon"
+        },
+        {
+          "label": "Bannir un membre"
+        }
+      ]
+    },
+    "es": {
+      "description": "Servidores, canales, mensajes: mediante un bot",
+      "sensitivePaths": [
+        {
+          "label": "Eliminar un mensaje o un canal"
+        },
+        {
+          "label": "Expulsar a un miembro"
+        }
+      ]
+    },
+    "de": {
+      "description": "Server, Kanäle, Nachrichten – über einen Bot",
+      "sensitivePaths": [
+        {
+          "label": "Eine Nachricht oder einen Kanal löschen"
+        },
+        {
+          "label": "Ein Mitglied bannen"
+        }
+      ]
+    }
+  }
+}

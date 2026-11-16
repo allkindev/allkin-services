@@ -1,0 +1,80 @@
+{
+  "label": "WooCommerce",
+  "authType": "basic",
+  "category": "finance",
+  "description": "Orders, products, customers of a shop",
+  "glyph": "M3 5h3l2.5 10h10L21 8H7M9 20a1 1 0 1 0 0 .01M18 20a1 1 0 1 0 0 .01",
+  "color": "#7f54b3",
+  "needsBaseUrl": true,
+  "baseUrlTemplate": {
+    "template": "https://{value}/wp-json/wc/v3",
+    "label": "Shop address",
+    "note": "The domain of the WordPress site, without https://",
+    "placeholder": "shop.example.com"
+  },
+  "testPath": "/system_status",
+  "testExpect": "environment",
+  "sensitivePaths": [
+    {
+      "method": "POST",
+      "path": "/orders/*/refunds",
+      "action": "confirm",
+      "label": "Refund an order"
+    },
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete (order, product, customer…)"
+    }
+  ],
+  "agentGuide": "Orders: GET /orders?status=processing&per_page=20 (id, status, total, billing, line_items); one: GET /orders/<id>; change: PUT /orders/<id> {\"status\": \"completed\"}; note: POST /orders/<id>/notes {\"note\": \"...\"}. Products: GET /products?search=<words>&per_page=20 (id, name, price, stock_quantity, stock_status); stock: PUT /products/<id> {\"stock_quantity\": 12}; create: POST /products {\"name\": \"...\", \"regular_price\": \"9.90\", \"type\": \"simple\"}. Customers: GET /customers?search=<email>; coupons: GET /coupons; reports: GET /reports/sales?period=month, GET /reports/top_sellers. Pagination comes in headers X-WP-Total and X-WP-TotalPages. Refunds are money: POST /orders/<id>/refunds asks for confirmation.",
+  "docUrl": "https://woocommerce.github.io/woocommerce-rest-api-docs/",
+  "locales": {
+    "fr": {
+      "description": "Commandes, produits, clients d'une boutique",
+      "baseUrlTemplate": {
+        "label": "Adresse de la boutique",
+        "note": "Le domaine du site WordPress, sans https://"
+      },
+      "sensitivePaths": [
+        {
+          "label": "Rembourser une commande"
+        },
+        {
+          "label": "Supprimer (commande, produit, client…)"
+        }
+      ]
+    },
+    "es": {
+      "description": "Pedidos, productos, clientes de una tienda",
+      "baseUrlTemplate": {
+        "label": "Dirección de la tienda",
+        "note": "El dominio del sitio WordPress, sin https://"
+      },
+      "sensitivePaths": [
+        {
+          "label": "Reembolsar un pedido"
+        },
+        {
+          "label": "Eliminar (pedido, producto, cliente…)"
+        }
+      ]
+    },
+    "de": {
+      "description": "Bestellungen, Produkte, Kunden eines Shops",
+      "baseUrlTemplate": {
+        "label": "Adresse des Shops",
+        "note": "Die Domain der WordPress-Seite, ohne https://"
+      },
+      "sensitivePaths": [
+        {
+          "label": "Eine Bestellung erstatten"
+        },
+        {
+          "label": "Löschen (Bestellung, Produkt, Kunde…)"
+        }
+      ]
+    }
+  }
+}

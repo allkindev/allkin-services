@@ -1,0 +1,161 @@
+{
+  "label": "Stripe",
+  "authType": "api_key",
+  "category": "finance",
+  "description": "Payments, customers, invoices, refunds",
+  "glyph": "M6 9c0-2 2-3 5-3 2 0 4 .5 5 1.5M18 15c0 2-2 3-5 3-2 0-4-.5-5-1.5M12 4v16",
+  "color": "#635bff",
+  "apiBaseUrl": "https://api.stripe.com/v1",
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "Bearer ",
+  "bodyFormat": "form",
+  "testPath": "/balance",
+  "testExpect": "available",
+  "sensitivePaths": [
+    {
+      "method": "POST",
+      "path": "/refunds",
+      "action": "confirm",
+      "label": "Refund",
+      "warning": "Real money moves with a live key."
+    },
+    {
+      "method": "POST",
+      "path": "/payment_intents*",
+      "action": "confirm",
+      "label": "Charge or collect money",
+      "warning": "Real money moves with a live key."
+    },
+    {
+      "method": "POST",
+      "path": "/charges*",
+      "action": "confirm",
+      "label": "Charge or collect money",
+      "warning": "Real money moves with a live key."
+    },
+    {
+      "method": "POST",
+      "path": "/payouts*",
+      "action": "confirm",
+      "label": "Pay out",
+      "warning": "Real money moves with a live key."
+    },
+    {
+      "method": "POST",
+      "path": "/invoices/*/pay",
+      "action": "confirm",
+      "label": "Charge or collect money",
+      "warning": "Real money moves with a live key."
+    },
+    {
+      "method": "POST",
+      "path": "/subscriptions*",
+      "action": "confirm",
+      "label": "Create or change a subscription"
+    },
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete (customer, product…)"
+    }
+  ],
+  "agentGuide": "Base path /v1; bodies are form-encoded (Allkin converts your JSON object, nested keys as metadata[order]=42). Amounts are integers in the smallest unit (1250 = 12.50 EUR). Read: GET /balance; GET /customers?email=<email>&limit=5; GET /customers/<id>; GET /payment_intents?limit=10 (status, amount, customer); GET /charges?customer=<id>; GET /invoices?customer=<id>&status=open; GET /subscriptions?customer=<id>; GET /products?active=true, GET /prices?product=<id>; search: GET /customers/search?query=email:'x@y.z', GET /charges/search?query=amount>1000 AND status:'succeeded'. Money moves ask for confirmation: POST /refunds {\"payment_intent\": \"pi_...\", \"amount\": 500}; POST /payment_intents; POST /payouts; POST /invoices/<id>/pay. Create a customer: POST /customers {\"email\": \"...\", \"name\": \"...\"}. Payment links: POST /payment_links {\"line_items\": [{\"price\": \"price_...\", \"quantity\": 1}]}. A test key (sk_test_) touches test data only; a live key (sk_live_) moves real money. The key is set by Allkin.",
+  "docUrl": "https://docs.stripe.com/api",
+  "locales": {
+    "fr": {
+      "description": "Paiements, clients, factures, remboursements",
+      "sensitivePaths": [
+        {
+          "label": "Rembourser",
+          "warning": "De l'argent réel bouge avec une clé live."
+        },
+        {
+          "label": "Débiter ou encaisser",
+          "warning": "De l'argent réel bouge avec une clé live."
+        },
+        {
+          "label": "Débiter ou encaisser",
+          "warning": "De l'argent réel bouge avec une clé live."
+        },
+        {
+          "label": "Virer des fonds",
+          "warning": "De l'argent réel bouge avec une clé live."
+        },
+        {
+          "label": "Débiter ou encaisser",
+          "warning": "De l'argent réel bouge avec une clé live."
+        },
+        {
+          "label": "Créer ou modifier un abonnement"
+        },
+        {
+          "label": "Supprimer (client, produit…)"
+        }
+      ]
+    },
+    "es": {
+      "description": "Pagos, clientes, facturas, reembolsos",
+      "sensitivePaths": [
+        {
+          "label": "Reembolsar",
+          "warning": "Con una clave live se mueve dinero real."
+        },
+        {
+          "label": "Cobrar",
+          "warning": "Con una clave live se mueve dinero real."
+        },
+        {
+          "label": "Cobrar",
+          "warning": "Con una clave live se mueve dinero real."
+        },
+        {
+          "label": "Transferir fondos",
+          "warning": "Con una clave live se mueve dinero real."
+        },
+        {
+          "label": "Cobrar",
+          "warning": "Con una clave live se mueve dinero real."
+        },
+        {
+          "label": "Crear o cambiar una suscripción"
+        },
+        {
+          "label": "Eliminar (cliente, producto…)"
+        }
+      ]
+    },
+    "de": {
+      "description": "Zahlungen, Kunden, Rechnungen, Erstattungen",
+      "sensitivePaths": [
+        {
+          "label": "Erstatten",
+          "warning": "Mit einem Live-Schlüssel bewegt sich echtes Geld."
+        },
+        {
+          "label": "Abbuchen oder einziehen",
+          "warning": "Mit einem Live-Schlüssel bewegt sich echtes Geld."
+        },
+        {
+          "label": "Abbuchen oder einziehen",
+          "warning": "Mit einem Live-Schlüssel bewegt sich echtes Geld."
+        },
+        {
+          "label": "Auszahlen",
+          "warning": "Mit einem Live-Schlüssel bewegt sich echtes Geld."
+        },
+        {
+          "label": "Abbuchen oder einziehen",
+          "warning": "Mit einem Live-Schlüssel bewegt sich echtes Geld."
+        },
+        {
+          "label": "Ein Abo anlegen oder ändern"
+        },
+        {
+          "label": "Löschen (Kunde, Produkt…)"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "label": "Shopify",
+  "authType": "api_key",
+  "category": "finance",
+  "description": "Orders, products, stock, customers of a store",
+  "glyph": "M7 8h10l1 12H6zM9 8V6a3 3 0 0 1 6 0v2M12 12v4",
+  "color": "#96bf48",
+  "needsBaseUrl": true,
+  "baseUrlTemplate": {
+    "template": "https://{value}.myshopify.com/admin/api/2026-01",
+    "label": "Store name",
+    "note": "The part before .myshopify.com.",
+    "placeholder": "my-store",
+    "pattern": "[a-z0-9][a-z0-9-]*"
+  },
+  "secretPlacement": "header",
+  "apiKeyHeader": "X-Shopify-Access-Token",
+  "testPath": "/shop.json",
+  "testExpect": "myshopify_domain",
+  "sensitivePaths": [
+    {
+      "method": "POST",
+      "path": "/orders/*/refunds.json",
+      "action": "confirm",
+      "label": "Refund an order"
+    },
+    {
+      "method": "POST",
+      "path": "/orders/*/cancel.json",
+      "action": "confirm",
+      "label": "Cancel an order"
+    },
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete (product, customer…)"
+    }
+  ],
+  "agentGuide": "Admin REST API; paths end with .json. Shop: GET /shop.json. Orders: GET /orders.json?status=open&limit=20&fields=id,name,created_at,total_price,financial_status,fulfillment_status,customer (also status=any, financial_status=unpaid, created_at_min=<ISO>); one: GET /orders/<id>.json; fulfil: GET /orders/<id>/fulfillment_orders.json then POST /fulfillments.json {\"fulfillment\": {\"line_items_by_fulfillment_order\": [{\"fulfillment_order_id\": ...}], \"tracking_info\": {\"number\": \"...\"}}}; cancel: POST /orders/<id>/cancel.json; refund: POST /orders/<id>/refunds.json (calculate first with POST /orders/<id>/refunds/calculate.json). Products: GET /products.json?limit=20&title=<words>; one: GET /products/<id>.json (variants[] with inventory_item_id); stock: GET /inventory_levels.json?inventory_item_ids=<id>, set: POST /inventory_levels/set.json {\"location_id\": ..., \"inventory_item_id\": ..., \"available\": 12}; create: POST /products.json {\"product\": {\"title\": \"...\", \"variants\": [{\"price\": \"9.90\"}]}}. Customers: GET /customers/search.json?query=email:<email>; count: GET /orders/count.json?status=any. Pagination: the Link header (page_info). The token is set by Allkin.",
+  "docUrl": "https://shopify.dev/docs/api/admin-rest",
+  "locales": {
+    "fr": {
+      "description": "Commandes, produits, stock, clients d'une boutique",
+      "baseUrlTemplate": {
+        "label": "Nom de la boutique",
+        "note": "La partie avant .myshopify.com."
+      },
+      "sensitivePaths": [
+        {
+          "label": "Rembourser une commande"
+        },
+        {
+          "label": "Annuler une commande"
+        },
+        {
+          "label": "Supprimer (produit, client…)"
+        }
+      ]
+    },
+    "es": {
+      "description": "Pedidos, productos, stock, clientes de una tienda",
+      "baseUrlTemplate": {
+        "label": "Nombre de la tienda",
+        "note": "La parte antes de .myshopify.com."
+      },
+      "sensitivePaths": [
+        {
+          "label": "Reembolsar un pedido"
+        },
+        {
+          "label": "Cancelar un pedido"
+        },
+        {
+          "label": "Eliminar (producto, cliente…)"
+        }
+      ]
+    },
+    "de": {
+      "description": "Bestellungen, Produkte, Bestand, Kunden eines Shops",
+      "baseUrlTemplate": {
+        "label": "Name des Shops",
+        "note": "Der Teil vor .myshopify.com."
+      },
+      "sensitivePaths": [
+        {
+          "label": "Eine Bestellung erstatten"
+        },
+        {
+          "label": "Eine Bestellung stornieren"
+        },
+        {
+          "label": "Löschen (Produkt, Kunde…)"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "label": "Sonarr",
+  "authType": "api_key",
+  "category": "media",
+  "description": "TV series: library, calendar, downloads",
+  "glyph": "M4 6h16v10H4zM8 20h8M12 16v4",
+  "color": "#35c5f4",
+  "needsBaseUrl": true,
+  "secretPlacement": "header",
+  "apiKeyHeader": "X-Api-Key",
+  "testPath": "/api/v3/system/status",
+  "testExpect": "appName",
+  "sensitivePaths": [
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete an item from the library",
+      "warning": "Files on disk may go with it."
+    },
+    {
+      "method": "*",
+      "path": "/api/v3/command",
+      "action": "confirm",
+      "label": "Run a command (search, refresh)"
+    }
+  ],
+  "agentGuide": "Base path /api/v3. Series: GET /api/v3/series (id, title, monitored, statistics); one: GET /api/v3/series/<id>; episodes: GET /api/v3/episode?seriesId=<id>; missing: GET /api/v3/wanted/missing?pageSize=20. Find a show: GET /api/v3/series/lookup?term=<title>; add it: POST /api/v3/series with the lookup object plus qualityProfileId, rootFolderPath, monitored: true, addOptions: {\"searchForMissingEpisodes\": true}. Commands: SeriesSearch (seriesId), EpisodeSearch (episodeIds), RefreshSeries, RssSync. Queue: GET /api/v3/queue; history: GET /api/v3/history?pageSize=20; calendar: GET /api/v3/calendar?start=YYYY-MM-DD&end=YYYY-MM-DD; health and version: GET /api/v3/health, /api/v3/system/status. Profiles and folders before adding: GET /api/v3/qualityprofile, /api/v3/rootfolder. Searches and refreshes are commands: POST /api/v3/command {\"name\": \"...\"}. Never send the key, it is set automatically.",
+  "docUrl": "https://wiki.servarr.com/sonarr",
+  "locales": {
+    "fr": {
+      "description": "Séries : bibliothèque, calendrier, téléchargements",
+      "sensitivePaths": [
+        {
+          "label": "Supprimer un élément de la bibliothèque",
+          "warning": "Les fichiers sur le disque peuvent partir avec."
+        },
+        {
+          "label": "Lancer une commande (recherche, rafraîchissement)"
+        }
+      ]
+    },
+    "es": {
+      "description": "Series: biblioteca, calendario, descargas",
+      "sensitivePaths": [
+        {
+          "label": "Eliminar un elemento de la biblioteca",
+          "warning": "Los archivos del disco pueden irse con él."
+        },
+        {
+          "label": "Ejecutar un comando (búsqueda, actualización)"
+        }
+      ]
+    },
+    "de": {
+      "description": "Serien: Bibliothek, Kalender, Downloads",
+      "sensitivePaths": [
+        {
+          "label": "Ein Element aus der Bibliothek löschen",
+          "warning": "Dateien auf der Festplatte können mit verschwinden."
+        },
+        {
+          "label": "Einen Befehl ausführen (Suche, Aktualisierung)"
+        }
+      ]
+    }
+  }
+}

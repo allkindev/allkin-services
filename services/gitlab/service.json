@@ -1,0 +1,83 @@
+{
+  "label": "GitLab",
+  "authType": "api_key",
+  "category": "dev",
+  "description": "Projects, issues, merge requests, pipelines",
+  "glyph": "M12 21 3 14l2-7 3 6h8l3-6 2 7z",
+  "color": "#fc6d26",
+  "needsBaseUrl": true,
+  "secretPlacement": "header",
+  "apiKeyHeader": "PRIVATE-TOKEN",
+  "testPath": "/api/v4/user",
+  "testExpect": "username",
+  "sensitivePaths": [
+    {
+      "method": "DELETE",
+      "path": "/api/v4/projects/*",
+      "action": "confirm",
+      "label": "Delete a project",
+      "warning": "The code and its history are gone."
+    },
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete (issue, branch, key…)"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v4/projects/*/pipeline",
+      "action": "confirm",
+      "label": "Run a pipeline"
+    }
+  ],
+  "agentGuide": "Base path /api/v4; projects are addressed by numeric id or by URL-encoded path (group%2Fname). Me: GET /api/v4/user; my projects: GET /api/v4/projects?membership=true&per_page=20; search: GET /api/v4/projects?search=<words>. Issues: GET /api/v4/projects/<id>/issues?state=opened, create: POST ... {\"title\": \"...\", \"description\": \"...\"}, comment: POST .../issues/<iid>/notes {\"body\": \"...\"}. Merge requests: GET .../merge_requests?state=opened; pipelines: GET .../pipelines?per_page=10, jobs of one: GET .../pipelines/<id>/jobs, a job's log: GET .../jobs/<id>/trace. A file: GET .../repository/files/<url-encoded path>/raw?ref=main; commits: GET .../repository/commits?ref_name=main. Pagination in headers X-Total and X-Next-Page. The token is set by Allkin.",
+  "docUrl": "https://docs.gitlab.com/api/",
+  "locales": {
+    "fr": {
+      "description": "Projets, issues, merge requests, pipelines",
+      "sensitivePaths": [
+        {
+          "label": "Supprimer un projet",
+          "warning": "Le code et son historique disparaissent."
+        },
+        {
+          "label": "Supprimer (issue, branche, clé…)"
+        },
+        {
+          "label": "Lancer un pipeline"
+        }
+      ]
+    },
+    "es": {
+      "description": "Proyectos, issues, merge requests, pipelines",
+      "sensitivePaths": [
+        {
+          "label": "Eliminar un proyecto",
+          "warning": "El código y su historial desaparecen."
+        },
+        {
+          "label": "Eliminar (issue, rama, clave…)"
+        },
+        {
+          "label": "Lanzar un pipeline"
+        }
+      ]
+    },
+    "de": {
+      "description": "Projekte, Issues, Merge Requests, Pipelines",
+      "sensitivePaths": [
+        {
+          "label": "Ein Projekt löschen",
+          "warning": "Der Code und seine Historie sind weg."
+        },
+        {
+          "label": "Löschen (Issue, Branch, Schlüssel…)"
+        },
+        {
+          "label": "Eine Pipeline starten"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "label": "Transmission",
+  "authType": "basic",
+  "category": "media",
+  "description": "Torrents through the daemon's RPC",
+  "glyph": "M12 3v12m0 0-4-4m4 4 4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2",
+  "color": "#b31a1a",
+  "colorDark": "#f06c6c",
+  "needsBaseUrl": true,
+  "csrf": {
+    "header": "X-Transmission-Session-Id",
+    "path": "/transmission/rpc",
+    "status": 409
+  },
+  "testPath": "/transmission/rpc",
+  "testMethod": "POST",
+  "testBody": "{\"method\":\"session-stats\"}",
+  "testExpect": "activeTorrentCount",
+  "sensitivePaths": [
+    {
+      "method": "POST",
+      "path": "/transmission/rpc",
+      "action": "allow",
+      "label": "RPC call"
+    }
+  ],
+  "agentGuide": "Everything is POST /transmission/rpc with a JSON body {\"method\": \"...\", \"arguments\": {...}}; the answer has result (\"success\") and arguments. List: method torrent-get, arguments {\"fields\": [\"id\",\"name\",\"status\",\"percentDone\",\"rateDownload\",\"rateUpload\",\"eta\",\"totalSize\",\"downloadDir\"]} (add \"ids\": [..] for some). Add: torrent-add with {\"filename\": \"magnet:?xt=...\"} (or a URL; download-dir optional). Control: torrent-start, torrent-stop, torrent-remove ({\"ids\": [..], \"delete-local-data\": false}) — ask before deleting data. Overall numbers: session-stats; settings: session-get. The anti-forgery header is set by Allkin.",
+  "docUrl": "https://github.com/transmission/transmission/blob/main/docs/rpc-spec.md",
+  "locales": {
+    "fr": {
+      "description": "Torrents par le RPC du démon",
+      "sensitivePaths": [
+        {
+          "label": "Appel RPC"
+        }
+      ]
+    },
+    "es": {
+      "description": "Torrents a través del RPC del demonio",
+      "sensitivePaths": [
+        {
+          "label": "Llamada RPC"
+        }
+      ]
+    },
+    "de": {
+      "description": "Torrents über das RPC des Daemons",
+      "sensitivePaths": [
+        {
+          "label": "RPC-Aufruf"
+        }
+      ]
+    }
+  }
+}

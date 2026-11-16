@@ -1,0 +1,94 @@
+{
+  "label": "Google Sheets",
+  "authType": "oauth2",
+  "category": "office",
+  "description": "Spreadsheets: read, write, append",
+  "logo": "M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z",
+  "color": "#188038",
+  "apiBaseUrl": "https://sheets.googleapis.com/v4",
+  "authorizeUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+  "tokenUrl": "https://oauth2.googleapis.com/token",
+  "commonScopes": [
+    {
+      "value": "https://www.googleapis.com/auth/spreadsheets",
+      "label": "Read and write spreadsheets"
+    },
+    {
+      "value": "https://www.googleapis.com/auth/spreadsheets.readonly",
+      "label": "Read spreadsheets"
+    },
+    {
+      "value": "https://www.googleapis.com/auth/drive.file",
+      "label": "Create spreadsheets in Drive"
+    }
+  ],
+  "sensitivePaths": [
+    {
+      "method": "POST",
+      "path": "/spreadsheets/*/values/*:clear",
+      "action": "confirm",
+      "label": "Clear a range"
+    }
+  ],
+  "agentGuide": "Base path /v4; the id is the one in the spreadsheet's URL. Structure: GET /spreadsheets/<id>?fields=sheets.properties (titles, sizes). Read: GET /spreadsheets/<id>/values/Sheet1!A1:D50 (values[][] as strings; add ?valueRenderOption=UNFORMATTED_VALUE for numbers; ?majorDimension=COLUMNS). Write: PUT /spreadsheets/<id>/values/Sheet1!A1?valueInputOption=USER_ENTERED {\"values\": [[\"a\", 1], [\"b\", 2]]} (USER_ENTERED parses numbers, dates and formulas as a user would); append rows: POST /spreadsheets/<id>/values/Sheet1!A1:append?valueInputOption=USER_ENTERED {\"values\": [[...]]}; clear: POST /spreadsheets/<id>/values/Sheet1!A2:Z:clear. Several ranges at once: GET /spreadsheets/<id>/values:batchGet?ranges=A1:B2&ranges=Sheet2!A1:C3. Create: POST /spreadsheets {\"properties\": {\"title\": \"...\"}}. Add a sheet, format, sort: POST /spreadsheets/<id>:batchUpdate {\"requests\": [{\"addSheet\": {\"properties\": {\"title\": \"...\"}}}]}. Quote sheet names with spaces: 'My sheet'!A1. Finding spreadsheets is Google Drive's job.",
+  "docUrl": "https://developers.google.com/sheets/api/reference/rest",
+  "locales": {
+    "fr": {
+      "description": "Feuilles de calcul : lire, écrire, ajouter",
+      "commonScopes": [
+        {
+          "label": "Lire et écrire les feuilles"
+        },
+        {
+          "label": "Lire les feuilles"
+        },
+        {
+          "label": "Créer des feuilles dans Drive"
+        }
+      ],
+      "sensitivePaths": [
+        {
+          "label": "Vider une plage"
+        }
+      ]
+    },
+    "es": {
+      "description": "Hojas de cálculo: leer, escribir, añadir",
+      "commonScopes": [
+        {
+          "label": "Leer y escribir hojas"
+        },
+        {
+          "label": "Leer hojas"
+        },
+        {
+          "label": "Crear hojas en Drive"
+        }
+      ],
+      "sensitivePaths": [
+        {
+          "label": "Vaciar un rango"
+        }
+      ]
+    },
+    "de": {
+      "description": "Tabellen: lesen, schreiben, anhängen",
+      "commonScopes": [
+        {
+          "label": "Tabellen lesen und schreiben"
+        },
+        {
+          "label": "Tabellen lesen"
+        },
+        {
+          "label": "Tabellen in Drive anlegen"
+        }
+      ],
+      "sensitivePaths": [
+        {
+          "label": "Einen Bereich leeren"
+        }
+      ]
+    }
+  }
+}

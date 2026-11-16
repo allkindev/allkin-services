@@ -1,0 +1,27 @@
+{
+  "label": "ElevenLabs",
+  "authType": "api_key",
+  "category": "ai",
+  "description": "Voices and text to speech",
+  "glyph": "M8 5v14M12 5v14M16 5v14",
+  "color": "#000000",
+  "colorDark": "#e6e6e6",
+  "apiBaseUrl": "https://api.elevenlabs.io",
+  "secretPlacement": "header",
+  "apiKeyHeader": "xi-api-key",
+  "testPath": "/v1/user",
+  "testExpect": "subscription",
+  "agentGuide": "Base path /v1. Account and credits: GET /v1/user (subscription.character_count, character_limit). Voices: GET /v1/voices (voices[].voice_id, name, labels). Speak: POST /v1/text-to-speech/<voice_id> {\"text\": \"...\", \"model_id\": \"eleven_multilingual_v2\"} — the answer is MP3 bytes: always use save_as (name.mp3). Add ?output_format=mp3_44100_128. Sound effects: POST /v1/sound-generation {\"text\": \"rain on a window\"} (mp3, save_as). History: GET /v1/history; an item's audio: GET /v1/history/<id>/audio (save_as). Models: GET /v1/models. Every character spoken is billed. The key is set by Allkin.",
+  "docUrl": "https://elevenlabs.io/docs/api-reference/introduction",
+  "locales": {
+    "fr": {
+      "description": "Voix et synthèse vocale"
+    },
+    "es": {
+      "description": "Voces y síntesis de voz"
+    },
+    "de": {
+      "description": "Stimmen und Sprachsynthese"
+    }
+  }
+}

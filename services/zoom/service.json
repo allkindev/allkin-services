@@ -1,0 +1,65 @@
+{
+  "label": "Zoom",
+  "authType": "oauth2",
+  "category": "messaging",
+  "description": "Meetings, recordings, users (server-to-server app)",
+  "oauthGrant": "client_credentials",
+  "tokenClientAuth": "basic",
+  "tokenGrantType": "account_credentials",
+  "oauthAccountField": {
+    "param": "account_id",
+    "label": "Account ID",
+    "note": "Account ID of the server-to-server app, next to its client id and secret."
+  },
+  "glyph": "M4 7h11a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1zM16 11l5-3v8l-5-3z",
+  "color": "#0b5cff",
+  "apiBaseUrl": "https://api.zoom.us/v2",
+  "tokenUrl": "https://zoom.us/oauth/token",
+  "testPath": "/users/me",
+  "testExpect": "email",
+  "sensitivePaths": [
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Cancel a meeting or delete a recording"
+    }
+  ],
+  "agentGuide": "Base path /v2. Me: GET /users/me; users of the account: GET /users?page_size=30. Meetings: GET /users/me/meetings?type=upcoming (id, topic, start_time, join_url); one: GET /meetings/<id>; create: POST /users/me/meetings {\"topic\": \"...\", \"type\": 2, \"start_time\": \"2026-10-02T10:00:00\", \"timezone\": \"Europe/Paris\", \"duration\": 30, \"settings\": {\"waiting_room\": true}} (type 1 = instant, 2 = scheduled, 8 = recurring); update: PATCH /meetings/<id>; cancel: DELETE /meetings/<id>. Past meetings: GET /past_meetings/<id>/participants; recordings: GET /users/me/recordings?from=YYYY-MM-DD&to=YYYY-MM-DD (download_url needs the token as ?access_token=, which you do not have: give the play_url). Reports: GET /report/users/me/meetings?from=&to=. The app's scopes bound what works (meeting:read:admin, meeting:write:admin…). The token is set by Allkin.",
+  "docUrl": "https://developers.zoom.us/docs/api/",
+  "locales": {
+    "fr": {
+      "oauthAccountField": {
+        "note": "Account ID de l'application serveur à serveur, à côté de son client id et de son secret."
+      },
+      "description": "Réunions, enregistrements, utilisateurs (application serveur à serveur)",
+      "sensitivePaths": [
+        {
+          "label": "Annuler une réunion ou supprimer un enregistrement"
+        }
+      ]
+    },
+    "es": {
+      "oauthAccountField": {
+        "note": "Account ID de la aplicación servidor a servidor, junto a su client id y su secreto."
+      },
+      "description": "Reuniones, grabaciones, usuarios (aplicación servidor a servidor)",
+      "sensitivePaths": [
+        {
+          "label": "Cancelar una reunión o eliminar una grabación"
+        }
+      ]
+    },
+    "de": {
+      "oauthAccountField": {
+        "note": "Account ID der Server-zu-Server-App, neben ihrer Client-Id und ihrem Secret."
+      },
+      "description": "Meetings, Aufzeichnungen, Benutzer (Server-zu-Server-App)",
+      "sensitivePaths": [
+        {
+          "label": "Ein Meeting absagen oder eine Aufzeichnung löschen"
+        }
+      ]
+    }
+  }
+}

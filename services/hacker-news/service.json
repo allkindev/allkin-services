@@ -1,0 +1,26 @@
+{
+  "label": "Hacker News",
+  "authType": "none",
+  "category": "data",
+  "description": "Stories, comments, search",
+  "glyph": "M4 4h16v16H4zM8.5 8l3.5 5.5L15.5 8M12 13.5V17",
+  "color": "#ff6600",
+  "apiBaseUrl": "https://hacker-news.firebaseio.com",
+  "extraHosts": [
+    "hn.algolia.com"
+  ],
+  "testPath": "/v0/maxitem.json",
+  "agentGuide": "No key. Front page: GET /v0/topstories.json (ids; also newstories, beststories, askstories, showstories, jobstories), then GET /v0/item/<id>.json for each (title, url, score, by, time, descendants, kids = comment ids; comments are items of type comment with text). Fetch the first 10-30 ids only, not the whole list. Search and filters go to Algolia: GET https://hn.algolia.com/api/v1/search?query=<words>&tags=story&hitsPerPage=10 (search_by_date for newest; numericFilters=points>100). A user: GET /v0/user/<name>.json. Link stories as https://news.ycombinator.com/item?id=<id>.",
+  "docUrl": "https://github.com/HackerNews/API",
+  "locales": {
+    "fr": {
+      "description": "Articles, commentaires, recherche"
+    },
+    "es": {
+      "description": "Historias, comentarios, búsqueda"
+    },
+    "de": {
+      "description": "Beiträge, Kommentare, Suche"
+    }
+  }
+}

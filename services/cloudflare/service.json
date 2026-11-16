@@ -1,0 +1,79 @@
+{
+  "label": "Cloudflare",
+  "authType": "api_key",
+  "category": "cloud",
+  "description": "DNS, zones, cache, Workers",
+  "glyph": "M6 17a4 4 0 0 1 .5-8A6 6 0 0 1 18 9a3.5 3.5 0 0 1 0 8z",
+  "color": "#f38020",
+  "apiBaseUrl": "https://api.cloudflare.com/client/v4",
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "Bearer ",
+  "testPath": "/user/tokens/verify",
+  "testExpect": "active",
+  "sensitivePaths": [
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete (DNS record, zone, rule…)"
+    },
+    {
+      "method": "PATCH",
+      "path": "/zones/*/settings/*",
+      "action": "confirm",
+      "label": "Change a zone setting"
+    },
+    {
+      "method": "POST",
+      "path": "/zones/*/purge_cache",
+      "action": "confirm",
+      "label": "Purge the cache"
+    }
+  ],
+  "agentGuide": "Base /client/v4; answers are {success, result, errors}. Zones: GET /zones?name=example.com (id, status, name_servers); DNS: GET /zones/<zone>/dns_records?type=A&name=www.example.com; add: POST /zones/<zone>/dns_records {\"type\": \"A\", \"name\": \"www\", \"content\": \"1.2.3.4\", \"ttl\": 1, \"proxied\": true}; change: PATCH /zones/<zone>/dns_records/<id>; remove: DELETE .... Cache: POST /zones/<zone>/purge_cache {\"purge_everything\": true}. Settings: GET /zones/<zone>/settings, one: PATCH /zones/<zone>/settings/ssl {\"value\": \"full\"}. Analytics: GET /zones/<zone>/analytics/dashboard?since=-1440. Firewall rules: GET /zones/<zone>/firewall/rules; Workers: GET /accounts/<account>/workers/scripts. Tunnels: GET /accounts/<account>/cfd_tunnel. Every token has its own permissions: a 403 means the token lacks one. The token is set by Allkin.",
+  "docUrl": "https://developers.cloudflare.com/api/",
+  "locales": {
+    "fr": {
+      "sensitivePaths": [
+        {
+          "label": "Supprimer (enregistrement DNS, zone, règle…)"
+        },
+        {
+          "label": "Modifier un réglage de zone"
+        },
+        {
+          "label": "Purger le cache"
+        }
+      ]
+    },
+    "es": {
+      "description": "DNS, zonas, caché, Workers",
+      "sensitivePaths": [
+        {
+          "label": "Eliminar (registro DNS, zona, regla…)"
+        },
+        {
+          "label": "Cambiar un ajuste de zona"
+        },
+        {
+          "label": "Purgar la caché"
+        }
+      ]
+    },
+    "de": {
+      "description": "DNS, Zonen, Cache, Workers",
+      "sensitivePaths": [
+        {
+          "label": "Löschen (DNS-Eintrag, Zone, Regel…)"
+        },
+        {
+          "label": "Eine Zoneneinstellung ändern"
+        },
+        {
+          "label": "Den Cache leeren"
+        }
+      ]
+    }
+  }
+}

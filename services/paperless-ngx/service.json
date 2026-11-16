@@ -1,0 +1,54 @@
+{
+  "label": "Paperless-ngx",
+  "authType": "api_key",
+  "category": "media",
+  "description": "Documents: search, tags, correspondents",
+  "glyph": "M7 3h7l5 5v13H7zM14 3v5h5M10 13h6M10 17h6",
+  "color": "#17541f",
+  "colorDark": "#6cc47a",
+  "needsBaseUrl": true,
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "Token ",
+  "extraHeaders": {
+    "Accept": "application/json"
+  },
+  "testPath": "/api/statistics/",
+  "testExpect": "documents_total",
+  "sensitivePaths": [
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete a document"
+    }
+  ],
+  "agentGuide": "Paths end with a slash. Documents: GET /api/documents/?page_size=25&ordering=-created (results[] with id, title, created, correspondent, tags, archive_serial_number); full-text search: GET /api/documents/?query=<words>; filters: &tags__id__in=3&correspondent__id=2&created__year=2026. One document: GET /api/documents/<id>/; its text: field content; its PDF: GET /api/documents/<id>/download/ (binary). Edit: PATCH /api/documents/<id>/ {\"title\": \"...\", \"tags\": [..]}. Tags, correspondents, document types: GET /api/tags/, /api/correspondents/, /api/document_types/. Upload: POST /api/documents/post_document/ (multipart). Counts: GET /api/statistics/.",
+  "docUrl": "https://docs.paperless-ngx.com/api/",
+  "locales": {
+    "fr": {
+      "description": "Documents : recherche, étiquettes, correspondants",
+      "sensitivePaths": [
+        {
+          "label": "Supprimer un document"
+        }
+      ]
+    },
+    "es": {
+      "description": "Documentos: búsqueda, etiquetas, remitentes",
+      "sensitivePaths": [
+        {
+          "label": "Eliminar un documento"
+        }
+      ]
+    },
+    "de": {
+      "description": "Dokumente: Suche, Tags, Korrespondenten",
+      "sensitivePaths": [
+        {
+          "label": "Ein Dokument löschen"
+        }
+      ]
+    }
+  }
+}

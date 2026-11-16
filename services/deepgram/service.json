@@ -1,0 +1,27 @@
+{
+  "label": "Deepgram",
+  "authType": "api_key",
+  "category": "ai",
+  "description": "Transcription and speech",
+  "glyph": "M4 4h8a8 8 0 0 1 0 16H4zM8 8v8",
+  "color": "#13ef93",
+  "apiBaseUrl": "https://api.deepgram.com/v1",
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "Token ",
+  "testPath": "/projects",
+  "testExpect": "projects",
+  "agentGuide": "Base path /v1. Transcribe an audio file by URL: POST /listen?model=nova-3&smart_format=true&language=fr {\"url\": \"https://.../audio.mp3\"} (results.channels[0].alternatives[0].transcript; add &diarize=true for speakers, &paragraphs=true, &summarize=v2, &detect_language=true). A local file cannot be sent through this relay (binary body): give a URL. Text to speech: POST /speak?model=aura-2-thalia-en {\"text\": \"...\"} (audio bytes, save_as). Text intelligence: POST /read?summarize=true&topics=true {\"text\": \"...\"}. Projects and usage: GET /projects, GET /projects/<id>/usage?start=YYYY-MM-DD&end=YYYY-MM-DD, balances: GET /projects/<id>/balances. The key is set by Allkin.",
+  "docUrl": "https://developers.deepgram.com/reference/",
+  "locales": {
+    "fr": {
+      "description": "Transcription et synthèse vocale"
+    },
+    "es": {
+      "description": "Transcripción y síntesis de voz"
+    },
+    "de": {
+      "description": "Transkription und Sprachsynthese"
+    }
+  }
+}

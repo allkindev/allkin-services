@@ -1,0 +1,53 @@
+{
+  "label": "HubSpot",
+  "authType": "api_key",
+  "category": "marketing",
+  "description": "Contacts, companies, deals (CRM)",
+  "glyph": "M15 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM15 9V4M15 15v5M7 5l5 5M4 12h8M7 19l5-5",
+  "color": "#ff7a59",
+  "apiBaseUrl": "https://api.hubapi.com",
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "Bearer ",
+  "testQuery": {
+    "limit": "1"
+  },
+  "testPath": "/crm/v3/objects/contacts",
+  "testExpect": "results",
+  "sensitivePaths": [
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete (contact, company, deal…)"
+    }
+  ],
+  "agentGuide": "CRM v3. Contacts: GET /crm/v3/objects/contacts?limit=20&properties=firstname,lastname,email,company,lifecyclestage; search: POST /crm/v3/objects/contacts/search {\"filterGroups\": [{\"filters\": [{\"propertyName\": \"email\", \"operator\": \"EQ\", \"value\": \"...\"}]}], \"properties\": [\"email\", \"firstname\"]}; create: POST /crm/v3/objects/contacts {\"properties\": {\"email\": \"...\", \"firstname\": \"...\"}}; update: PATCH /crm/v3/objects/contacts/<id>. Same shape for companies (/crm/v3/objects/companies, properties name, domain), deals (/crm/v3/objects/deals, properties dealname, amount, dealstage, closedate), tickets, notes (/crm/v3/objects/notes with hs_note_body and hs_timestamp). Link two: PUT /crm/v4/objects/contacts/<id>/associations/default/companies/<id>. Pipelines: GET /crm/v3/pipelines/deals. Owners: GET /crm/v3/owners. Properties of an object: GET /crm/v3/properties/contacts. Paging: paging.next.after. The token's scopes bound what works. The token is set by Allkin.",
+  "docUrl": "https://developers.hubspot.com/docs/reference/api",
+  "locales": {
+    "fr": {
+      "description": "Contacts, entreprises, affaires (CRM)",
+      "sensitivePaths": [
+        {
+          "label": "Supprimer (contact, entreprise, affaire…)"
+        }
+      ]
+    },
+    "es": {
+      "description": "Contactos, empresas, negocios (CRM)",
+      "sensitivePaths": [
+        {
+          "label": "Eliminar (contacto, empresa, negocio…)"
+        }
+      ]
+    },
+    "de": {
+      "description": "Kontakte, Unternehmen, Deals (CRM)",
+      "sensitivePaths": [
+        {
+          "label": "Löschen (Kontakt, Unternehmen, Deal…)"
+        }
+      ]
+    }
+  }
+}

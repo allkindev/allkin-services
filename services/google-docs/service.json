@@ -1,0 +1,71 @@
+{
+  "label": "Google Docs",
+  "authType": "oauth2",
+  "category": "office",
+  "description": "Documents: read, create, write",
+  "logo": "M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z",
+  "color": "#4285f4",
+  "apiBaseUrl": "https://docs.googleapis.com/v1",
+  "authorizeUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+  "tokenUrl": "https://oauth2.googleapis.com/token",
+  "commonScopes": [
+    {
+      "value": "https://www.googleapis.com/auth/documents",
+      "label": "Read and write documents"
+    },
+    {
+      "value": "https://www.googleapis.com/auth/documents.readonly",
+      "label": "Read documents"
+    },
+    {
+      "value": "https://www.googleapis.com/auth/drive.file",
+      "label": "Create documents in Drive"
+    }
+  ],
+  "agentGuide": "Base path /v1. Read: GET /documents/<id> (body.content[]: paragraphs with elements[].textRun.content; headings in paragraphStyle.namedStyleType; tables); the id is the one in the document's URL. Create: POST /documents {\"title\": \"...\"} (empty; then write). Write: POST /documents/<id>:batchUpdate {\"requests\": [{\"insertText\": {\"location\": {\"index\": 1}, \"text\": \"...\"}}]} — index 1 is the start of the body; to append, use endOfSegmentLocation: {} instead of location. Formatting: {\"updateParagraphStyle\": {\"range\": {\"startIndex\": 1, \"endIndex\": 20}, \"paragraphStyle\": {\"namedStyleType\": \"HEADING_1\"}, \"fields\": \"namedStyleType\"}}, bold: updateTextStyle with textStyle.bold and fields \"bold\". Replace: {\"replaceAllText\": {\"containsText\": {\"text\": \"{{name}}\", \"matchCase\": true}, \"replaceText\": \"...\"}}. Indexes shift after every insertion: compute them from a fresh read, or write from the end backwards. Finding documents is Google Drive's job.",
+  "docUrl": "https://developers.google.com/docs/api/reference/rest",
+  "locales": {
+    "fr": {
+      "description": "Documents : lire, créer, écrire",
+      "commonScopes": [
+        {
+          "label": "Lire et écrire les documents"
+        },
+        {
+          "label": "Lire les documents"
+        },
+        {
+          "label": "Créer des documents dans Drive"
+        }
+      ]
+    },
+    "es": {
+      "description": "Documentos: leer, crear, escribir",
+      "commonScopes": [
+        {
+          "label": "Leer y escribir documentos"
+        },
+        {
+          "label": "Leer documentos"
+        },
+        {
+          "label": "Crear documentos en Drive"
+        }
+      ]
+    },
+    "de": {
+      "description": "Dokumente: lesen, anlegen, schreiben",
+      "commonScopes": [
+        {
+          "label": "Dokumente lesen und schreiben"
+        },
+        {
+          "label": "Dokumente lesen"
+        },
+        {
+          "label": "Dokumente in Drive anlegen"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "label": "Home Assistant",
+  "authType": "api_key",
+  "category": "home",
+  "description": "Lights, shutters, sensors, scenes — your home automation setup",
+  "logo": "M22.939 10.627 13.061.749a1.505 1.505 0 0 0-2.121 0l-9.879 9.878C.478 11.21 0 12.363 0 13.187v9c0 .826.675 1.5 1.5 1.5h9.227l-4.063-4.062a2.034 2.034 0 0 1-.664.113c-1.13 0-2.05-.92-2.05-2.05s.92-2.05 2.05-2.05 2.05.92 2.05 2.05c0 .233-.041.456-.113.665l3.163 3.163V9.928a2.05 2.05 0 0 1-1.15-1.84c0-1.13.92-2.05 2.05-2.05s2.05.92 2.05 2.05a2.05 2.05 0 0 1-1.15 1.84v8.127l3.146-3.146A2.051 2.051 0 0 1 18 12.239c1.13 0 2.05.92 2.05 2.05s-.92 2.05-2.05 2.05c-.25 0-.488-.047-.709-.13L12.9 20.602v3.088h9.6c.825 0 1.5-.675 1.5-1.5v-9c0-.825-.477-1.977-1.061-2.561z",
+  "color": "#18bcf2",
+  "needsBaseUrl": true,
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "Bearer ",
+  "testPath": "/api/",
+  "homeAssistant": true,
+  "agentGuide": "Two ways in, same service_id. (1) The REST API, through call_external_service, paths under /api/. GET /api/states lists EVERY entity with its state — the way to discover what exists here, no documentation can tell you; GET /api/states/<entity_id> for one. To act on a device: POST /api/services/<domain>/<service> with a JSON body {\"entity_id\": \"light.living_room\"} — light/turn_on, switch/toggle, climate/set_temperature, scene/turn_on; GET /api/services lists the services. POST /api/template renders a template. POST /api/config/automation/config/<id> (script and scene alike) creates or replaces one, on a card. (2) The WebSocket API, through ha_command and ha_listen — what administers the installation: the registries (config/entity_registry/list, …/update with new_entity_id, name, area_id; devices, areas, floors, labels), the dashboards (lovelace/…), the config entries and their flows, ZHA and Z-Wave JS, and the events as they happen (ha_listen, to see a new device arrive). A read runs at once; a change shows the user a card. Entity ids have the form <domain>.<name> and differ from one installation to another: never invent them, read them.",
+  "sensitivePaths": [
+    {
+      "method": "POST",
+      "path": "/api/services/homeassistant/stop",
+      "action": "deny",
+      "label": "Stop Home Assistant"
+    },
+    {
+      "method": "POST",
+      "path": "/api/services/hassio/host_shutdown",
+      "action": "deny",
+      "label": "Shut down the machine of Home Assistant"
+    },
+    {
+      "method": "POST",
+      "path": "/api/config/core/check_config",
+      "action": "allow",
+      "label": "Check the configuration of Home Assistant"
+    },
+    {
+      "method": "POST",
+      "path": "/api/services/homeassistant/restart",
+      "action": "confirm",
+      "label": "Restart Home Assistant"
+    },
+    {
+      "method": "POST",
+      "path": "/api/services/hassio/*",
+      "action": "confirm",
+      "label": "Act on the system of Home Assistant (add-ons, host, backups)"
+    },
+    {
+      "method": "POST",
+      "path": "/api/config/*",
+      "action": "confirm",
+      "label": "Change the configuration of Home Assistant",
+      "warning": "an automation, a script, a scene or an integration is created or replaced"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/config/*",
+      "action": "confirm",
+      "label": "Delete from the configuration of Home Assistant"
+    }
+  ],
+  "docUrl": "https://developers.home-assistant.io/docs/api/rest/",
+  "locales": {
+    "fr": {
+      "description": "Lumières, volets, capteurs, scènes — votre installation domotique",
+      "sensitivePaths": [
+        {
+          "label": "Arrêter Home Assistant"
+        },
+        {
+          "label": "Éteindre la machine de Home Assistant"
+        },
+        {
+          "label": "Vérifier la configuration de Home Assistant"
+        },
+        {
+          "label": "Redémarrer Home Assistant"
+        },
+        {
+          "label": "Agir sur le système de Home Assistant (modules, hôte, sauvegardes)"
+        },
+        {
+          "label": "Modifier la configuration de Home Assistant",
+          "warning": "un automatisme, un script, une scène ou une intégration est créé ou remplacé"
+        },
+        {
+          "label": "Supprimer un élément de la configuration de Home Assistant"
+        }
+      ]
+    },
+    "es": {
+      "description": "Luces, persianas, sensores, escenas: tu instalación domótica",
+      "sensitivePaths": [
+        {
+          "label": "Detener Home Assistant"
+        },
+        {
+          "label": "Apagar la máquina de Home Assistant"
+        },
+        {
+          "label": "Comprobar la configuración de Home Assistant"
+        },
+        {
+          "label": "Reiniciar Home Assistant"
+        },
+        {
+          "label": "Actuar sobre el sistema de Home Assistant (complementos, host, copias de seguridad)"
+        },
+        {
+          "label": "Modificar la configuración de Home Assistant",
+          "warning": "se crea o se reemplaza una automatización, un script, una escena o una integración"
+        },
+        {
+          "label": "Eliminar un elemento de la configuración de Home Assistant"
+        }
+      ]
+    },
+    "de": {
+      "description": "Lichter, Rollläden, Sensoren, Szenen – deine Hausautomation",
+      "sensitivePaths": [
+        {
+          "label": "Home Assistant anhalten"
+        },
+        {
+          "label": "Die Maschine von Home Assistant herunterfahren"
+        },
+        {
+          "label": "Die Konfiguration von Home Assistant prüfen"
+        },
+        {
+          "label": "Home Assistant neu starten"
+        },
+        {
+          "label": "Auf das System von Home Assistant einwirken (Add-ons, Host, Backups)"
+        },
+        {
+          "label": "Die Konfiguration von Home Assistant ändern",
+          "warning": "eine Automation, ein Skript, eine Szene oder eine Integration wird angelegt oder ersetzt"
+        },
+        {
+          "label": "Ein Element aus der Konfiguration von Home Assistant löschen"
+        }
+      ]
+    }
+  }
+}

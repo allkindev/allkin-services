@@ -1,0 +1,113 @@
+{
+  "label": "Google Calendar",
+  "authType": "oauth2",
+  "category": "office",
+  "description": "Calendars, events, availability",
+  "logo": "M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z",
+  "color": "#4285f4",
+  "apiBaseUrl": "https://www.googleapis.com/calendar/v3",
+  "authorizeUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+  "tokenUrl": "https://oauth2.googleapis.com/token",
+  "commonScopes": [
+    {
+      "value": "https://www.googleapis.com/auth/calendar.readonly",
+      "label": "Read calendars"
+    },
+    {
+      "value": "https://www.googleapis.com/auth/calendar.events",
+      "label": "Create and edit events"
+    },
+    {
+      "value": "https://www.googleapis.com/auth/calendar",
+      "label": "Manage calendars"
+    }
+  ],
+  "testPath": "/users/me/calendarList",
+  "testExpect": "calendar#calendarList",
+  "sensitivePaths": [
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete an event or a calendar"
+    },
+    {
+      "method": "POST",
+      "path": "/calendars/*/events*",
+      "action": "confirm",
+      "label": "Create an event (invitations may be sent)"
+    }
+  ],
+  "agentGuide": "Base path /calendar/v3. Calendars: GET /users/me/calendarList (items[].id, summary; \"primary\" is the main one). Events: GET /calendars/primary/events?timeMin=<ISO>&timeMax=<ISO>&singleEvents=true&orderBy=startTime&maxResults=50 (items[].summary, start.dateTime or start.date for all-day, end, location, attendees, hangoutLink). Create: POST /calendars/primary/events {\"summary\": \"...\", \"start\": {\"dateTime\": \"2026-10-02T10:00:00+02:00\"}, \"end\": {\"dateTime\": \"...\"}, \"attendees\": [{\"email\": \"...\"}], \"description\": \"...\"} (all-day: {\"date\": \"2026-10-02\"}; invitations are sent with ?sendUpdates=all). Change: PATCH /calendars/primary/events/<id>; remove: DELETE .... Free slots: POST /freeBusy {\"timeMin\": \"...\", \"timeMax\": \"...\", \"items\": [{\"id\": \"primary\"}]}. Quick add from a sentence: POST /calendars/primary/events/quickAdd?text=Lunch with Anna tomorrow 12:30. Times are RFC 3339 with an offset; give the user's time zone.",
+  "docUrl": "https://developers.google.com/calendar/api/v3/reference",
+  "locales": {
+    "fr": {
+      "label": "Google Agenda",
+      "description": "Agendas, événements, disponibilités",
+      "commonScopes": [
+        {
+          "label": "Lire les agendas"
+        },
+        {
+          "label": "Créer et modifier des événements"
+        },
+        {
+          "label": "Gérer les agendas"
+        }
+      ],
+      "sensitivePaths": [
+        {
+          "label": "Supprimer un événement ou un agenda"
+        },
+        {
+          "label": "Créer un événement (des invitations peuvent partir)"
+        }
+      ]
+    },
+    "es": {
+      "description": "Calendarios, eventos, disponibilidad",
+      "commonScopes": [
+        {
+          "label": "Leer los calendarios"
+        },
+        {
+          "label": "Crear y editar eventos"
+        },
+        {
+          "label": "Gestionar los calendarios"
+        }
+      ],
+      "sensitivePaths": [
+        {
+          "label": "Eliminar un evento o un calendario"
+        },
+        {
+          "label": "Crear un evento (pueden enviarse invitaciones)"
+        }
+      ]
+    },
+    "de": {
+      "label": "Google Kalender",
+      "description": "Kalender, Termine, Verfügbarkeit",
+      "commonScopes": [
+        {
+          "label": "Kalender lesen"
+        },
+        {
+          "label": "Termine anlegen und ändern"
+        },
+        {
+          "label": "Kalender verwalten"
+        }
+      ],
+      "sensitivePaths": [
+        {
+          "label": "Einen Termin oder Kalender löschen"
+        },
+        {
+          "label": "Einen Termin anlegen (Einladungen können rausgehen)"
+        }
+      ]
+    }
+  }
+}

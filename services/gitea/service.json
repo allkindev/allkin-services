@@ -1,0 +1,69 @@
+{
+  "label": "Gitea / Forgejo",
+  "authType": "api_key",
+  "category": "dev",
+  "description": "Repositories, issues, pull requests",
+  "glyph": "M6 3v18M6 9a6 6 0 0 0 6 6h2M18 3v6a6 6 0 0 1-6 6M18 3a2 2 0 1 0 0 .01M6 3a2 2 0 1 0 0 .01M6 21a2 2 0 1 0 0 .01",
+  "color": "#609926",
+  "needsBaseUrl": true,
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "token ",
+  "testPath": "/api/v1/user",
+  "testExpect": "login",
+  "sensitivePaths": [
+    {
+      "method": "DELETE",
+      "path": "/api/v1/repos/*",
+      "action": "confirm",
+      "label": "Delete a repository",
+      "warning": "The code and its history are gone."
+    },
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete (issue, release, key…)"
+    }
+  ],
+  "agentGuide": "Base path /api/v1, same as GitHub's shape. Me: GET /api/v1/user; my repos: GET /api/v1/user/repos; search: GET /api/v1/repos/search?q=<words>; one: GET /api/v1/repos/<owner>/<repo>. Issues: GET /api/v1/repos/<owner>/<repo>/issues?state=open, create: POST ... {\"title\": \"...\", \"body\": \"...\"}, comment: POST .../issues/<n>/comments {\"body\": \"...\"}. Pull requests: GET .../pulls; commits: GET .../commits?sha=main&limit=10; a file: GET .../contents/<path>?ref=main (base64 content); releases: GET .../releases. Create a repo: POST /api/v1/user/repos {\"name\": \"...\", \"private\": true}. The token's scopes bound what works. The token is set by Allkin.",
+  "docUrl": "https://docs.gitea.com/api/",
+  "locales": {
+    "fr": {
+      "description": "Dépôts, issues, pull requests",
+      "sensitivePaths": [
+        {
+          "label": "Supprimer un dépôt",
+          "warning": "Le code et son historique disparaissent."
+        },
+        {
+          "label": "Supprimer (issue, release, clé…)"
+        }
+      ]
+    },
+    "es": {
+      "description": "Repositorios, issues, pull requests",
+      "sensitivePaths": [
+        {
+          "label": "Eliminar un repositorio",
+          "warning": "El código y su historial desaparecen."
+        },
+        {
+          "label": "Eliminar (issue, release, clave…)"
+        }
+      ]
+    },
+    "de": {
+      "description": "Repositories, Issues, Pull Requests",
+      "sensitivePaths": [
+        {
+          "label": "Ein Repository löschen",
+          "warning": "Der Code und seine Historie sind weg."
+        },
+        {
+          "label": "Löschen (Issue, Release, Schlüssel…)"
+        }
+      ]
+    }
+  }
+}

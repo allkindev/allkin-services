@@ -1,0 +1,27 @@
+{
+  "label": "Hugging Face",
+  "authType": "api_key",
+  "category": "ai",
+  "description": "Models, datasets and spaces of the Hub",
+  "glyph": "M12 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM9 10h.01M15 10h.01M9 13c1.5 1.5 4.5 1.5 6 0M5 14l-2 2 2 2M19 14l2 2-2 2",
+  "color": "#ff9d00",
+  "apiBaseUrl": "https://huggingface.co",
+  "secretPlacement": "header",
+  "apiKeyHeader": "Authorization",
+  "apiKeyPrefix": "Bearer ",
+  "testPath": "/api/whoami-v2",
+  "testExpect": "name",
+  "agentGuide": "The Hub API, base https://huggingface.co. Me: GET /api/whoami-v2. Search models: GET /api/models?search=<words>&sort=downloads&limit=10&filter=text-generation (id, downloads, likes, pipeline_tag); one: GET /api/models/<org>/<name> (card data, siblings = files). Datasets: GET /api/datasets?search=...; spaces: GET /api/spaces?search=.... A file of a repo: GET /<org>/<name>/resolve/main/<path> (README.md, config.json; big weights: do not). Collections: GET /api/collections?owner=<me>. Inference (text generation, images) runs on router.huggingface.co, another host this service does not reach: use OpenAI, Mistral or OpenRouter for that, or the generic API entry with the same token. The token is set by Allkin.",
+  "docUrl": "https://huggingface.co/docs/hub/api",
+  "locales": {
+    "fr": {
+      "description": "Modèles, jeux de données et spaces du Hub"
+    },
+    "es": {
+      "description": "Modelos, conjuntos de datos y spaces del Hub"
+    },
+    "de": {
+      "description": "Modelle, Datensätze und Spaces des Hub"
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "label": "Portainer",
+  "authType": "api_key",
+  "category": "cloud",
+  "description": "Docker environments: containers, stacks, logs",
+  "glyph": "M4 16h16M6 16V9h12v7M9 9V6h6v3M12 16v4",
+  "color": "#13bef9",
+  "needsBaseUrl": true,
+  "secretPlacement": "header",
+  "apiKeyHeader": "X-API-Key",
+  "testPath": "/api/endpoints",
+  "sensitivePaths": [
+    {
+      "method": "POST",
+      "path": "/api/endpoints/*/docker/containers/*/stop",
+      "action": "confirm",
+      "label": "Stop a container"
+    },
+    {
+      "method": "POST",
+      "path": "/api/endpoints/*/docker/containers/*/kill",
+      "action": "confirm",
+      "label": "Stop a container"
+    },
+    {
+      "method": "DELETE",
+      "path": "*",
+      "action": "confirm",
+      "label": "Delete (container, stack, image…)"
+    }
+  ],
+  "agentGuide": "Environments first: GET /api/endpoints (Id, Name, Type, Status). Then the Docker API of one, proxied: GET /api/endpoints/<id>/docker/containers/json?all=true (Names, Image, State, Status), GET /api/endpoints/<id>/docker/containers/<id>/json, logs: GET /api/endpoints/<id>/docker/containers/<id>/logs?stdout=true&stderr=true&tail=100, stats: /stats?stream=false; images: GET /api/endpoints/<id>/docker/images/json; start/stop/restart: POST /api/endpoints/<id>/docker/containers/<id>/start (stop, restart). Stacks: GET /api/stacks, one: GET /api/stacks/<id>, its file: GET /api/stacks/<id>/file; stop/start: POST /api/stacks/<id>/stop (start). System: GET /api/system/status, /api/system/version. Logs may be long: ask for a tail. The key is set by Allkin.",
+  "docUrl": "https://app.swaggerhub.com/apis/portainer/portainer-ce/",
+  "locales": {
+    "fr": {
+      "description": "Environnements Docker : conteneurs, stacks, journaux",
+      "sensitivePaths": [
+        {
+          "label": "Arrêter un conteneur"
+        },
+        {
+          "label": "Arrêter un conteneur"
+        },
+        {
+          "label": "Supprimer (conteneur, stack, image…)"
+        }
+      ]
+    },
+    "es": {
+      "description": "Entornos Docker: contenedores, stacks, registros",
+      "sensitivePaths": [
+        {
+          "label": "Detener un contenedor"
+        },
+        {
+          "label": "Detener un contenedor"
+        },
+        {
+          "label": "Eliminar (contenedor, stack, imagen…)"
+        }
+      ]
+    },
+    "de": {
+      "description": "Docker-Umgebungen: Container, Stacks, Logs",
+      "sensitivePaths": [
+        {
+          "label": "Einen Container stoppen"
+        },
+        {
+          "label": "Einen Container stoppen"
+        },
+        {
+          "label": "Löschen (Container, Stack, Image…)"
+        }
+      ]
+    }
+  }
+}
